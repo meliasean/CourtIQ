@@ -2404,7 +2404,7 @@ function renderPlayers(list){{
     const e=Math.round(p.current_elo||1500);
     const sc=Math.round(p.selo_Clay||1500);
     const sh=Math.round(p.selo_Hard||1500);
-    const f=p.form10_wr!=null?(p.form10_wr*100).toFixed(0)+'%':'—';
+    let f='<span style="color:var(--txt2)">&#8212;</span>';try{{const l5=p.last5?JSON.parse(p.last5):[];if(l5.length>0)f=l5.slice(-5).reverse().map(m=>{{const c=m.result==='W'?'rgba(74,222,128,0.15)':'rgba(239,68,68,0.15)';const t=m.result==='W'?'#4ade80':'#ef4444';return '<span style="font-family:var(--mono);font-size:10px;padding:1px 5px;border-radius:3px;margin-left:2px;font-weight:600;background:'+c+';color:'+t+'">'+m.result+'</span>';}}).reverse().join('');}}catch(e){{}}
     const st=p.streak||0;
     const stc=st>0?'style="color:var(--green)"':st<0?'style="color:var(--clay)"':'';
     const ld=p.last_match_date?p.last_match_date.slice(0,10):'—';
