@@ -41,12 +41,12 @@ OUT_MADRID   = f"{REPORTS_DIR}/player_profiles_post_madrid_2026.csv"
 # -- NEW ELO CONFIG ---------------------------------------------
 @dataclass
 class EloConfig:
-    base:          float = 1200.0
-    k_start:       float = 40.0
-    k_floor:       float = 8.0
-    k_decay:       float = 60.0
-    k_surf_start:  float = 28.0
-    k_surf_floor:  float = 6.0
+    base:          float = 1500.0   # validated best config
+    k_start:       float = 24.0     # fixed K
+    k_floor:       float = 24.0     # fixed K (no decay)
+    k_decay:       float = 999.0    # effectively infinite
+    k_surf_start:  float = 18.0
+    k_surf_floor:  float = 18.0
 
     def k(self, n: int) -> float:
         return self.k_floor + (self.k_start - self.k_floor) * np.exp(-n / self.k_decay)
@@ -54,14 +54,7 @@ class EloConfig:
     def k_surf(self, n: int) -> float:
         return self.k_surf_floor + (self.k_surf_start - self.k_surf_floor) * np.exp(-n / self.k_decay)
 
-CFG = EloConfig(
-    base=1500.0,
-    k_start=24.0,
-    k_floor=24.0,
-    k_decay=999.0,
-    k_surf_start=18.0,
-    k_surf_floor=18.0,
-)
+CFG = EloConfig()
 
 # -- ALIASES ----------------------------------------------------
 ALIASES = {
@@ -86,22 +79,42 @@ def norm_surf(s) -> str:
 # -- LOAD MATCH HISTORY -----------------------------------------
 
 def load_from_predictions() -> pd.DataFrame:
-    """Load match history from scored prediction files (Wimbledon 2025+)."""
-    files = sorted(glob.glob(f"{REPORTS_DIR}/*_predictions_cck_complete.csv"))
-    files = [f for f in files if "_ALL_" not in f and "all_rounds" not in f]
+    """Load match history from scored prediction files.
+    Uses CCK files where available, standard complete files otherwise.
+    Deduplicates by (date, winner, loser) to avoid double-counting."""
+    # CCK files take priority
+    cck_keys = set()
+    cck_files = sorted(glob.glob(f"{REPORTS_DIR}/*_predictions_cck_complete.csv"))
+    cck_files = [f for f in cck_files if "_ALL_" not in f and "all_rounds" not in f]
+    for f in cck_files:
+        cck_keys.add(os.path.basename(f).replace("_predictions_cck_complete.csv",""))
 
+    # Standard files only where no CCK counterpart exists
+    std_files = sorted(glob.glob(f"{REPORTS_DIR}/*_predictions_complete.csv"))
+    std_files = [f for f in std_files if "_ALL_" not in f and "all_rounds" not in f
+                 and "_cck_" not in f]
+    std_only  = [f for f in std_files
+                 if os.path.basename(f).replace("_predictions_complete.csv","") not in cck_keys]
+
+    all_files = cck_files + std_only
+    print(f"  Prediction files: {len(cck_files)} CCK + {len(std_only)} standard-only")
+
+    seen = set()
     rows = []
-    for fpath in files:
+
+    for fpath in all_files:
         df = pd.read_csv(fpath)
         slug = os.path.basename(fpath).split("_predictions")[0]
-        parts = slug.rsplit("_",1)
-        tourney = parts[0] if len(parts)==2 else slug
+        parts = slug.rsplit("_", 1)
+        tourney = parts[0] if len(parts) == 2 else slug
 
         req = ["player_a","player_b","pred_winner","correct_prediction","date"]
         if not all(c in df.columns for c in req): continue
 
         df = df[pd.to_numeric(df["correct_prediction"], errors="coerce").notna()].copy()
         df["correct_prediction"] = pd.to_numeric(df["correct_prediction"], errors="coerce")
+        df["date"] = pd.to_datetime(df.get("date",""), errors="coerce")
+        df = df.dropna(subset=["date","correct_prediction","pred_winner"])
 
         surface = "Hard"
         if "surface" in df.columns and len(df):
@@ -110,14 +123,24 @@ def load_from_predictions() -> pd.DataFrame:
         for _, r in df.iterrows():
             pa   = alias(r["player_a"]); pb = alias(r["player_b"])
             pred = alias(r["pred_winner"]); cp = int(r["correct_prediction"])
-            winner = pred if cp==1 else (pb if pred==pa else pa)
-            loser  = pb   if winner==pa else pa
-            rows.append({"date":r["date"],"winner":winner,"loser":loser,
-                          "surface":surface,"tourney":tourney,"match_num":r.get("match_no",0)})
+            winner = pred if cp == 1 else (pb if pred == pa else pa)
+            loser  = pb   if winner == pa else pa
+            dt     = r["date"]
+
+            # Deduplicate
+            key = (dt.date(), winner, loser)
+            if key in seen: continue
+            seen.add(key)
+
+            rows.append({"date": dt, "winner": winner, "loser": loser,
+                         "surface": surface, "tourney": tourney,
+                         "match_num": r.get("match_no", 0)})
 
     df = pd.DataFrame(rows)
     df["date"] = pd.to_datetime(df["date"], errors="coerce")
-    return df.dropna(subset=["date"]).sort_values("date").reset_index(drop=True)
+    df = df.dropna(subset=["date"]).sort_values("date").reset_index(drop=True)
+    print(f"  Unique match records: {len(df)}")
+    return df
 
 
 def load_from_raw_dataset() -> pd.DataFrame:
