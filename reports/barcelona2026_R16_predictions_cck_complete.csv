@@ -1,9 +1,9 @@
 match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
-1,4/16/2026,R16,Clay,A,3,Carlos Alcaraz,Tomas Machac,,,Carlos Alcaraz,0.77144,0.77144,0.22856,,,0.902172,0.718238,385.9308688562596,1,1
-2,4/16/2026,R16,Clay,A,3,Lorenzo Sonego,Andrey Rublev,-385.0,300.0,Andrey Rublev,0.710302,0.289698,0.710302,0.760494,0.239506,0.281186,0.334059,-163.0491801910705,1,0
-3,4/15/2026,R16,Clay,A,3,Hamad Medjedovic,Alex De Minaur,-208.0,250.0,Alex De Minaur,0.566063,0.433937,0.566063,0.702703,0.297297,0.292188,0.44906,-153.70239710355122,0,1
-4,4/15/2026,R16,Clay,A,3,Nuno Borges,Tomas Martin Etcheverry,250.0,-333.0,Nuno Borges,0.563987,0.563987,0.436013,0.270879,0.729121,0.411887,0.549331,-61.873377574174356,1,0
-5,4/15/2026,R16,Clay,A,3,Cameron Norrie,Ethan Quinn,-189.0,163.0,Cameron Norrie,0.650948,0.650948,0.349052,0.632348,0.367652,0.737027,0.617604,179.02913823003837,1,1
-6,4/15/2026,R16,Clay,A,3,Rafael Jodar,Camilo Ugo Carabelli,-500.0,350.0,Rafael Jodar,0.65444,0.65444,0.34556,0.789474,0.210526,0.715624,0.620399,160.316843061418,1,1
-7,4/16/2026,R16,Clay,A,3,Arthur Fils,Brandon Nakashima,-345.0,275.0,Arthur Fils,0.772884,0.772884,0.227116,0.744069,0.255931,0.763808,0.719514,203.88801155420083,1,1
-8,4/16/2026,R16,Clay,A,3,Corentin Moutet,Lorenzo Musetti,300.0,-385.0,Lorenzo Musetti,0.7717,0.2283,0.7717,0.239506,0.760494,0.242031,0.281532,-198.31248185770437,1,1
+1,4/16/2026,R16,Clay,A,3,Carlos Alcaraz,Tomas Machac,,,Carlos Alcaraz,0.77144,0.77144,0.22856,,,0.902172,0.718238,385.9308689,1,1
+2,4/16/2026,R16,Clay,A,3,Lorenzo Sonego,Andrey Rublev,-385,300,Andrey Rublev,0.710302,0.289698,0.710302,0.760494,0.239506,0.281186,0.334059,-163.0491802,1,0
+3,4/15/2026,R16,Clay,A,3,Hamad Medjedovic,Alex De Minaur,208,-250,Alex De Minaur,0.566063,0.433937,0.566063,0.702703,0.297297,0.292188,0.44906,-153.7023971,0,0
+4,4/15/2026,R16,Clay,A,3,Nuno Borges,Tomas Martin Etcheverry,250,-333,Nuno Borges,0.563987,0.563987,0.436013,0.270879,0.729121,0.411887,0.549331,-61.87337757,1,0
+5,4/15/2026,R16,Clay,A,3,Cameron Norrie,Ethan Quinn,-189,163,Cameron Norrie,0.650948,0.650948,0.349052,0.632348,0.367652,0.737027,0.617604,179.0291382,1,1
+6,4/15/2026,R16,Clay,A,3,Rafael Jodar,Camilo Ugo Carabelli,-500,350,Rafael Jodar,0.65444,0.65444,0.34556,0.789474,0.210526,0.715624,0.620399,160.3168431,1,1
+7,4/16/2026,R16,Clay,A,3,Arthur Fils,Brandon Nakashima,-345,275,Arthur Fils,0.772884,0.772884,0.227116,0.744069,0.255931,0.763808,0.719514,203.8880116,1,1
+8,4/16/2026,R16,Clay,A,3,Corentin Moutet,Lorenzo Musetti,300,-385,Lorenzo Musetti,0.7717,0.2283,0.7717,0.239506,0.760494,0.242031,0.281532,-198.3124819,1,1
