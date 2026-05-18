@@ -1,0 +1,2 @@
+match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
+1,2026-05-16,F,Clay,M,3,Jannik Sinner,Casper Ruud,-769.0,500.0,Jannik Sinner,0.748229,0.748229,0.251771,0.84151,0.15849,0.938282,0.69801,472.7687475076332,,
