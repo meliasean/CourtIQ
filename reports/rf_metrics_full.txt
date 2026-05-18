@@ -1,0 +1,11 @@
+RandomForest (chronological 80/20 split)
+Rows train/test: 11758 / 2940
+Cutoff date (first test row): 2024-12-27
+Train acc:  0.9760
+Test acc:   0.6956
+Train AUC:  0.9977
+Test AUC:   0.7571
+Train Brier:0.0726
+Test Brier: 0.2021
+Confusion matrix (test) [[tn, fp],[fn, tp]]: [[1042, 402], [493, 1003]]
+Features used: ['diff_avg_rest_days', 'diff_matches_28d', 'diff_rolling_10_winrate', 'diff_rolling_5_winrate', 'diff_form_divergence', 'diff_streak', 'diff_win_rate', 'diff_peak_elo', 'diff_current_elo', 'diff_wr_Clay', 'diff_wr_Grass', 'diff_wr_Hard', 'elo_diff', 'selo_diff', 'rank_diff', 'diff_h2h_wr_prior', 'surface', 'tourney_level', 'best_of', 'round']

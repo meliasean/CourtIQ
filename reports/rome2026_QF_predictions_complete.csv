@@ -1,5 +1,5 @@
 match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
-1,2026-05-13,QF,Clay,M,3,Casper Ruud,Karen Khachanov,-435.0,333.0,Casper Ruud,0.612492,0.612492,0.387508,0.778793,0.221207,0.565431,0.58714,45.72816566338725,1.0,1.0
-2,2026-05-13,QF,Clay,M,3,Rafael Jodar,Luciano Darderi,-217.0,175.0,Rafael Jodar,0.663113,0.663113,0.336887,0.653078,0.319703,0.604249,0.627363,73.51735985277901,0.0,0.0
-3,2026-05-14,QF,Clay,M,3,Martin Landaluce,Daniil Medvedev,250.0,-303.0,Daniil Medvedev,0.796133,0.203867,0.796133,0.275367,0.701799,0.156757,0.259625,-292.29023517451105,1.0,1.0
-4,2026-05-14,QF,Clay,M,3,Jannik Sinner,Andrey Rublev,-2500.0,1400.0,Jannik Sinner,0.78221,0.78221,0.21779,0.935162,0.060482,0.935909,0.727808,465.7736211298591,1.0,1.0
+1,2026-05-13,QF,Clay,M,3,Casper Ruud,Karen Khachanov,-435.0,333.0,Casper Ruud,0.604648,0.604648,0.395352,0.778793,0.221207,0.609518,0.580986,77.3544029293464,1,1.0
+2,2026-05-13,QF,Clay,M,3,Rafael Jodar,Luciano Darderi,-217.0,175.0,Rafael Jodar,0.659883,0.659883,0.340117,0.653078,0.346922,0.552985,0.624766,36.9564232671396,0,0.0
+3,2026-05-14,QF,Clay,M,3,Martin Landaluce,Daniil Medvedev,250.0,-303.0,Daniil Medvedev,0.667507,0.332493,0.667507,0.275367,0.724633,0.192032,0.369095,-249.6080437335595,1,1.0
+4,2026-05-14,QF,Clay,M,3,Jannik Sinner,Andrey Rublev,-2500.0,1400.0,Jannik Sinner,0.795235,0.795235,0.204765,0.935162,0.064838,0.931518,0.739558,453.44490938285617,1,1.0

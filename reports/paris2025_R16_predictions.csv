@@ -1,9 +1,9 @@
-﻿match_no,date,round,player_a,odds_player_a,player_b,odds_player_b,pred_winner,correct_prediction,correct_prediction_book,confidence,prob_player_a_win,prob_player_b_win,tourney_level,surface
-1,2025-10-30,R16,Cameron Norrie,117,Valentin Vacherot,-143,Valentin Vacherot,,,0.5067598126011693,0.4932401873988307,0.5067598126011693,M,Hard
-2,2025-10-30,R16,Felix Auger Aliassime,-195,Daniel Altmaier,158,Felix Auger Aliassime,,,0.636682939016556,0.636682939016556,0.36331706098344396,M,Hard
-3,2025-10-30,R16,Taylor Fritz,-151,Alexander Bublik,123,Taylor Fritz,,,0.6328662658213411,0.6328662658213411,0.3671337341786589,M,Hard
-4,2025-10-30,R16,Karen Khachanov,135,Alex De Minaur,-166,Alex De Minaur,,,0.5445291903846539,0.4554708096153461,0.5445291903846539,M,Hard
-5,2025-10-30,R16,Lorenzo Sonego,319,Daniil Medvedev,-408,Daniil Medvedev,,,0.6126339722002041,0.38736602779979584,0.6126339722002041,M,Hard
-6,2025-10-30,R16,Alejandro Davidovich Fokina,183,Alexander Zverev,-228,Alexander Zverev,,,0.6264549984949774,0.3735450015050225,0.6264549984949774,M,Hard
-7,2025-10-30,R16,Ben Shelton,-140,Andrey Rublev,114,Ben Shelton,,,0.5413335158139289,0.5413335158139289,0.45866648418607114,M,Hard
-8,2025-10-30,R16,Francisco Cerundolo,1300,Jannik Sinner,-2100,Jannik Sinner,,,0.7831472617229144,0.2168527382770856,0.7831472617229144,M,Hard
+match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
+1,10/30/2025,R16,Hard,M,3,Cameron Norrie,Valentin Vacherot,117.0,-143.0,Valentin Vacherot,0.581594,0.418406,0.581594,0.439175,0.560825,0.464968,0.437006,-24.382406269033936,,
+2,10/30/2025,R16,Hard,M,3,Felix Auger Aliassime,Daniel Altmaier,-195.0,158.0,Felix Auger Aliassime,0.806948,0.806948,0.193052,0.630372,0.369628,0.827672,0.750304,272.60052308348554,,
+3,10/30/2025,R16,Hard,M,3,Taylor Fritz,Alexander Bublik,-151.0,123.0,Taylor Fritz,0.833006,0.833006,0.166994,0.572933,0.427067,0.720337,0.774905,164.36036686161037,,
+4,10/30/2025,R16,Hard,M,3,Karen Khachanov,Alex De Minaur,135.0,-166.0,Alex De Minaur,0.615688,0.384312,0.615688,0.405426,0.594574,0.350079,0.410348,-107.47770111222962,,
+5,10/30/2025,R16,Hard,M,3,Lorenzo Sonego,Daniil Medvedev,319.0,-408.0,Daniil Medvedev,0.838078,0.161922,0.838078,0.229085,0.770915,0.205228,0.220181,-235.20205702143448,,
+6,10/30/2025,R16,Hard,M,3,Alejandro Davidovich Fokina,Alexander Zverev,183.0,-228.0,Alexander Zverev,0.835621,0.164379,0.835621,0.337019,0.662981,0.185962,0.222567,-256.48846470746116,,
+7,10/30/2025,R16,Hard,M,3,Ben Shelton,Andrey Rublev,-140.0,114.0,Ben Shelton,0.564462,0.564462,0.435538,0.555226,0.444774,0.596741,0.549699,68.08061077183424,,
+8,10/30/2025,R16,Hard,M,3,Francisco Cerundolo,Jannik Sinner,1300.0,-2100.0,Jannik Sinner,0.828689,0.171311,0.828689,0.06962,0.93038,0.060436,0.229244,-476.65092361768166,,

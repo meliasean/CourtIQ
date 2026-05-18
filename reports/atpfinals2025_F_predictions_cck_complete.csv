@@ -1,2 +1,2 @@
-﻿match_no,date,round,player_a,odds_player_a,player_b,odds_player_b,pred_winner,correct_prediction,correct_prediction_book,confidence,prob_player_a_win,prob_player_b_win,tourney_level,surface
-1,11/17/2025,F,Carlos Alcaraz,161,Jannik Sinner,-192,Jannik Sinner,1,1,0.621333585,0.378666415,0.621333585,YEC,Hard
+match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
+1,11/17/2025,F,Hard,YEC,3,Carlos Alcaraz,Jannik Sinner,161.0,-192.0,Jannik Sinner,0.671148,0.328852,0.671148,0.368166,0.631834,0.340126,0.366153,-115.12828528131581,1,1

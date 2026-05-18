@@ -1,5 +1,5 @@
-﻿match_no,date,round,player_a,odds_player_a,player_b,odds_player_b,pred_winner,correct_prediction,correct_prediction_book,confidence,prob_player_a_win,prob_player_b_win,tourney_level,surface
-1,2025-10-31,QF,Valentin Vacherot,117,Felix Auger Aliassime,-144,Felix Auger Aliassime,,,0.6160720564373001,0.3839279435626999,0.6160720564373001,M,Hard
-2,2025-10-31,QF,Alexander Bublik,106,Alex De Minaur,-130,Alex De Minaur,,,0.5821690731253514,0.4178309268746486,0.5821690731253514,M,Hard
-3,2025-10-31,QF,Ben Shelton,374,Jannik Sinner,-486,Jannik Sinner,,,0.6690233323444588,0.3309766676555413,0.6690233323444588,M,Hard
-4,2025-10-31,QF,Daniil Medvedev,-115,Alexander Zverev,-107,Alexander Zverev,,,0.586263000489387,0.41373699951061305,0.586263000489387,M,Hard
+match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
+1,10/31/2025,QF,Hard,M,3,Valentin Vacherot,Felix Auger Aliassime,117.0,-144.0,Felix Auger Aliassime,0.6262,0.3738,0.6262,0.43847,0.56153,0.401125,0.402061,-69.62246419061512,,
+2,10/31/2025,QF,Hard,M,3,Alexander Bublik,Alex De Minaur,106.0,-130.0,Alex De Minaur,0.711892,0.288108,0.711892,0.462033,0.537967,0.328177,0.332736,-124.45881131369015,,
+3,10/31/2025,QF,Hard,M,3,Ben Shelton,Jannik Sinner,374.0,-486.0,Jannik Sinner,0.733947,0.266053,0.733947,0.202793,0.797207,0.098116,0.314197,-385.3642986110219,,
+4,10/31/2025,QF,Hard,M,3,Daniil Medvedev,Alexander Zverev,-115.0,-107.0,Daniil Medvedev,0.505264,0.505264,0.494736,0.508545,0.491455,0.349344,0.504049,-108.03888288185749,,

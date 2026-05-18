@@ -1,5 +1,5 @@
-﻿match_no,date,round,player_a,odds_player_a,player_b,odds_player_b,pred_winner,correct_prediction,correct_prediction_book,confidence,prob_player_a_win,prob_player_b_win,tourney_level,surface
-1,2025-11-10,RR1,Carlos Alcaraz,-500,Alex De Minaur,371,Carlos Alcaraz,,,0.7969543147208122,0.7969543147208122,0.20304568527918776,YEC,Hard
-2,2025-11-10,RR1,Alexander Zverev,-183,Ben Shelton,149,Alexander Zverev,,,0.6168789852031353,0.6168789852031353,0.38312101479686467,YEC,Hard
-3,2025-11-10,RR1,Lorenzo Musetti,156,Taylor Fritz,-192,Taylor Fritz,,,0.6273228507249335,0.3726771492750664,0.6273228507249335,YEC,Hard
-4,2025-11-10,RR1,Jannik Sinner,-1380,Felix Auger Aliassime,940,Jannik Sinner,,,0.9065184436584133,0.9065184436584133,0.09348155634158672,YEC,Hard
+match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
+1,11/10/2025,RR1,Hard,YEC,3,Carlos Alcaraz,Alex De Minaur,-500.0,371.0,Carlos Alcaraz,0.79598,0.79598,0.20402,0.796954,0.203046,0.839742,0.740236,287.73086478658115,,
+2,11/10/2025,RR1,Hard,YEC,3,Alexander Zverev,Ben Shelton,-183.0,149.0,Alexander Zverev,0.608665,0.608665,0.391335,0.616879,0.383121,0.655965,0.584135,112.11114894038724,,
+3,11/10/2025,RR1,Hard,YEC,3,Lorenzo Musetti,Taylor Fritz,156.0,-192.0,Taylor Fritz,0.689839,0.310161,0.689839,0.372677,0.627323,0.391796,0.350943,-76.3958596358093,,
+4,11/10/2025,RR1,Hard,YEC,3,Jannik Sinner,Felix Auger Aliassime,-1380.0,940.0,Jannik Sinner,0.76843,0.76843,0.23157,0.906518,0.093482,0.915651,0.715586,414.2596724263292,,
