@@ -1,17 +1,17 @@
-match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
-1,10/28/2025,R32,Hard,M,3,Carlos Alcaraz,Cameron Norrie,-1640.0,1080.0,Carlos Alcaraz,0.778003,0.778003,0.221997,0.917504,0.082496,0.905772,0.724055,393.13625760466243,0,0
-2,10/28/2025,R32,Hard,M,3,Arthur Rinderknech,Valentin Vacherot,126.0,-155.0,Valentin Vacherot,0.738533,0.261467,0.738533,0.421279,0.578721,0.453252,0.310296,-32.57889579986181,0,0
-3,10/28/2025,R32,Hard,M,3,Felix Auger Aliassime,Alexandre Muller,-404.0,316.0,Felix Auger Aliassime,0.759765,0.759765,0.240235,0.769298,0.230702,0.808516,0.707999,250.222528314913,1,1
-4,10/28/2025,R32,Hard,M,3,Daniel Altmaier,Casper Ruud,229.0,-287.0,Casper Ruud,0.708676,0.291324,0.708676,0.290709,0.709291,0.188248,0.33541,-253.87774725903455,0,0
-5,10/28/2025,R32,Hard,M,3,Taylor Fritz,Aleksandar Vukic,-740.0,547.0,Taylor Fritz,0.704265,0.704265,0.295735,0.850741,0.149259,0.844659,0.660933,294.1577347066359,1,1
-6,10/28/2025,R32,Hard,M,3,Corentin Moutet,Alexander Bublik,159.0,-196.0,Alexander Bublik,0.565331,0.434669,0.565331,0.368324,0.631676,0.346329,0.449628,-110.3479746319033,1,1
-7,10/28/2025,R32,Hard,M,3,Karen Khachanov,Joao Fonseca,-148.0,120.0,Joao Fonseca,0.625842,0.374158,0.625842,0.567643,0.432357,0.462155,0.402344,-26.347689892236986,0,1
-8,10/28/2025,R32,Hard,M,3,Gabriel Diallo,Alex De Minaur,312.0,-399.0,Alex De Minaur,0.568706,0.431294,0.568706,0.232864,0.767136,0.235321,0.447012,-204.7271847645775,1,1
-9,10/28/2025,R32,Hard,M,3,Lorenzo Musetti,Lorenzo Sonego,-261.0,209.0,Lorenzo Musetti,0.668147,0.668147,0.331853,0.69079,0.30921,0.734915,0.631421,177.14063541814062,0,0
-10,10/28/2025,R32,Hard,M,3,Grigor Dimitrov,Daniil Medvedev,162.0,-200.0,Daniil Medvedev,0.806837,0.193163,0.806837,0.364078,0.635922,0.366828,0.249799,-94.82379965710743,1,1
-11,10/28/2025,R32,Hard,M,3,Alejandro Davidovich Fokina,Arthur Cazaux,-200.0,150.0,Alejandro Davidovich Fokina,0.584119,0.584119,0.415881,0.625,0.375,0.655083,0.564959,111.43231590063942,1,1
-12,10/28/2025,R32,Hard,M,3,Alexander Zverev,Camilo Ugo Carabelli,-450.0,330.0,Alexander Zverev,0.772466,0.772466,0.227534,0.778672,0.221328,0.919477,0.719144,423.04909696319487,1,1
-13,10/28/2025,R32,Hard,M,3,Ben Shelton,Flavio Cobolli,-107.0,-114.0,Ben Shelton,0.589801,0.589801,0.410199,0.492472,0.507528,0.614892,0.569384,81.28617779318802,1,0
-14,10/28/2025,R32,Hard,M,3,Learner Tien,Andrey Rublev,-104.0,-118.0,Learner Tien,0.531152,0.531152,0.468848,0.485025,0.514975,0.467404,0.523976,-22.6822687625056,0,1
-15,10/28/2025,R32,Hard,M,3,Francisco Cerundolo,Miomir Kecmanovic,-217.0,175.0,Francisco Cerundolo,0.85418,0.85418,0.14582,0.653078,0.346922,0.696879,0.79573,144.61692234013822,1,1
-16,10/28/2025,R32,Hard,M,3,Zizou Bergs,Jannik Sinner,1900.0,-3400.0,Jannik Sinner,0.822405,0.177595,0.822405,0.048951,0.951049,0.033926,0.235228,-581.7903740848142,1,1
+﻿match_no,date,round,player_a,odds_player_a,player_b,odds_player_b,pred_winner,correct_prediction,correct_prediction_book,confidence,prob_player_a_win,prob_player_b_win,tourney_level,surface
+1,10/28/2025,R32,Carlos Alcaraz,-1640,Cameron Norrie,1080,Carlos Alcaraz,0,0,0.789300285,0.789300285,0.210699715,M,Hard
+2,10/28/2025,R32,Arthur Rinderknech,126,Valentin Vacherot,-155,Arthur Rinderknech,0,0,0.54158712,0.54158712,0.45841288,M,Hard
+3,10/28/2025,R32,Felix Auger Aliassime,-404,Alexandre Muller,316,Felix Auger Aliassime,1,1,0.674182376,0.674182376,0.325817624,M,Hard
+4,10/28/2025,R32,Daniel Altmaier,229,Casper Ruud,-287,Casper Ruud,0,0,0.581442816,0.418557184,0.581442816,M,Hard
+5,10/28/2025,R32,Taylor Fritz,-740,Aleksandar Vukic,547,Taylor Fritz,1,1,0.657070114,0.657070114,0.342929886,M,Hard
+6,10/28/2025,R32,Corentin Moutet,159,Alexander Bublik,-196,Alexander Bublik,1,1,0.552210835,0.447789165,0.552210835,M,Hard
+7,10/28/2025,R32,Karen Khachanov,-148,Joao Fonseca,120,Joao Fonseca,0,1,0.532117446,0.467882554,0.532117446,M,Hard
+8,10/28/2025,R32,Gabriel Diallo,312,Alex De Minaur,-399,Alex De Minaur,1,1,0.588778116,0.411221884,0.588778116,M,Hard
+9,10/28/2025,R32,Lorenzo Musetti,-261,Lorenzo Sonego,209,Lorenzo Musetti,0,0,0.597448077,0.597448077,0.402551923,M,Hard
+10,10/28/2025,R32,Grigor Dimitrov,162,Daniil Medvedev,-200,Grigor Dimitrov,0,1,0.553434714,0.553434714,0.446565286,M,Hard
+11,10/28/2025,R32,Alejandro Davidovich Fokina,-200,Arthur Cazaux,150,Alejandro Davidovich Fokina,1,1,0.507378248,0.507378248,0.492621752,M,Hard
+12,10/28/2025,R32,Alexander Zverev,-450,Camilo Ugo Carabelli,330,Alexander Zverev,1,1,0.744869249,0.744869249,0.255130751,M,Hard
+13,10/28/2025,R32,Ben Shelton,-107,Flavio Cobolli,-114,Ben Shelton,1,0,0.567421742,0.567421742,0.432578258,M,Hard
+14,10/28/2025,R32,Learner Tien,-104,Andrey Rublev,-118,Learner Tien,0,1,0.510902668,0.510902668,0.489097332,M,Hard
+15,10/28/2025,R32,Francisco Cerundolo,-217,Miomir Kecmanovic,175,Francisco Cerundolo,1,1,0.577862737,0.577862737,0.422137263,M,Hard
+16,10/28/2025,R32,Zizou Bergs,1900,Jannik Sinner,-3400,Jannik Sinner,1,1,0.742362925,0.257637075,0.742362925,M,Hard
