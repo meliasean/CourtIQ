@@ -1,5 +1,0 @@
-match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
-1,8/19/2025,QF,Hard,M,3,Jannik Sinner,Felix Auger Aliassime,,,Jannik Sinner,0.771497,0.771497,0.228503,,,0.915651,0.718288,414.2596724263292,,
-2,8/19/2025,QF,Hard,M,3,Terence Atmane,Holger Rune,,,Holger Rune,0.72046,0.27954,0.72046,,,0.298046,0.325575,-148.81022233028148,,
-3,8/19/2025,QF,Hard,M,3,Ben Shelton,Alexander Zverev,,,Alexander Zverev,0.554627,0.445373,0.554627,,,0.344035,0.45791,-112.11114894038724,,
-4,8/19/2025,QF,Hard,M,3,Andrey Rublev,Carlos Alcaraz,,,Carlos Alcaraz,0.79842,0.20158,0.79842,,,0.124825,0.257538,-338.31662410154036,,

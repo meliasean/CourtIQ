@@ -1,5 +1,0 @@
-match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
-1,8/4/2025,QF,Hard,M,3,Alexander Zverev,Alexei Popyrin,,,Alexander Zverev,0.817736,0.817736,0.182264,,,0.82575,0.760365,270.2706215844603,,
-2,8/4/2025,QF,Hard,M,3,Alex Michelsen,Karen Khachanov,,,Karen Khachanov,0.521581,0.478419,0.521581,,,0.426658,0.483395,-51.33344069992586,,
-3,8/4/2025,QF,Hard,M,3,Alex de Minaur,Ben Shelton,,,Ben Shelton,0.693023,0.306977,0.693023,,,0.203329,0.348332,-237.2323245560449,,
-4,8/4/2025,QF,Hard,M,3,Andrey Rublev,Taylor Fritz,,,Taylor Fritz,0.658536,0.341464,0.658536,,,0.372645,0.376316,-90.48731486287943,,

@@ -1,9 +1,0 @@
-match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
-1,7/7/2025,R16,Hard,M,3,Jannik Sinner,Grigor Dimitrov,,,Jannik Sinner,0.79056,0.79056,0.20944,,,0.939388,0.735318,476.1158322095996,,
-2,7/7/2025,R16,Hard,M,3,Ben Shelton,Lorenzo Sonego,,,Ben Shelton,0.702941,0.702941,0.297059,,,0.790922,0.659838,231.12979096290474,,
-3,7/7/2025,R16,Hard,M,3,Marin Cilic,Flavio Cobolli,,,Flavio Cobolli,0.684856,0.315144,0.684856,,,0.383422,0.355017,-82.52419949182058,,
-4,7/7/2025,R16,Hard,M,3,Alex De Minaur,Novak Djokovic,,,Novak Djokovic,0.737438,0.262562,0.737438,,,0.241116,0.311229,-199.1796369100707,,
-5,7/7/2025,R16,Hard,M,3,Taylor Fritz,Jordan Thompson,,,Taylor Fritz,0.797071,0.797071,0.202929,,,0.710702,0.741231,156.13674979917073,,
-6,7/7/2025,R16,Hard,M,3,Karen Khachanov,Kamil Majchrzak,,,Karen Khachanov,0.534156,0.534156,0.465844,,,0.599706,0.526291,70.22358919316162,,
-7,7/7/2025,R16,Hard,M,3,Nicolas Jarry,Cameron Norrie,,,Cameron Norrie,0.515264,0.484736,0.515264,,,0.395479,0.488257,-73.7148390190614,,
-8,7/7/2025,R16,Hard,M,3,Andrey Rublev,Carlos Alcaraz,,,Carlos Alcaraz,0.810559,0.189441,0.810559,,,0.124825,0.246347,-338.31662410154036,,

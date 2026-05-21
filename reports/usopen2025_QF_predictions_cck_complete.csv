@@ -1,5 +1,0 @@
-match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
-1,9/2/2025,QF,Hard,M,3,Jannik Sinner,Lorenzo Musetti,,,Jannik Sinner,0.780523,0.780523,0.219477,,,0.926158,0.726301,439.35345415578604,1,
-2,9/2/2025,QF,Hard,M,3,Felix Auger Aliassime,Alex De Minaur,,,Alex De Minaur,0.55531,0.44469,0.55531,,,0.483599,0.457382,-11.400522358432227,0,
-3,9/2/2025,QF,Hard,M,3,Novak Djokovic,Taylor Fritz,,,Novak Djokovic,0.693139,0.693139,0.306861,,,0.714406,0.651763,159.2780813621505,1,
-4,9/2/2025,QF,Hard,M,3,Jiri Lehecka,Carlos Alcaraz,,,Carlos Alcaraz,0.726524,0.273476,0.726524,,,0.130981,0.320477,-328.72823138582385,1,

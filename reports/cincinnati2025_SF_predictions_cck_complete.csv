@@ -1,3 +1,0 @@
-match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
-1,8/21/2025,SF,Hard,M,3,Jannik Sinner,Terence Atmane,,,Jannik Sinner,0.792091,0.792091,0.207909,,,0.964708,0.736704,574.6902764204242,1,
-2,8/21/2025,SF,Hard,M,3,Alexander Zverev,Carlos Alcaraz,,,Carlos Alcaraz,0.536785,0.463215,0.536785,,,0.286951,0.471683,-158.12486438931887,1,

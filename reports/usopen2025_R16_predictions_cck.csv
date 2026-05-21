@@ -1,9 +1,0 @@
-match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
-1,8/31/2025,R16,Hard,M,3,Jannik Sinner,Alexander Bublik,,,Jannik Sinner,0.791296,0.791296,0.208704,,,0.954152,0.735984,527.3179613815871,,
-2,8/31/2025,R16,Hard,M,3,Lorenzo Musetti,Jaume Munar,,,Lorenzo Musetti,0.683574,0.683574,0.316426,,,0.718841,0.643937,163.0720657412328,,
-3,8/31/2025,R16,Hard,M,3,Felix Auger Aliassime,Andrey Rublev,,,Felix Auger Aliassime,0.61864,0.61864,0.38136,,,0.556154,0.591975,39.18523695652698,,
-4,8/31/2025,R16,Hard,M,3,Leandro Riedi,Alex De Minaur,,,Alex De Minaur,0.584051,0.415949,0.584051,,,0.195432,0.435094,-245.82690812879196,,
-5,8/31/2025,R16,Hard,M,3,Novak Djokovic,Jan-Lennard Struff,,,Novak Djokovic,0.798666,0.798666,0.201334,,,0.86049,0.742687,316.0557373730619,,
-6,8/31/2025,R16,Hard,M,3,Tomas Machac,Taylor Fritz,,,Taylor Fritz,0.700194,0.299806,0.700194,,,0.311101,0.342431,-138.1015596175987,,
-7,8/31/2025,R16,Hard,M,3,Adrian Mannarino,Jiri Lehecka,,,Jiri Lehecka,0.739702,0.260298,0.739702,,,0.239569,0.309299,-200.65175412083954,,
-8,8/31/2025,R16,Hard,M,3,Arthur Rinderknech,Carlos Alcaraz,,,Carlos Alcaraz,0.840088,0.159912,0.840088,,,0.090277,0.218221,-401.3327471354903,,

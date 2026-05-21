@@ -1,9 +1,0 @@
-match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
-1,8/2/2025,R16,Hard,M,3,Alexander Zverev,Francisco Cerundolo,,,Alexander Zverev,0.723201,0.723201,0.276799,,,0.763299,0.676726,203.39777394704697,,
-2,8/2/2025,R16,Hard,M,3,Alexei Popyrin,Holger Rune,,,Holger Rune,0.794429,0.205571,0.794429,,,0.336884,0.261175,-117.64371716495225,,
-3,8/2/2025,R16,Hard,M,3,Alex Michelsen,Learner Tien,,,Alex Michelsen,0.583125,0.583125,0.416875,,,0.379322,0.564185,-85.54311373469068,,
-4,8/2/2025,R16,Hard,M,3,Karen Khachanov,Casper Ruud,,,Karen Khachanov,0.538798,0.538798,0.461202,,,0.390482,0.529869,-77.3544029293464,,
-5,8/2/2025,R16,Hard,M,3,Frances Tiafoe,Alex de Minaur,,,Frances Tiafoe,0.644939,0.644939,0.355061,,,0.7169,0.612807,161.40742115744547,,
-6,8/2/2025,R16,Hard,M,3,Flavio Cobolli,Ben Shelton,,,Ben Shelton,0.61624,0.38376,0.61624,,,0.385108,0.409914,-81.28617779318802,,
-7,8/2/2025,R16,Hard,M,3,Andrey Rublev,Alejandro Davidovich Fokina,,,Andrey Rublev,0.516481,0.516481,0.483519,,,0.608068,0.51268,76.29670499523968,,
-8,8/2/2025,R16,Hard,M,3,Jiri Lehecka,Taylor Fritz,,,Jiri Lehecka,0.563756,0.563756,0.436244,,,0.385636,0.549153,-80.89892214716292,,

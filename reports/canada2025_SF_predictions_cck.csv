@@ -1,3 +1,0 @@
-match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
-1,8/6/2025,SF,Hard,M,3,Alexander Zverev,Karen Khachanov,,,Alexander Zverev,0.799546,0.799546,0.200454,,,0.796533,0.743492,237.0837015094919,,
-2,8/6/2025,SF,Hard,M,3,Ben Shelton,Taylor Fritz,,,Ben Shelton,0.548832,0.548832,0.451168,,,0.467799,0.537612,-22.406704091045185,,
