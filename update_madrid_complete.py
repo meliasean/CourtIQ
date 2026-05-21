@@ -192,7 +192,7 @@ def cck_calc(p,sa,sb,oa,ob):
 
 def apply_cal(p, calibrator):
     if calibrator is None: return p
-    try: return float(calibrator.predict_proba([[p]])[:,1][0])
+    try: return float(calibrator.predict([p])[0])
     except:
         try: return float(calibrator.predict([p])[0])
         except: return p

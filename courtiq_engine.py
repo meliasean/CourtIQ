@@ -964,7 +964,7 @@ def run_predictions(
         # Apply Platt calibrator if available
         if _calibrator is not None:
             try:
-                p_a_std = float(_calibrator.predict_proba([[p_a_std]])[:, 1][0])
+                p_a_std = float(_calibrator.predict([p_a_std])[0])
             except Exception:
                 pass
         pred_std = A if p_a_std >= 0.5 else B

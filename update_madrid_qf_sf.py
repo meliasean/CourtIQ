@@ -94,7 +94,7 @@ def refit_platt_calibrator():
     print(f"\n  Smooth calibration curve:")
     print(f"  {'Raw':>6}  {'Calibrated':>10}")
     for p in [0.50,0.52,0.54,0.56,0.58,0.60,0.62,0.65,0.70,0.75,0.80]:
-        c = float(platt.predict_proba([[p]])[:,1][0])
+        c = float(platt.predict([p])[0])
         print(f"  {p:.2f}   ->   {c:.3f}   ({(c-p)*100:>+.1f}pp)")
 
     dump(platt, CAL_PATH)
@@ -105,7 +105,7 @@ def refit_platt_calibrator():
 def apply_platt(p_raw, calibrator):
     if calibrator is None: return p_raw
     try:
-        return float(calibrator.predict_proba([[p_raw]])[:,1][0])
+        return float(calibrator.predict([p_raw])[0])
     except:
         # Fallback if it's still the old isotonic
         try: return float(calibrator.predict([p_raw])[0])
