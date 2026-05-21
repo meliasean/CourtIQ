@@ -1,5 +1,5 @@
 match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
 1,2026-05-21,QF,Clay,A,3,Tommy Paul,Daniel Altmaier,-250.0,200.0,Tommy Paul,0.857143,0.857143,0.142857,0.681818,0.318182,0.781556,0.798714,221.44784293128714,,
 2,2026-05-21,QF,Clay,A,3,Ignacio Buse,Ugo Humbert,-312.0,250.0,Ignacio Buse,0.519337,0.519337,0.480663,0.726064,0.273936,0.336889,0.514878,-117.63972795025711,,
-3,2026-05-21,QF,Clay,A,3,Luciano Darderi,Alex De Minaur,100.0,-112.0,Alex De Minaur,0.652381,0.347619,0.652381,0.486239,0.513761,0.273075,0.38125,-170.08267677165418,,
+3,2026-05-21,QF,Clay,A,3,Luciano Darderi,Alex De Minaur,100.0,-106.0,Alex De Minaur,0.652381,0.347619,0.652381,0.492823,0.507177,0.273075,0.38125,-170.08267677165418,,
 4,2026-05-21,QF,Clay,A,3,Aleksandar Kovacevic,Camilo Ugo Carabelli,208.0,-250.0,Camilo Ugo Carabelli,0.652381,0.347619,0.652381,0.3125,0.6875,0.451267,0.38125,-33.971033629877184,,
