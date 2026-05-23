@@ -1,0 +1,2 @@
+match_no,date,round,surface,tourney_level,best_of,player_a,player_b,odds_player_a,odds_player_b,pred_winner,confidence,prob_player_a_win,prob_player_b_win,book_fair_prob_a,book_fair_prob_b,p_elo_a,p_temp_a,delta_elo,correct_prediction,correct_prediction_book
+1,2026-05-23,F,Clay,A,3,Tommy Paul,Ignacio Buse,,,Tommy Paul,0.779661,0.779661,0.220339,,,0.725068,0.725532,168.46142540434607,,
