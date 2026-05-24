@@ -1213,8 +1213,7 @@ def build_site_data() -> dict:
 
     groups = defaultdict(list)
     for f in REPORTS_DIR.glob("*.csv"):
-        if any(x in f.name for x in ["_ALL", "_all_", "all_rounds", "all_predictions",
-                                      "consistency", "player_profiles",
+        if any(x in f.name for x in ["_ALL", "all_rounds", "consistency", "player_profiles",
                                       "player_match", "match_dataset", "rf_"]):
             continue
         key = f.name.split("_predictions")[0]
@@ -1307,12 +1306,14 @@ def build_site_data() -> dict:
     tournaments_out = []
     total_model = total_book = total_cck = 0
     total_matches = total_book_matches = total_cck_matches = 0
+    total_predicted = 0
 
     for t_key in TOURNEY_ORDER:
         if t_key not in tourney_data: continue
         td = tourney_data[t_key]
         rounds = td["rounds"]
-        tm = sum(r["summary"]["results_entered"] for r in rounds)
+        tm = sum(r["summary"]["results_entered"] for r in rounds)   # scored (accuracy denominator)
+        pm = sum(r["summary"]["total_matches"] for r in rounds)     # all predicted rows
         mc = sum(r["summary"]["model_correct"] for r in rounds)
 
         cck_rounds = [r for r in rounds if r["summary"]["cck_accuracy"] is not None]
@@ -1329,6 +1330,7 @@ def build_site_data() -> dict:
             "has_book": td["has_book"],
             "summary": {
                 "total_matches": tm,
+                "predicted_matches": pm,
                 "model_correct": mc,
                 "model_accuracy": round(mc / tm, 4) if tm else None,
                 "cck_matches": cck_m,
@@ -1340,7 +1342,7 @@ def build_site_data() -> dict:
             },
             "rounds": rounds,
         })
-        total_matches += tm; total_model += mc
+        total_matches += tm; total_model += mc; total_predicted += pm
         total_cck_matches += cck_m; total_cck += cck_c
         total_book_matches += bm; total_book += bc
 
@@ -1361,7 +1363,8 @@ def build_site_data() -> dict:
             "model_acc": t["summary"]["model_accuracy"],
             "cck_acc": t["summary"]["cck_accuracy"],
             "book_acc": t["summary"]["book_accuracy"],
-            "matches": t["summary"]["total_matches"],
+            "matches": t["summary"].get("predicted_matches") or t["summary"]["total_matches"],
+            "scored": t["summary"]["total_matches"],
             "has_book": t["has_book"],
         }
         for t in tournaments_out
@@ -1371,6 +1374,7 @@ def build_site_data() -> dict:
         "generated_at": datetime.utcnow().isoformat() + "Z",
         "overall_accuracy": {
             "total_matches": total_matches,
+            "predicted_matches": total_predicted,
             "model_accuracy": round(total_model / total_matches, 4) if total_matches else None,
             "model_correct": total_model,
             "cck_matches": total_cck_matches,
@@ -1796,7 +1800,7 @@ body{{
 
 /* ── HERO STATS ──────────────────────────────────────────── */
 .hero{{
-  display:grid;grid-template-columns:repeat(4,1fr);
+  display:grid;grid-template-columns:repeat(5,1fr);
   gap:1px;background:var(--line);
   border:1px solid var(--line);
   border-radius:var(--radius-lg);
@@ -1810,9 +1814,10 @@ body{{
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
 }}
 .hero-stat:nth-child(1)::before{{background:var(--green)}}
-.hero-stat:nth-child(2)::before{{background:var(--clay)}}
+.hero-stat:nth-child(2)::before{{background:var(--amber,#f59e0b)}}
 .hero-stat:nth-child(3)::before{{background:var(--blue)}}
 .hero-stat:nth-child(4)::before{{background:var(--purple)}}
+.hero-stat:nth-child(5)::before{{background:var(--clay)}}
 .hs-label{{
   font-family:var(--mono);font-size:9px;letter-spacing:.1em;
   color:var(--txt2);margin-bottom:8px;text-transform:uppercase;
@@ -2267,21 +2272,36 @@ function fmtAcc(v){{
 document.getElementById('s-model').innerHTML    = fmtAcc(OA.model_accuracy);
 document.getElementById('s-cck').innerHTML      = fmtAcc(OA.cck_accuracy);
 document.getElementById('s-book').innerHTML     = fmtAcc(OA.book_accuracy);
-document.getElementById('s-matches').textContent= (OA.total_matches||0).toLocaleString()+' matches';
 document.getElementById('s-players').innerHTML  = players.length+'<em style="font-size:15px;color:var(--txt2)"></em>';
 document.getElementById('s-tourneys').innerHTML = tourneys.length+'<em style="font-size:15px;color:var(--txt2)"></em>';
+
+// Model card sub-line = model's gap vs book (the meaningful comparison)
+if(OA.model_accuracy&&OA.book_accuracy){{
+  const gap=((OA.model_accuracy-OA.book_accuracy)*100).toFixed(1);
+  const el=document.getElementById('s-matches');
+  el.textContent=(gap>=0?'+':'−')+(Math.abs(gap))+'pp vs book';
+  el.className='hs-sub '+(gap>=0?'up':'dn');
+}} else {{
+  document.getElementById('s-matches').textContent=(OA.total_matches||0).toLocaleString()+' matches';
+}}
+
+// CCK card sub-line = CCK's gap vs book
 if(OA.cck_accuracy&&OA.book_accuracy){{
   const cgap=((OA.cck_accuracy-OA.book_accuracy)*100).toFixed(1);
   const cel=document.getElementById('s-cck-gap');
   cel.textContent=(cgap>=0?'+':'−')+(Math.abs(cgap))+'pp vs book';
   cel.className='hs-sub '+(cgap>=0?'up':'dn');
 }}
-if(OA.model_accuracy&&OA.book_accuracy){{
-  const gap=((OA.book_accuracy-OA.model_accuracy)*100).toFixed(1);
+
+// Book card sub-line = match counts (scored vs total predicted)
+(function(){{
+  const scored=OA.total_matches||0, pred=OA.predicted_matches||scored;
   const el=document.getElementById('s-gap');
-  el.textContent=(gap>0?'−':'+')+(Math.abs(gap))+'pp vs book';
-  el.className='hs-sub '+(gap>0?'dn':'up');
-}}
+  el.textContent = pred>scored
+    ? scored.toLocaleString()+' scored · '+pred.toLocaleString()+' predicted'
+    : scored.toLocaleString()+' matches';
+  el.className='hs-sub';
+}})();
 if(tourneys.length>1){{
   document.getElementById('s-range').textContent=
     tourneys[0].name.split(' 20')[0]+' – '+tourneys[tourneys.length-1].name.split(' 20')[0];
@@ -2432,7 +2452,7 @@ function buildTourneyCards(){{
         <span class="${{tagCls}}">${{tagTxt}}</span>
       </div>
       <div class="tourn-body">
-        <div class="tb-k">Matches</div><div class="tb-v">${{s.total_matches}}</div>
+        <div class="tb-k">Matches</div><div class="tb-v">${{(s.predicted_matches||s.total_matches)}}${{s.predicted_matches>s.total_matches?` <span style="color:var(--txt2);font-size:11px">(${{s.total_matches}} scored)</span>`:''}}</div>
         <div class="tb-k">Model</div><div class="tb-v g">${{mPct}}</div>
         <div class="tb-k">Book</div><div class="tb-v b">${{bPct}}</div>
       </div>
@@ -2568,6 +2588,7 @@ function buildTournamentsPage(){{
     const surface=surfFromSlug(t.slug);
     const sc=surfCls(surface);
     const mPct=s.model_accuracy!=null?(s.model_accuracy*100).toFixed(1)+'%':'—';
+    const cPct=s.cck_accuracy!=null?(s.cck_accuracy*100).toFixed(1)+'%':'—';
     const bPct=t.has_book&&s.book_accuracy!=null?(s.book_accuracy*100).toFixed(1)+'%':'—';
     html+=`<div class="tourn-card" style="margin-bottom:10px">
       <div class="tourn-head">
@@ -2576,7 +2597,7 @@ function buildTournamentsPage(){{
           <span class="tourn-name">${{t.name}}</span>
         </div>
         <span style="font-family:var(--mono);font-size:10px;color:var(--txt2)">
-          ${{s.total_matches}}m &middot; ${{mPct}} model &middot; ${{bPct}} book
+          ${{s.total_matches}}m &middot; ${{mPct}} model &middot; ${{cPct}} CCK &middot; ${{bPct}} book
         </span>
       </div>
       <div style="padding:8px 14px;display:flex;gap:12px;flex-wrap:wrap">
@@ -2596,13 +2617,24 @@ function buildTournamentsPage(){{
 // ── ACCURACY PAGE ──────────────────────────────────────────
 function buildAccuracyPage(){{
   const mAcc=OA.model_accuracy!=null?(OA.model_accuracy*100).toFixed(1)+'%':'—';
+  const cAcc=OA.cck_accuracy!=null?(OA.cck_accuracy*100).toFixed(1)+'%':'—';
   const bAcc=OA.book_accuracy!=null?(OA.book_accuracy*100).toFixed(1)+'%':'—';
-  document.getElementById('acc-overall').textContent=mAcc+' model · '+bAcc+' book';
+  document.getElementById('acc-overall').textContent=mAcc+' model · '+cAcc+' CCK · '+bAcc+' book';
   let html='';
   for(const t of D.tourney_acc||[]){{
-    if(t.model_acc==null) continue;
-    const mW=(t.model_acc*100).toFixed(1);
+    const pending = t.model_acc==null;
+    const mW=t.model_acc!=null?(t.model_acc*100).toFixed(1):null;
+    const cW=t.cck_acc!=null?(t.cck_acc*100).toFixed(1):null;
     const bW=t.book_acc!=null?(t.book_acc*100).toFixed(1):null;
+    if(pending){{
+      // in-progress tournament: predictions exist but nothing scored yet
+      html+=`<div class="acc-row">
+        <div class="acc-tname">${{t.name}} <span class="tag tag-pend" style="margin-left:6px">IN PROGRESS</span></div>
+        <div class="acc-bars"><div style="color:var(--txt2);font-size:12px;padding:6px 0">${{t.matches}} matches predicted · awaiting results</div></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--txt2);width:40px;text-align:right;flex-shrink:0">${{t.matches}}m</div>
+      </div>`;
+      continue;
+    }}
     html+=`<div class="acc-row">
       <div class="acc-tname">${{t.name}}</div>
       <div class="acc-bars">
@@ -2610,6 +2642,10 @@ function buildAccuracyPage(){{
           <div class="acc-bar-track2"><div class="acc-bar-fill2" style="width:${{mW}}%;background:var(--green)"></div></div>
           <div class="acc-bar-lbl2" style="color:var(--green)">${{mW}}%</div>
         </div>
+        ${{cW?`<div class="acc-bar-row2">
+          <div class="acc-bar-track2"><div class="acc-bar-fill2" style="width:${{cW}}%;background:var(--amber,#f59e0b)"></div></div>
+          <div class="acc-bar-lbl2" style="color:var(--amber,#f59e0b)">${{cW}}%</div>
+        </div>`:''}}
         ${{bW?`<div class="acc-bar-row2">
           <div class="acc-bar-track2"><div class="acc-bar-fill2" style="width:${{bW}}%;background:var(--blue)"></div></div>
           <div class="acc-bar-lbl2" style="color:var(--blue)">${{bW}}%</div>
