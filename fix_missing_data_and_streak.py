@@ -19,6 +19,7 @@ Set FIX_STREAK = True to also rebuild streak values.
 """
 
 import glob
+import json
 import os
 import unicodedata
 import warnings
@@ -178,20 +179,34 @@ def compute_correct_streak(wins_losses: list) -> int:
 
 def rebuild_streaks():
     """Rebuild correct streaks for all players from complete prediction files."""
-    files = sorted(glob.glob(f"{REPORTS_DIR}/*_predictions_cck_complete.csv"))
-    files = [f for f in files if "_ALL_" not in f and "all_rounds" not in f]
+    # Load CCK files first, fall back to standard for rounds with no CCK counterpart
+    cck_keys = set()
+    cck_files = sorted(glob.glob(f"{REPORTS_DIR}/*_predictions_cck_complete.csv"))
+    cck_files = [f for f in cck_files if "_ALL_" not in f and "all_rounds" not in f]
+    for f in cck_files:
+        key = os.path.basename(f).replace("_predictions_cck_complete.csv","")
+        cck_keys.add(key)
 
-    # Build per-player chronological W/L record
-    player_results: dict = {}  # name -> [(date, is_win)]
+    std_files = sorted(glob.glob(f"{REPORTS_DIR}/*_predictions_complete.csv"))
+    std_files = [f for f in std_files if "_ALL_" not in f and "all_rounds" not in f
+                 and "_cck_" not in f]
+    # Only use standard files where no CCK counterpart exists
+    extra_std = [f for f in std_files
+                 if os.path.basename(f).replace("_predictions_complete.csv","") not in cck_keys]
 
-    for fpath in sorted(files):
+    all_files = cck_files + extra_std
+
+    # Build per-player match log -- use (date, winner, loser) as dedup key
+    seen_matches = set()
+    all_match_rows = []  # (date, winner, loser)
+
+    for fpath in all_files:
         df = pd.read_csv(fpath)
         if "correct_prediction" not in df.columns: continue
         df = df[pd.to_numeric(df.get("correct_prediction",""), errors="coerce").notna()].copy()
         df["correct_prediction"] = pd.to_numeric(df["correct_prediction"], errors="coerce")
         df["date"] = pd.to_datetime(df.get("date",""), errors="coerce")
         df = df.dropna(subset=["date","correct_prediction","pred_winner"])
-        df = df.sort_values("date")
 
         for _, r in df.iterrows():
             pa   = to_canon(str(r.get("player_a","")))
@@ -200,25 +215,44 @@ def rebuild_streaks():
             cp   = int(r["correct_prediction"])
             dt   = r["date"]
 
-            # Reconstruct actual winner/loser
             actual_winner = pred if cp==1 else (pb if pred==pa else pa)
             actual_loser  = pb   if actual_winner==pa else pa
 
-            for p,is_win in [(actual_winner,1),(actual_loser,0)]:
-                if not p: continue
-                if p not in player_results:
-                    player_results[p] = []
-                player_results[p].append((dt, is_win))
+            # Deduplicate by (date, winner, loser)
+            key = (dt.date(), actual_winner, actual_loser)
+            if key in seen_matches:
+                continue
+            seen_matches.add(key)
+            all_match_rows.append((dt, actual_winner, actual_loser))
 
-    # Sort each player's results chronologically
+    # Sort all matches chronologically
+    all_match_rows.sort(key=lambda x: x[0])
+
+    # Build per-player W/L list
+    player_results: dict = {}
+    for dt, winner, loser in all_match_rows:
+        for p, is_win in [(winner, 1), (loser, 0)]:
+            if not p: continue
+            if p not in player_results:
+                player_results[p] = []
+            player_results[p].append((dt, is_win))
+
+    # Already sorted since we sorted all_match_rows first
+    # but sort per-player just in case
     for p in player_results:
         player_results[p].sort(key=lambda x: x[0])
 
-    # Compute streaks
+    # Compute streaks and last5
     streaks = {}
+    last5_map = {}
     for p, results in player_results.items():
         wins_losses = [r[1] for r in results]
         streaks[p]  = compute_correct_streak(wins_losses)
+        # Build last5 JSON array for site display
+        last5_data = []
+        for dt, iw in results[-5:]:
+            last5_data.append({"result": "W" if iw else "L"})
+        last5_map[p] = json.dumps(last5_data)
 
     print(f"\nComputed streaks for {len(streaks)} players from prediction files")
 
@@ -241,11 +275,16 @@ def rebuild_streaks():
     prof["name"] = prof["name"].apply(to_canon)
     prof["streak_old"] = prof["streak"].copy()
 
+    # Ensure last5 column exists
+    if "last5" not in prof.columns:
+        prof["last5"] = ""
+
     updated = 0
     for idx, row in prof.iterrows():
         name = row["name"]
         if name in streaks:
             prof.at[idx, "streak"] = float(streaks[name])
+            prof.at[idx, "last5"]  = last5_map.get(name, "")
             updated += 1
 
     # Show before/after for key players

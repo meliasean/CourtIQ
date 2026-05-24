@@ -243,9 +243,9 @@ def main():
         # Buse beat Mensik R16, then beat Humbert QF — Buse now favourite!
         ("Ignacio Buse",             "Ugo Humbert",              -312,  250, "Ignacio Buse",            "2026-05-21"),
         # Darderi vs De Minaur — pending
-        ("Luciano Darderi",          "Alex De Minaur",            100, -112, None,                      "2026-05-21"),
+        ("Luciano Darderi",          "Alex De Minaur",            100, -106, "Alex De Minaur",          "2026-05-21"),
         # Kovacevic vs Ugo Carabelli — pending (Kovacevic underdog again)
-        ("Aleksandar Kovacevic",     "Camilo Ugo Carabelli",      208, -250, None,                      "2026-05-21"),
+        ("Aleksandar Kovacevic",     "Camilo Ugo Carabelli",      208, -250, "Aleksandar Kovacevic",    "2026-05-21"),
     ]
 
     rows=[predict_match(pa,pb,oa,ob,"QF",pipe,fcols,calibrator,prof,date,winner)
@@ -254,15 +254,33 @@ def main():
 
     r32_done = sum(1 for *_,w,_ in R32 if w)
     r16_done = sum(1 for *_,w,_ in R16 if w)
-    qf_done  = sum(1 for *_,w,_ in QF if w)
-    qf_pend  = sum(1 for *_,w,_ in QF if not w)
+    # SF — De Minaur vs Paul | Kovacevic vs Buse
+    SF = [
+        ("Alex De Minaur",           "Tommy Paul",               -161,  138, "Tommy Paul",              "2026-05-22"),
+        ("Aleksandar Kovacevic",     "Ignacio Buse",             -286,  275, "Ignacio Buse",            "2026-05-22"),
+    ]
+
+    # Final — Tommy Paul vs Ignacio Buse
+    F = [
+        ("Tommy Paul",               "Ignacio Buse",             -175,  142, "Ignacio Buse",            "2026-05-23"),
+    ]
+    rows=[predict_match(pa,pb,oa,ob,"SF",pipe,fcols,calibrator,prof,date,winner)
+          for pa,pb,oa,ob,winner,date in SF]
+    save_round(rows,SLUG,"SF")
+
+    rows=[predict_match(pa,pb,oa,ob,"F",pipe,fcols,calibrator,prof,date,winner)
+          for pa,pb,oa,ob,winner,date in F]
+    save_round(rows,SLUG,"F")
+
+    qf_done = sum(1 for *_,w,_ in QF if w)
     print(f"\n  R32: {r32_done}/16 scored")
     print(f"  R16: {r16_done}/8 scored")
-    print(f"  QF:  {qf_done}/4 scored, {qf_pend} pending")
+    print(f"  QF:  {qf_done}/4 scored")
+    print(f"  SF:  0/2 scored (pending)")
     print(f"\nRun:")
     print(f"  python courtiq_engine.py site --output docs/index.html")
     print(f"  git add reports/hamburg2026_*.csv docs/index.html")
-    print(f"  git commit -m 'update: Hamburg R16 complete + QF (2/4 scored)'")
+    print(f"  git commit -m 'update: Hamburg QF complete + SF generated'")
     print(f"  git push")
 
 if __name__=="__main__": main()
