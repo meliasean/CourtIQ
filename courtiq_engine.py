@@ -50,6 +50,7 @@ MODELS_DIR    = Path("./models")
 MODEL_PATH    = MODELS_DIR / "rf_model.joblib"
 CAL_PATH      = MODELS_DIR / "prob_calibrator.joblib"
 PROFILES_LATEST = REPORTS_DIR / "player_profiles_latest.csv"
+RANKINGS_CURRENT = REPORTS_DIR / "atp_rankings_current.csv"
 TOURNEY_DB    = Path("./tournaments.json")
 
 REPORTS_DIR.mkdir(exist_ok=True)
@@ -366,8 +367,48 @@ def snapshot_from_log(log: pd.DataFrame, player: str, opp: str,
 
     return snap
 
+# ──────────────────────────────────────────────────────────────
+# CURRENT RANKINGS  (read from atp_rankings_current.csv at predict time)
+# Mirrors the player-profiles pattern: a single "current" file the engine
+# always reads, refreshed each week from a pasted top-1000 snapshot.
+# Returns {aliased_name: rank}. Cached so repeated lookups don't re-read disk.
+# ──────────────────────────────────────────────────────────────
+_RANK_CACHE: Optional[Dict[str, float]] = None
+
+def load_current_rankings(verbose: bool = True) -> Dict[str, float]:
+    global _RANK_CACHE
+    if _RANK_CACHE is not None:
+        return _RANK_CACHE
+    out: Dict[str, float] = {}
+    if RANKINGS_CURRENT.exists():
+        try:
+            rdf = pd.read_csv(RANKINGS_CURRENT)
+            # accept either {player,rank} or the per-tournament schema
+            name_col = "player" if "player" in rdf.columns else (
+                       "name" if "name" in rdf.columns else None)
+            if name_col and "rank" in rdf.columns:
+                for _, r in rdf.iterrows():
+                    nm = alias(str(r[name_col]))
+                    try:
+                        out[nm] = float(r["rank"])
+                    except (TypeError, ValueError):
+                        continue
+            if verbose:
+                print(f"  rank data: {len(out)} players loaded from {RANKINGS_CURRENT.name}"
+                      f"{' (OK)' if out else ' (EMPTY -> all imputed)'}")
+        except Exception as e:
+            if verbose:
+                print(f"  [rank] Warning: could not load {RANKINGS_CURRENT.name}: {e}")
+    else:
+        if verbose:
+            print(f"  rank data: {RANKINGS_CURRENT.name} not found -> all ranks imputed")
+    _RANK_CACHE = out
+    return out
+
 def snapshot_from_profiles(profiles: pd.DataFrame, player: str, surface: str) -> Dict[str, float]:
     player = alias(player)
+    _ranks = load_current_rankings(verbose=False)
+    _player_rank = _ranks.get(player, np.nan)
     rows = profiles[profiles["name"] == player]
     if rows.empty:
         return {
@@ -375,7 +416,7 @@ def snapshot_from_profiles(profiles: pd.DataFrame, player: str, surface: str) ->
             "rolling_10_winrate": 0.5, "rolling_5_winrate": 0.5, "streak": 0.0,
             "avg_rest_days": 20.0, "win_rate": 0.5, "peak_elo": 1500.0, "current_elo": 1500.0,
             "wr_Clay": 0.5, "wr_Grass": 0.5, "wr_Hard": 0.5,
-            "rank_prior": np.nan, "h2h_wr_prior": 0.5,
+            "rank_prior": _player_rank, "h2h_wr_prior": 0.5,
             "cnt_Clay": 0.0, "cnt_Grass": 0.0, "cnt_Hard": 0.0,
         }
     row = rows.iloc[-1]
@@ -399,7 +440,7 @@ def snapshot_from_profiles(profiles: pd.DataFrame, player: str, surface: str) ->
         "wr_Clay": g("wr_Clay", 0.5),
         "wr_Grass": g("wr_Grass", 0.5),
         "wr_Hard": g("wr_Hard", 0.5),
-        "rank_prior": np.nan,
+        "rank_prior": _player_rank if not pd.isna(_player_rank) else g("rank", np.nan),
         "h2h_wr_prior": 0.5,
         "rest_days": g("avg_rest_days", 20.0),
         "cnt_Clay": g("cnt_Clay", 0.0),
@@ -890,6 +931,7 @@ def run_predictions(
     best_of  = cfg["best_of"]
     asof     = _safe_date(as_of_date)
     RANK_CLIP = 500
+    MISSING_RANK = 2000.0   # matches build_rf_model_v2.py training imputation
 
     # Load match data for log, fall back to profiles
     dataset = load_best_dataset(tourney_id)
@@ -952,7 +994,14 @@ def run_predictions(
         row_feats["elo_diff"]  = delta(sa, sb, "pre_elo")
         row_feats["selo_diff"] = delta(sa, sb, "pre_selo")
         ra, rb = sa.get("rank_prior", np.nan), sb.get("rank_prior", np.nan)
-        row_feats["rank_diff"] = 0.0 if (pd.isna(ra) or pd.isna(rb)) else float(np.clip(ra - rb, -RANK_CLIP, RANK_CLIP))
+        # Impute missing ranks at 2000 to match training (build_rf_model_v2.py)
+        # and the backtest harness. Write back into the snapshots so the
+        # delta()-based delta_rank computations below use imputed values too.
+        ra = MISSING_RANK if pd.isna(ra) else ra
+        rb = MISSING_RANK if pd.isna(rb) else rb
+        sa["rank_prior"] = ra
+        sb["rank_prior"] = rb
+        row_feats["rank_diff"] = float(np.clip(ra - rb, -RANK_CLIP, RANK_CLIP))
 
         feats = pd.DataFrame([row_feats])
         for c in feature_cols:
@@ -995,7 +1044,7 @@ def run_predictions(
             "delta_rolling_5_winrate":  delta(ws, ls, "rolling_5_winrate"),
             "delta_streak":         delta(ws, ls, "streak"),
             "delta_h2h_wr_prior":   delta(ws, ls, "h2h_wr_prior"),
-            "delta_rank":           -delta(ws, ls, "rank_prior") if not (pd.isna(ra) or pd.isna(rb)) else 0.0,
+            "delta_rank":           -delta(ws, ls, "rank_prior"),
         }
         std_rows.append(base_row)
 
@@ -1027,7 +1076,7 @@ def run_predictions(
                 "streak": "streak", "h2h_wr_prior": "h2h_wr_prior", "rank": "rank_prior",
             }
             f = feat_map.get(feat, feat)
-            cck_row[k] = delta(wc, lc, f) if f != "rank_prior" else (-delta(wc, lc, "rank_prior") if not (pd.isna(ra) or pd.isna(rb)) else 0.0)
+            cck_row[k] = delta(wc, lc, f) if f != "rank_prior" else -delta(wc, lc, "rank_prior")
 
         cck_rows.append(cck_row)
 
@@ -1144,16 +1193,28 @@ ROUND_ORDER = ["R128", "R64", "R32", "R16", "QF", "SF", "F", "RR1", "RR2", "RR3"
 def build_site_data() -> dict:
     from collections import defaultdict
 
-    def pick_best(files):
-        for suffix in ["_predictions_cck_complete.csv", "_predictions_complete.csv",
-                       "_predictions_cck.csv", "_predictions.csv"]:
-            for f in files:
-                if f.name.endswith(suffix): return f
-        return files[0] if files else None
+    def pick_pair(files):
+        """Return (std_file, cck_file). Either may be None.
+        std holds MODEL correctness; cck holds CCK + BOOK correctness."""
+        std = cck = None
+        for f in files:
+            if f.name.endswith("_predictions_complete.csv") and "_cck" not in f.name:
+                std = std or f
+        for f in files:
+            if f.name.endswith("_predictions.csv") and "_cck" not in f.name and "_complete" not in f.name:
+                std = std or f
+        for f in files:
+            if f.name.endswith("_predictions_cck_complete.csv"):
+                cck = cck or f
+        for f in files:
+            if f.name.endswith("_predictions_cck.csv") and "_complete" not in f.name:
+                cck = cck or f
+        return std, cck
 
     groups = defaultdict(list)
     for f in REPORTS_DIR.glob("*.csv"):
-        if any(x in f.name for x in ["_ALL", "all_rounds", "consistency", "player_profiles",
+        if any(x in f.name for x in ["_ALL", "_all_", "all_rounds", "all_predictions",
+                                      "consistency", "player_profiles",
                                       "player_match", "match_dataset", "rf_"]):
             continue
         key = f.name.split("_predictions")[0]
@@ -1169,52 +1230,96 @@ def build_site_data() -> dict:
         return (ti, ri)
 
     for key, files in sorted(groups.items(), key=lambda x: sort_key(x[0])):
-        best = pick_best(files)
-        if not best: continue
+        std_f, cck_f = pick_pair(files)
+        if not std_f and not cck_f: continue
         try:
-            df = pd.read_csv(best)
-            if "correct_prediction" not in df.columns: continue
-            has_book = "odds_player_a" in df.columns and "correct_prediction_book" in df.columns
-            cp  = df["correct_prediction"].dropna()
-            cpb = df["correct_prediction_book"].dropna() if has_book else pd.Series([], dtype=float)
+            # MODEL correctness from the standard file
+            model_correct = model_n = 0
+            df_model = None
+            if std_f:
+                df_model = pd.read_csv(std_f)
+                if "correct_prediction" in df_model.columns:
+                    cp = df_model["correct_prediction"].dropna()
+                    model_correct = int(cp.sum()); model_n = int(len(cp))
+
+            # CCK + BOOK correctness from the cck file
+            cck_correct = cck_n = book_correct = book_n = 0
+            df_cck = None; has_book = False
+            if cck_f:
+                df_cck = pd.read_csv(cck_f)
+                if "correct_prediction" in df_cck.columns:
+                    cc = df_cck["correct_prediction"].dropna()
+                    cck_correct = int(cc.sum()); cck_n = int(len(cc))
+                if "odds_player_a" in df_cck.columns and "correct_prediction_book" in df_cck.columns:
+                    cb = df_cck["correct_prediction_book"].dropna()
+                    if len(cb):
+                        has_book = True
+                        book_correct = int(cb.sum()); book_n = int(len(cb))
+
+            base_df = df_cck if df_cck is not None else df_model
+            if base_df is None or "correct_prediction" not in base_df.columns: continue
 
             parts = key.split("_")
             t_key = parts[0]; r_name = parts[1].upper() if len(parts) > 1 else "R1"
 
-            float_cols = df.select_dtypes("float").columns
-            df[float_cols] = df[float_cols].round(4)
+            # Per-match rows: merge model + cck correctness side by side.
+            if df_model is not None and df_cck is not None and len(df_model) == len(df_cck):
+                merged = df_cck.copy()
+                merged["correct_prediction_model"] = df_model["correct_prediction"].values
+                merged["correct_prediction_cck"]   = df_cck["correct_prediction"].values
+            else:
+                merged = base_df.copy()
+                if df_cck is not None:
+                    merged["correct_prediction_cck"]   = df_cck["correct_prediction"].values
+                    merged["correct_prediction_model"] = pd.NA
+                else:
+                    merged["correct_prediction_model"] = df_model["correct_prediction"].values
+                    merged["correct_prediction_cck"]   = pd.NA
+
+            float_cols = merged.select_dtypes("float").columns
+            merged[float_cols] = merged[float_cols].round(4)
 
             match_keys = ["match_no", "player_a", "player_b", "odds_player_a", "odds_player_b",
-                          "pred_winner", "correct_prediction", "correct_prediction_book",
-                          "confidence", "prob_player_a_win", "prob_player_b_win",
-                          "book_fair_prob_a", "book_fair_prob_b", "p_elo_a", "p_temp_a"]
-            matches = json.loads(df[[c for c in match_keys if c in df.columns]].to_json(orient="records"))
+                          "pred_winner", "correct_prediction_model", "correct_prediction_cck",
+                          "correct_prediction_book", "confidence", "prob_player_a_win",
+                          "prob_player_b_win", "book_fair_prob_a", "book_fair_prob_b",
+                          "p_elo_a", "p_temp_a"]
+            matches = json.loads(merged[[c for c in match_keys if c in merged.columns]].to_json(orient="records"))
 
             tourney_data[t_key]["rounds"].append({
                 "round": r_name,
                 "summary": {
-                    "total_matches": len(df),
-                    "results_entered": int(len(cp)),
-                    "model_correct": int(cp.sum()),
-                    "book_correct": int(cpb.sum()) if has_book and len(cpb) else 0,
-                    "model_accuracy": round(float(cp.mean()), 4) if len(cp) else None,
-                    "book_accuracy": round(float(cpb.mean()), 4) if has_book and len(cpb) else None,
+                    "total_matches": int(len(base_df)),
+                    "results_entered": model_n if model_n else cck_n,
+                    "model_correct": model_correct,
+                    "model_accuracy": round(model_correct / model_n, 4) if model_n else None,
+                    "cck_correct": cck_correct,
+                    "cck_accuracy": round(cck_correct / cck_n, 4) if cck_n else None,
+                    "book_correct": book_correct,
+                    "book_accuracy": round(book_correct / book_n, 4) if book_n else None,
                 },
                 "matches": matches,
             })
             if has_book: tourney_data[t_key]["has_book"] = True
         except Exception as e:
-            print(f"  [site] Warning: could not load {best.name}: {e}")
+            print(f"  [site] Warning: could not load {key}: {e}")
 
     tournaments_out = []
-    total_model = total_book = total_matches = total_book_matches = 0
+    total_model = total_book = total_cck = 0
+    total_matches = total_book_matches = total_cck_matches = 0
 
     for t_key in TOURNEY_ORDER:
         if t_key not in tourney_data: continue
         td = tourney_data[t_key]
-        tm = sum(r["summary"]["results_entered"] for r in td["rounds"])
-        mc = sum(r["summary"]["model_correct"] for r in td["rounds"])
-        book_rounds = [r for r in td["rounds"] if r["summary"]["book_accuracy"] is not None]
+        rounds = td["rounds"]
+        tm = sum(r["summary"]["results_entered"] for r in rounds)
+        mc = sum(r["summary"]["model_correct"] for r in rounds)
+
+        cck_rounds = [r for r in rounds if r["summary"]["cck_accuracy"] is not None]
+        cck_m = sum(r["summary"]["results_entered"] for r in cck_rounds)
+        cck_c = sum(r["summary"]["cck_correct"] for r in cck_rounds)
+
+        book_rounds = [r for r in rounds if r["summary"]["book_accuracy"] is not None]
         bm = sum(r["summary"]["results_entered"] for r in book_rounds)
         bc = sum(r["summary"]["book_correct"] for r in book_rounds)
 
@@ -1226,13 +1331,17 @@ def build_site_data() -> dict:
                 "total_matches": tm,
                 "model_correct": mc,
                 "model_accuracy": round(mc / tm, 4) if tm else None,
+                "cck_matches": cck_m,
+                "cck_correct": cck_c,
+                "cck_accuracy": round(cck_c / cck_m, 4) if cck_m else None,
                 "book_matches": bm,
                 "book_correct": bc,
                 "book_accuracy": round(bc / bm, 4) if bm else None,
             },
-            "rounds": td["rounds"],
+            "rounds": rounds,
         })
         total_matches += tm; total_model += mc
+        total_cck_matches += cck_m; total_cck += cck_c
         total_book_matches += bm; total_book += bc
 
     # Player profiles
@@ -1250,6 +1359,7 @@ def build_site_data() -> dict:
         {
             "name": t["name"], "slug": t["slug"],
             "model_acc": t["summary"]["model_accuracy"],
+            "cck_acc": t["summary"]["cck_accuracy"],
             "book_acc": t["summary"]["book_accuracy"],
             "matches": t["summary"]["total_matches"],
             "has_book": t["has_book"],
@@ -1263,6 +1373,9 @@ def build_site_data() -> dict:
             "total_matches": total_matches,
             "model_accuracy": round(total_model / total_matches, 4) if total_matches else None,
             "model_correct": total_model,
+            "cck_matches": total_cck_matches,
+            "cck_accuracy": round(total_cck / total_cck_matches, 4) if total_cck_matches else None,
+            "cck_correct": total_cck,
             "book_matches": total_book_matches,
             "book_accuracy": round(total_book / total_book_matches, 4) if total_book_matches else None,
             "book_correct": total_book,
@@ -2004,6 +2117,11 @@ body{{
     <div class="hs-sub" id="s-matches">—</div>
   </div>
   <div class="hero-stat">
+    <div class="hs-label">CCK (Model + Market)</div>
+    <div class="hs-val" id="s-cck">—</div>
+    <div class="hs-sub" id="s-cck-gap">—</div>
+  </div>
+  <div class="hero-stat">
     <div class="hs-label">vs Bookmakers</div>
     <div class="hs-val" id="s-book">—</div>
     <div class="hs-sub dn" id="s-gap">—</div>
@@ -2147,10 +2265,17 @@ function fmtAcc(v){{
   return (v*100).toFixed(1)+'<em style="font-size:14px;color:var(--txt2)">%</em>';
 }}
 document.getElementById('s-model').innerHTML    = fmtAcc(OA.model_accuracy);
+document.getElementById('s-cck').innerHTML      = fmtAcc(OA.cck_accuracy);
 document.getElementById('s-book').innerHTML     = fmtAcc(OA.book_accuracy);
 document.getElementById('s-matches').textContent= (OA.total_matches||0).toLocaleString()+' matches';
 document.getElementById('s-players').innerHTML  = players.length+'<em style="font-size:15px;color:var(--txt2)"></em>';
 document.getElementById('s-tourneys').innerHTML = tourneys.length+'<em style="font-size:15px;color:var(--txt2)"></em>';
+if(OA.cck_accuracy&&OA.book_accuracy){{
+  const cgap=((OA.cck_accuracy-OA.book_accuracy)*100).toFixed(1);
+  const cel=document.getElementById('s-cck-gap');
+  cel.textContent=(cgap>=0?'+':'−')+(Math.abs(cgap))+'pp vs book';
+  cel.className='hs-sub '+(cgap>=0?'up':'dn');
+}}
 if(OA.model_accuracy&&OA.book_accuracy){{
   const gap=((OA.book_accuracy-OA.model_accuracy)*100).toFixed(1);
   const el=document.getElementById('s-gap');
@@ -2176,8 +2301,14 @@ function buildMatchCard(m, roundCode, surface){{
   const eloB = eloA!=null?1-eloA:null;
   const oa = m.odds_player_a;
   const ob = m.odds_player_b;
-  const isPend = m.correct_prediction==null;
-  const ok = m.correct_prediction===1;
+  // Per-match correctness: model + cck + book (any may be null/NA)
+  const cpModel = (m.correct_prediction_model!=null && m.correct_prediction_model===m.correct_prediction_model) ? m.correct_prediction_model : null;
+  const cpCck   = (m.correct_prediction_cck!=null && m.correct_prediction_cck===m.correct_prediction_cck) ? m.correct_prediction_cck : null;
+  const cpBook  = (m.correct_prediction_book!=null && m.correct_prediction_book===m.correct_prediction_book) ? m.correct_prediction_book : null;
+  // Headline status follows the MODEL (fall back to cck if model absent)
+  const cpPrimary = cpModel!=null ? cpModel : cpCck;
+  const isPend = cpPrimary==null;
+  const ok = cpPrimary===1;
 
   // Favourite = smaller absolute odds value (more negative = bigger favourite)
   // Favourite = implied probability is higher = more negative odds (or lower positive)
@@ -2201,9 +2332,14 @@ function buildMatchCard(m, roundCode, surface){{
     mx===tot-1?['Strong consensus','cons-chip cons-strong']:
     ['Split signals','cons-chip cons-split'];
 
-  const badge=isPend?'<span class="badge badge-pend">pending</span>':
-    ok?'<span class="badge badge-ok">&#10003; correct</span>':
-       '<span class="badge badge-no">&#10007; wrong</span>';
+  function markChip(label, v){{
+    if(v==null) return '<span class="badge" style="background:var(--bg4);color:var(--txt2)">'+label+' —</span>';
+    return v===1 ? '<span class="badge badge-ok">'+label+' &#10003;</span>'
+                 : '<span class="badge badge-no">'+label+' &#10007;</span>';
+  }}
+  const badge = isPend
+    ? '<span class="badge badge-pend">pending</span>'
+    : (markChip('M', cpModel) + ' ' + markChip('CCK', cpCck) + ' ' + markChip('BK', cpBook));
 
   return `<div class="match-card">
   <div class="match-inner">
@@ -2263,7 +2399,7 @@ function buildPredictions(){{
       if(!r.matches||r.matches.length===0) continue;
       const real=r.matches.filter(m=>m.player_a!=='TBD'&&m.player_b!=='TBD');
       if(!real.length) continue;
-      const pending=real.filter(m=>m.correct_prediction==null);
+      const pending=real.filter(m=>(m.correct_prediction_model??m.correct_prediction_cck)==null);
       const show=pending.length>0?pending:real.slice(0,6);
       if(!show.length) continue;
       html+=`<div class="sec-hdr" style="margin-top:${{shown?'20px':'0'}}">
@@ -2378,7 +2514,7 @@ function renderLiveRound(t, r){{
   const surface=surfFromSlug(t.slug);
   const matches=r.matches||[];
   const total=matches.filter(m=>m.player_a!=='TBD').length;
-  const scored=matches.filter(m=>m.correct_prediction!=null).length;
+  const scored=matches.filter(m=>(m.correct_prediction_model??m.correct_prediction_cck)!=null).length;
   const pending=total-scored;
   let html=`<div class="round-status">
     <div class="rs-text">${{r.round}} &nbsp;&middot;&nbsp; ${{total}} matches &nbsp;&middot;&nbsp; ${{scored}} scored &nbsp;&middot;&nbsp; ${{pending}} pending</div>
