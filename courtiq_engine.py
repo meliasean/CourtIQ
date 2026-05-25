@@ -1889,6 +1889,21 @@ body{{
 }}
 .p-name.pred{{font-weight:600;color:var(--txt0)}}
 .p-name.unp{{font-weight:400;color:var(--txt1)}}
+/* result highlight on the predicted winner once a match is scored */
+.p-name.res-correct{{
+  background:rgba(34,197,94,.15);
+  color:var(--green-bright);
+  border:1px solid rgba(34,197,94,.45);
+  border-radius:5px;padding:1px 7px;
+  width:fit-content;
+}}
+.p-name.res-wrong{{
+  background:rgba(239,68,68,.13);
+  color:#f87171;
+  border:1px solid rgba(239,68,68,.40);
+  border-radius:5px;padding:1px 7px;
+  width:fit-content;
+}}
 .p-stat{{
   font-family:var(--mono);font-size:11px;
   text-align:right;
@@ -2375,14 +2390,14 @@ function buildMatchCard(m, roundCode, surface){{
       <div class="surf-bar ${{sc}}"></div>
       <div class="match-players">
         <div class="player-row">
-          <span class="p-name ${{predA?'pred':'unp'}}">${{m.player_a||'—'}}</span>
+          <span class="p-name ${{predA?'pred':'unp'}} ${{predA&&!isPend?(ok?'res-correct':'res-wrong'):''}}">${{m.player_a||'—'}}</span>
           <span class="p-stat ${{pA>=pB?'hi-g':'lo'}}">${{(pA*100).toFixed(0)}}%</span>
           <span class="p-stat ${{bkA!=null&&bkA>=.5?'hi-b':'lo'}}">${{bkA!=null?(bkA*100).toFixed(0)+'%':'—'}}</span>
           <span class="p-stat ${{eloA!=null&&eloA>=.5?'hi-p':'lo'}}">${{eloA!=null?(eloA*100).toFixed(0)+'%':'—'}}</span>
           <span class="p-stat ${{favA?'hi-w':'lo'}}">${{fmtOdds(oa)}}</span>
         </div>
         <div class="player-row">
-          <span class="p-name ${{!predA?'pred':'unp'}}">${{m.player_b||'—'}}</span>
+          <span class="p-name ${{!predA?'pred':'unp'}} ${{!predA&&!isPend?(ok?'res-correct':'res-wrong'):''}}">${{m.player_b||'—'}}</span>
           <span class="p-stat ${{pB>pA?'hi-g':'lo'}}">${{(pB*100).toFixed(0)}}%</span>
           <span class="p-stat ${{bkB!=null&&bkB>.5?'hi-b':'lo'}}">${{bkB!=null?(bkB*100).toFixed(0)+'%':'—'}}</span>
           <span class="p-stat ${{eloB!=null&&eloB>.5?'hi-p':'lo'}}">${{eloB!=null?(eloB*100).toFixed(0)+'%':'—'}}</span>
