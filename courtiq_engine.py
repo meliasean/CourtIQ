@@ -133,6 +133,15 @@ ALIASES: Dict[str, str] = {
     "Carlos Alcaraz Garfia": "Carlos Alcaraz",
     "Rafael Nadal Parera": "Rafael Nadal",
     "Novak Djokovic": "Novak Djokovic",
+    # RG 2026 draw/rank-file spelling bridges — normalize all variants to canonical
+    "Daniel Vallejo": "Adolfo Daniel Vallejo",
+    "Adolfo Daniel Vallejo": "Adolfo Daniel Vallejo",
+    "Aleksander Vukic": "Aleksandar Vukic",
+    "Aleksandar Vukic": "Aleksandar Vukic",
+    "Alexander Shevchenko": "Aleksandr Shevchenko",
+    "Aleksandr Shevchenko": "Aleksandr Shevchenko",
+    "Jesper De Jong": "Jesper de Jong",
+    "Jesper de Jong": "Jesper de Jong",
 }
 
 def alias(name: str) -> str:
@@ -1158,8 +1167,8 @@ TOURNEY_ORDER = [
     "paris2025", "atpfinals2025",
     "doha2026", "dallas2026", "rotterdam2026", "rio2026", "dubai2026",
     "ao2026", "acapulco2026", "indianwells2026", "miami2026", "montecarlo2026",
-    "barcelona2026", "munich2026", "madrid2026", "rome2026", "rg2026",
-    "halle2026", "queens2026", "wimbledon2026", "hamburg2026", "washington2026",
+    "barcelona2026", "munich2026", "madrid2026", "rome2026",
+    "halle2026", "queens2026", "wimbledon2026", "hamburg2026", "rg2026", "washington2026",
     "canada2026", "cincinnati2026", "usopen2026", "beijing2026", "tokyo2026",
     "shanghai2026", "vienna2026", "basel2026", "paris2026", "atpfinals2026",
 ]
