@@ -934,6 +934,7 @@ def run_predictions(
     """
     pipe = model_bundle["pipeline"]
     feature_cols = model_bundle["feature_cols"]
+    _calibrator = load(str(CAL_PATH)) if CAL_PATH.exists() else None
 
     surface  = cfg["surface"]
     level    = cfg["level"]
@@ -1407,9 +1408,9 @@ def cmd_predict(args):
     cfg = get_config(args.tournament)
     round_code = args.round.upper()
 
-    print(f"\n{'─'*60}")
-    print(f"  PREDICT  {cfg['full_name']} — {round_code}")
-    print(f"{'─'*60}")
+    print(f"\n{'-'*60}")
+    print(f"  PREDICT  {cfg['full_name']} - {round_code}")
+    print(f"{'-'*60}")
 
     # Load model
     if not MODEL_PATH.exists():
@@ -1492,11 +1493,11 @@ def cmd_predict(args):
     std_df.to_csv(out_std, index=False)
     cck_df.to_csv(out_cck, index=False)
 
-    print(f"\n  ✓ Standard predictions → {out_std}")
-    print(f"  ✓ CCK predictions      → {out_cck}")
+    print(f"\n  OK Standard predictions -> {out_std}")
+    print(f"  OK CCK predictions      -> {out_cck}")
     print()
     print(f"  {'#':<4} {'Player A':<28} {'Pred':<28} {'Conf':>6}")
-    print(f"  {'─'*70}")
+    print(f"  {'-'*70}")
     for _, r in cck_df.iterrows():
         print(f"  {int(r['match_no']):<4} {r['player_a']:<28} {r['pred_winner']:<28} {r['confidence']:.1%}")
     print()
@@ -1510,9 +1511,9 @@ def cmd_results(args):
     cfg = get_config(args.tournament)
     round_code = args.round.upper()
 
-    print(f"\n{'─'*60}")
-    print(f"  RESULTS  {cfg['full_name']} — {round_code}")
-    print(f"{'─'*60}")
+    print(f"\n{'-'*60}")
+    print(f"  RESULTS  {cfg['full_name']} - {round_code}")
+    print(f"{'-'*60}")
 
     std_path = report_path(args.tournament, round_code)
     cck_path = report_path(args.tournament, round_code, "cck")
@@ -1566,7 +1567,7 @@ def cmd_results(args):
         for i, row in std_df[pending].iterrows():
             A, B = alias(str(row["player_a"])), alias(str(row["player_b"]))
             pred = alias(str(row["pred_winner"]))
-            print(f"  Match {int(row['match_no'])}: {A} vs {B}  →  Predicted: {pred}")
+            print(f"  Match {int(row['match_no'])}: {A} vs {B}  ->  Predicted: {pred}")
 
             while True:
                 v = input("    Correct? [1/0/s/q]: ").strip().lower()
@@ -1611,7 +1612,7 @@ def cmd_results(args):
     # Show round accuracy
     cp = std_df["correct_prediction"].dropna()
     cpb = std_df["correct_prediction_book"].dropna()
-    print(f"\n  ✓ Saved → {out_complete}")
+    print(f"\n  OK Saved -> {out_complete}")
     if len(cp):
         print(f"  Model: {int(cp.sum())}/{len(cp)} = {cp.mean():.1%}")
     if len(cpb):
@@ -1634,8 +1635,8 @@ def cmd_results(args):
             out_profiles = profiles_path(args.tournament)
             updated.to_csv(out_profiles, index=False)
             updated.to_csv(PROFILES_LATEST, index=False)
-            print(f"  ✓ Profiles updated → {out_profiles}")
-            print(f"  ✓ player_profiles_latest.csv updated")
+            print(f"  OK Profiles updated -> {out_profiles}")
+            print(f"  OK player_profiles_latest.csv updated")
         except Exception as e:
             print(f"  WARNING: Profile update failed: {e}")
             print(f"  You can retry: python courtiq_engine.py results --tournament {args.tournament} --round {round_code} --manual")
@@ -1654,8 +1655,8 @@ def cmd_results(args):
 def cmd_status(args):
     """Show tournament status."""
     cfg = get_config(args.tournament)
-    print(f"\n  {cfg['full_name']} — Status")
-    print(f"  {'─'*50}")
+    print(f"\n  {cfg['full_name']} - Status")
+    print(f"  {'-'*50}")
 
     total_m = total_c = total_bc = total_b = 0
 
@@ -1683,7 +1684,7 @@ def cmd_status(args):
         total_m += len(df); total_c += int(cp.sum()); total_bc += int(cpb.sum()); total_b += len(cpb)
 
     if total_m:
-        print(f"  {'─'*50}")
+        print(f"  {'-'*50}")
         m_overall = f"{total_c/total_m:.1%}"
         b_overall = f"{total_bc/total_b:.1%}" if total_b else "n/a"
         print(f"  {'TOTAL':<8} {total_m} matches        model={m_overall:<8} book={b_overall}")
