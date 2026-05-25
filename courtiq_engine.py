@@ -2302,13 +2302,11 @@ if(OA.cck_accuracy&&OA.book_accuracy){{
   cel.className='hs-sub '+(cgap>=0?'up':'dn');
 }}
 
-// Book card sub-line = match counts (scored vs total predicted)
+// Book card sub-line = scored match count
 (function(){{
-  const scored=OA.total_matches||0, pred=OA.predicted_matches||scored;
+  const scored=OA.total_matches||0;
   const el=document.getElementById('s-gap');
-  el.textContent = pred>scored
-    ? scored.toLocaleString()+' scored · '+pred.toLocaleString()+' predicted'
-    : scored.toLocaleString()+' matches';
+  el.textContent = scored.toLocaleString()+' matches';
   el.className='hs-sub';
 }})();
 if(tourneys.length>1){{
