@@ -1426,11 +1426,46 @@ def cmd_predict(args):
     # Get the draw
     matches = None
 
-    # 1. Try to infer from previous round
-    if not args.manual:
-        matches = _infer_next_round_draw(args.tournament, round_code, cfg)
+    # 1. Infer pairings from previous round results (correct matchups, no odds yet)
+    #    Skip inference when a draw CSV is provided — the CSV has the authoritative pairings.
+    if not args.manual and not args.draw_csv:
+        pairs = _infer_next_round_draw(args.tournament, round_code, cfg)
+        if pairs:
+            matches = [(a, np.nan, b, np.nan) for a, b in pairs]
 
-    # 2. Try ATP website scrape
+    # 1b. If a draw CSV was provided, attach its odds to the inferred matches.
+    #     CCK needs the bookmaker line, which inference doesn't carry. Match by player pair.
+    if matches is not None and args.draw_csv:
+        try:
+            dc = pd.read_csv(args.draw_csv)
+            def _al(n):
+                import unicodedata
+                return unicodedata.normalize("NFKD", str(n)).encode("ascii", "ignore").decode("ascii").strip()
+            odds_lookup = {}
+            for _, r in dc.iterrows():
+                key = frozenset([_al(r["player_a"]), _al(r["player_b"])])
+                oa = float(r["odds_a"]) if "odds_a" in dc.columns and not pd.isna(r.get("odds_a")) else np.nan
+                ob = float(r["odds_b"]) if "odds_b" in dc.columns and not pd.isna(r.get("odds_b")) else np.nan
+                odds_lookup[key] = (_al(r["player_a"]), oa, ob)
+            enriched = []
+            attached = 0
+            for (a, _, b, _) in matches:
+                key = frozenset([_al(a), _al(b)])
+                if key in odds_lookup:
+                    draw_a, oa, ob = odds_lookup[key]
+                    if _al(a) != draw_a:  # orient odds to inferred player order
+                        oa, ob = ob, oa
+                    enriched.append((a, oa, b, ob))
+                    if not (pd.isna(oa) and pd.isna(ob)):
+                        attached += 1
+                else:
+                    enriched.append((a, np.nan, b, np.nan))
+            matches = enriched
+            print(f"  [draw inference] Attached odds from {args.draw_csv} to {attached}/{len(matches)} matches")
+        except Exception as e:
+            print(f"  [draw inference] WARNING: could not attach odds from {args.draw_csv}: {e}")
+
+    # 2. Try ATP website scrape (only if inference produced nothing)
     if matches is None and not args.manual:
         print("  Trying ATP website for draw...")
         pairs = _fetch_draw_from_atp(args.tournament, round_code, cfg)
@@ -1438,14 +1473,9 @@ def cmd_predict(args):
             matches = [(a, np.nan, b, np.nan) for a, b in pairs]
             print(f"  Got {len(matches)} matches from ATP website (no odds — add manually)")
 
-    # 3. Manual entry
+    # 3. No inference possible — load straight from CSV, else interactive
     if matches is None:
-        print(f"\n  Could not fetch draw automatically.")
-        print(f"  Enter matches manually (or create a CSV file).")
-        print()
-
         if args.draw_csv:
-            # Load from CSV file: columns player_a, player_b, odds_a (optional), odds_b (optional)
             dc = pd.read_csv(args.draw_csv)
             matches = []
             for _, r in dc.iterrows():
@@ -1457,6 +1487,7 @@ def cmd_predict(args):
                 ))
             print(f"  Loaded {len(matches)} matches from {args.draw_csv}")
         else:
+            print(f"\n  Could not fetch draw automatically.")
             print("  Interactive draw entry (format: PlayerA, odds_A, PlayerB, odds_B)")
             print("  Press Enter twice when done.\n")
             matches = []
