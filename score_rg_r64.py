@@ -26,10 +26,22 @@ def al(n):
 reports = sys.argv[1] if len(sys.argv) > 1 else "reports"
 
 # ---- KNOWN RESULTS (winner of each finished match) -------------------------
-# Add matches here as they finish. Order doesn't matter — match-by-pair.
 RESULTS = {
     # === R64 — Day 1 (May 27) ===
     ("Alex De Minaur", "Alexander Blockx"): "Alex De Minaur",  # walkover, Blockx withdrew
+    ("Alejandro Davidovich Fokina", "Thiago Agustin Tirante"): "Thiago Agustin Tirante",
+    ("Karen Khachanov", "Marco Trungelliti"): "Karen Khachanov",
+    ("Federico Cina", "Jesper de Jong"): "Jesper de Jong",
+    ("Nuno Borges", "Miomir Kecmanovic"): "Nuno Borges",
+    ("Thanasi Kokkinakis", "Pablo Carreno Busta"): "Pablo Carreno Busta",  # Kokkinakis retired
+    ("Valentin Royer", "Novak Djokovic"): "Novak Djokovic",
+    ("James Duckworth", "Rafael Jodar"): "Rafael Jodar",
+    ("Ugo Humbert", "Quentin Halys"): "Quentin Halys",
+    ("Nishesh Basavareddy", "Alex Michelsen"): "Alex Michelsen",
+    ("Joao Fonseca", "Dino Prizmic"): "Joao Fonseca",
+    ("Tommy Paul", "Lorenzo Sonego"): "Tommy Paul",
+    ("Tomas Machac", "Alexander Zverev"): "Alexander Zverev",
+    ("Casper Ruud", "Hamad Medjedovic"): "Casper Ruud",
 
     # === R64 — Day 2 (May 28) ===
 }
