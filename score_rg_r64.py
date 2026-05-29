@@ -32,6 +32,8 @@ RESULTS = {
     ("Alejandro Davidovich Fokina", "Thiago Agustin Tirante"): "Thiago Agustin Tirante",
     ("Karen Khachanov", "Marco Trungelliti"): "Karen Khachanov",
     ("Federico Cina", "Jesper de Jong"): "Jesper de Jong",
+    ("Camilo Ugo Carabelli", "Andrey Rublev"): "Andrey Rublev",
+    ("Mariano Navone", "Jakub Mensik"): "Jakub Mensik",
     ("Nuno Borges", "Miomir Kecmanovic"): "Nuno Borges",
     ("Thanasi Kokkinakis", "Pablo Carreno Busta"): "Pablo Carreno Busta",  # Kokkinakis retired
     ("Valentin Royer", "Novak Djokovic"): "Novak Djokovic",
@@ -44,6 +46,22 @@ RESULTS = {
     ("Casper Ruud", "Hamad Medjedovic"): "Casper Ruud",
 
     # === R64 — Day 2 (May 28) ===
+    ("Arthur Rinderknech", "Matteo Berrettini"): "Matteo Berrettini",
+    ("Matteo Arnaldi", "Stefanos Tsitsipas"): "Matteo Arnaldi",
+    ("Raphael Collignon", "Ben Shelton"): "Raphael Collignon",
+    ("Luca Van Assche", "Brandon Nakashima"): "Brandon Nakashima",
+    ("Francisco Comesana", "Luciano Darderi"): "Francisco Comesana",
+    ("Felix Auger Aliassime", "Roman Andres Burruchaga"): "Felix Auger Aliassime",
+    ("Alejandro Tabilo", "Valentin Vacherot"): "Alejandro Tabilo",  # walkover
+    ("Vit Kopriva", "Martin Landaluce"): "Martin Landaluce",
+    ("Francisco Cerundolo", "Hugo Gaston"): "Francisco Cerundolo",
+    ("Hubert Hurkacz", "Frances Tiafoe"): "Frances Tiafoe",
+    ("Jannik Sinner", "Juan Manuel Cerundolo"): "Juan Manuel Cerundolo",
+    ("Flavio Cobolli", "Yibing Wu"): "Flavio Cobolli",
+    ("Facundo Diaz Acosta", "Learner Tien"): "Learner Tien",
+    ("Jan-Lennard Struff", "Jaime Faria"): "Jaime Faria",
+    ("Adolfo Daniel Vallejo", "Moise Kouame"): "Moise Kouame",
+    ("Zachary Svajda", "Adam Walton"): "Zachary Svajda",
 }
 # ---------------------------------------------------------------------------
 
