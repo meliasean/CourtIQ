@@ -26,11 +26,25 @@ def al(n):
 reports = sys.argv[1] if len(sys.argv) > 1 else "reports"
 
 # ---- KNOWN RESULTS (winner of each finished match) -------------------------
-# Add matches here as they finish. Order doesn't matter — match-by-pair.
 RESULTS = {
     # === R32 — Day 1 (May 29) ===
-
+    ("Juan Manuel Cerundolo", "Martin Landaluce"): "Juan Manuel Cerundolo",
+    ("Matteo Berrettini", "Francisco Comesana"): "Matteo Berrettini",
+    ("Felix Auger Aliassime", "Brandon Nakashima"): "Felix Auger Aliassime",
+    ("Flavio Cobolli", "Learner Tien"): "Flavio Cobolli",
+    ("Francisco Cerundolo", "Zachary Svajda"): "Zachary Svajda",        # UPSET (F.Cerundolo -909)
+    ("Alex De Minaur", "Jakub Mensik"): "Jakub Mensik",                  # UPSET (De Minaur -400)
+    ("Nuno Borges", "Andrey Rublev"): "Andrey Rublev",
+    ("Casper Ruud", "Tommy Paul"): "Casper Ruud",
+    ("Joao Fonseca", "Novak Djokovic"): "Joao Fonseca",                  # UPSET (Djokovic -217)
+    ("Alex Michelsen", "Rafael Jodar"): "Rafael Jodar",
+    ("Thiago Agustin Tirante", "Pablo Carreno Busta"): "Pablo Carreno Busta",
+    ("Karen Khachanov", "Jesper de Jong"): "Jesper de Jong",
+    ("Quentin Halys", "Alexander Zverev"): "Alexander Zverev",
     # === R32 — Day 2 (May 30) ===
+    ("Jaime Faria", "Frances Tiafoe"): "Frances Tiafoe",
+    ("Matteo Arnaldi", "Raphael Collignon"): "Matteo Arnaldi",
+    ("Moise Kouame", "Alejandro Tabilo"): "Alejandro Tabilo",
 }
 # ---------------------------------------------------------------------------
 
