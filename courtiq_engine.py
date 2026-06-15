@@ -1169,7 +1169,8 @@ TOURNEY_ORDER = [
     "doha2026", "dallas2026", "rotterdam2026", "rio2026", "dubai2026",
     "ao2026", "acapulco2026", "indianwells2026", "miami2026", "montecarlo2026",
     "barcelona2026", "munich2026", "madrid2026", "rome2026",
-    "halle2026", "queens2026", "wimbledon2026", "hamburg2026", "rg2026", "washington2026",
+    "hamburg2026", "rg2026", "halle2026", "queens2026",
+    "wimbledon2026", "washington2026",
     "canada2026", "cincinnati2026", "usopen2026", "beijing2026", "tokyo2026",
     "shanghai2026", "vienna2026", "basel2026", "paris2026", "atpfinals2026",
 ]
@@ -2871,12 +2872,13 @@ function bucketChipHtml(b){{
 }}
 function buildPicks(){{
   let html=''; let total=0;
-  const ordered=[...tourneys];  // chronological
+  const ordered=[...tourneys].reverse();  // newest tournament first
   for(const t of ordered){{
     const surface=surfFromSlug(t.slug);
-    // Per-round, filter non-Avoid, sort by courtiq_score desc
+    // Per-round, filter non-Avoid, sort by courtiq_score desc.
+    // Iterate rounds reverse so latest round appears first within each tournament.
     let tHtml='';
-    for(const r of t.rounds){{
+    for(const r of [...t.rounds].reverse()){{
       if(!r.matches||r.matches.length===0) continue;
       const picks=r.matches.filter(m=>m.bucket&&m.bucket!=='Avoid');
       if(!picks.length) continue;
