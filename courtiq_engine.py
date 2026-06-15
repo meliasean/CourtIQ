@@ -1200,6 +1200,108 @@ TOURNEY_DISPLAY_NAMES = {
 
 ROUND_ORDER = ["R128", "R64", "R32", "R16", "QF", "SF", "F", "RR1", "RR2", "RR3"]
 
+# ── Pick Score v1 formula (locked) ─────────────────────────────────────────
+# Identical math to backtest_pickscore.py; kept inline here so the engine
+# doesn't depend on that file being on the import path at site-build time.
+def _ps_valid_american(o):
+    try:
+        v = float(o)
+        return not (pd.isna(v) or v == 0.0)
+    except (TypeError, ValueError):
+        return False
+
+def _ps_fair_pair(oa, ob):
+    if not (_ps_valid_american(oa) and _ps_valid_american(ob)):
+        return None, None
+    def imp(o):
+        o = float(o)
+        return (-o)/(-o+100) if o < 0 else 100/(o+100)
+    ia, ib = imp(oa), imp(ob)
+    tot = ia + ib
+    return ia/tot, ib/tot
+
+def _ps_compute(row, std_prob_a):
+    """Compute Pick Score, bucket, and pick metadata for one match row.
+    Returns dict with pick_score, courtiq_score, bucket, pick_player, pick_odds,
+    raw_edge, edge_score, conf_score, agree_score, vol_score — or None if not scoreable.
+    `row` is a dict-like with CCK probs/odds; `std_prob_a` is the standard model's
+    prob_player_a_win (used for Agreement and Model Disagreement)."""
+    try:
+        oa, ob = row.get("odds_player_a"), row.get("odds_player_b")
+        if not (_ps_valid_american(oa) and _ps_valid_american(ob)):
+            return None
+        fa, fb = _ps_fair_pair(oa, ob)
+        if fa is None:
+            return None
+        pA = row.get("prob_player_a_win")
+        if pA is None or pd.isna(pA):
+            return None
+        pA = float(pA)
+        # Standard model prob for player_a; if missing, default to CCK (no disagreement)
+        sA = std_prob_a if (std_prob_a is not None and not pd.isna(std_prob_a)) else pA
+        sA = float(sA)
+        # Who CCK picks
+        cck_pick_a = pA >= 0.50
+        std_pick_a = sA >= 0.50
+        book_pick_a = fa >= 0.50
+        pick_player = row.get("player_a") if cck_pick_a else row.get("player_b")
+        pick_prob = pA if cck_pick_a else (1.0 - pA)
+        other_prob = sA if cck_pick_a else (1.0 - sA)
+        book_pick_prob = fa if cck_pick_a else fb
+        pick_odds = float(oa if cck_pick_a else ob)
+        is_underdog = pick_odds > 0
+        # Sub-scores
+        raw_edge = pick_prob - book_pick_prob
+        edge_s = min(1.0, max(0.0, raw_edge / 0.10))
+        conf_s = min(1.0, max(0.0, (pick_prob - 0.50) / 0.25))
+        # Agreement: which of std, book agree with cck's pick?
+        std_ag = (std_pick_a == cck_pick_a)
+        book_ag = (book_pick_a == cck_pick_a)
+        if std_ag and book_ag: agree_s = 1.00
+        elif std_ag: agree_s = 0.80
+        elif book_ag: agree_s = 0.50
+        else: agree_s = 0.00
+        # Volatility
+        conf_vol = 1.0 - conf_s
+        mkt_tight = min(1.0, max(0.0, 1.0 - abs(book_pick_prob - 0.50)/0.25))
+        mdl_disagree = min(1.0, max(0.0, abs(other_prob - pick_prob)/0.15))
+        if pick_odds < 0: ud_risk = 0.00
+        elif pick_odds <= 130: ud_risk = 0.40
+        elif pick_odds <= 180: ud_risk = 0.70
+        else: ud_risk = 1.00
+        vol_s = 0.40*conf_vol + 0.25*mkt_tight + 0.20*mdl_disagree + 0.15*ud_risk
+        # Pick Score (v1 weights, locked)
+        pick_score = 0.45*edge_s + 0.30*conf_s + 0.15*agree_s - 0.10*vol_s
+        score_100 = 100.0 * pick_score
+        # Bucket + overrides
+        if raw_edge < 0:
+            bucket = "Avoid"
+        elif raw_edge < 0.02:
+            bucket = "Lean" if 30 <= score_100 < 45 else "Avoid"
+        else:
+            if score_100 >= 65: bucket = "Top Pick"
+            elif score_100 >= 45: bucket = "Green"
+            elif score_100 >= 30: bucket = "Lean"
+            elif score_100 >= 20: bucket = "Upset Watch"
+            else: bucket = "Avoid"
+            # Overrides
+            if is_underdog and raw_edge >= 0.06 and vol_s >= 0.65 and bucket == "Green":
+                bucket = "Upset Watch"
+            if bucket == "Top Pick" and vol_s > 0.65:
+                bucket = "Upset Watch" if is_underdog else "Green"
+            if bucket == "Green" and conf_s < (0.52 - 0.50) / 0.25:
+                bucket = "Upset Watch" if is_underdog else "Lean"
+        return {
+            "pick_score": round(pick_score, 4),
+            "courtiq_score": round(score_100, 1),
+            "bucket": bucket,
+            "pick_player": pick_player,
+            "pick_odds": pick_odds,
+            "raw_edge_pp": round(raw_edge * 100, 1),
+        }
+    except Exception:
+        return None
+
 def build_site_data() -> dict:
     from collections import defaultdict
 
@@ -1294,6 +1396,24 @@ def build_site_data() -> dict:
                           "prob_player_b_win", "book_fair_prob_a", "book_fair_prob_b",
                           "p_elo_a", "p_temp_a"]
             matches = json.loads(merged[[c for c in match_keys if c in merged.columns]].to_json(orient="records"))
+
+            # Inject Pick Score / bucket on each match (CCK formula, v1 weights)
+            # std_prob_a comes from df_model when present; else fall back to CCK prob
+            for idx, m in enumerate(matches):
+                std_pA = None
+                if df_model is not None and idx < len(df_model):
+                    try:
+                        std_pA = float(df_model.iloc[idx].get("prob_player_a_win"))
+                    except (TypeError, ValueError):
+                        std_pA = None
+                ps = _ps_compute(m, std_pA)
+                if ps is not None:
+                    m["pick_score"] = ps["pick_score"]
+                    m["courtiq_score"] = ps["courtiq_score"]
+                    m["bucket"] = ps["bucket"]
+                    m["pick_player"] = ps["pick_player"]
+                    m["pick_odds"] = ps["pick_odds"]
+                    m["raw_edge_pp"] = ps["raw_edge_pp"]
 
             tourney_data[t_key]["rounds"].append({
                 "round": r_name,
@@ -1986,6 +2106,19 @@ body{{
 .cons-strong{{background:rgba(63,185,80,.06);color:var(--txt1)}}
 .cons-split{{background:var(--clay-dim);color:var(--clay)}}
 
+.bucket-chip{{
+  font-family:var(--mono);font-size:10px;letter-spacing:.05em;font-weight:600;
+  padding:2px 8px;border-radius:3px;text-transform:uppercase;
+}}
+.bucket-top{{background:rgba(56,139,253,.15);color:#79c0ff}}
+.bucket-green{{background:var(--green-dim);color:var(--green-bright)}}
+.bucket-lean{{background:rgba(187,128,9,.18);color:#e3b341}}
+.bucket-upset{{background:rgba(247,129,84,.16);color:#ff9776}}
+.score-chip{{
+  font-family:var(--mono);font-size:10px;letter-spacing:.04em;
+  padding:2px 8px;border-radius:3px;background:var(--bg3);color:var(--txt1);
+}}
+
 .badge{{
   font-family:var(--mono);font-size:9px;letter-spacing:.05em;
   padding:2px 7px;border-radius:3px;
@@ -2160,6 +2293,7 @@ body{{
   </div>
   <nav class="nav">
     <a class="on" onclick="showPage('predictions',this)">predictions</a>
+    <a onclick="showPage('picks',this)">picks</a>
     <a onclick="showPage('live',this)">current</a>
     <a onclick="showPage('players',this)">players</a>
     <a onclick="showPage('tournaments',this)">tournaments</a>
@@ -2211,6 +2345,21 @@ body{{
       <div class="sec-hdr" style="margin-top:20px"><div class="sec-title">ELO Rankings</div></div>
       <div id="elo-list"></div>
     </div>
+  </div>
+</div>
+
+<!-- PICKS PAGE -->
+<div id="page-picks" class="page">
+  <div style="padding:20px 0">
+    <div class="sec-hdr">
+      <div class="sec-title">CourtIQ Picks <span id="picks-count" style="color:var(--txt2);font-size:11px;margin-left:8px"></span></div>
+    </div>
+    <div style="color:var(--txt2);font-size:11px;line-height:1.5;margin:0 0 16px;font-family:var(--mono);max-width:680px">
+      Filtered selections from the CourtIQ value formula — matches where the model identifies pricing edge versus the market.
+      Buckets reflect score and structural overrides. Backtest baseline: ~+10.8% ROI on 176 selections across 23 tournaments;
+      live performance may differ. Not betting advice.
+    </div>
+    <div id="picks-wrap"></div>
   </div>
 </div>
 
@@ -2711,8 +2860,51 @@ function buildAccuracyPage(){{
   document.getElementById('acc-chart').innerHTML=html;
 }}
 
+// ── PICKS PAGE ─────────────────────────────────────────────
+function bucketChipHtml(b){{
+  if(!b||b==='Avoid') return '';
+  const cls = b==='Top Pick' ? 'bucket-top'
+            : b==='Green' ? 'bucket-green'
+            : b==='Lean' ? 'bucket-lean'
+            : b==='Upset Watch' ? 'bucket-upset' : '';
+  return `<span class="bucket-chip ${{cls}}">${{b}}</span>`;
+}}
+function buildPicks(){{
+  let html=''; let total=0;
+  const ordered=[...tourneys];  // chronological
+  for(const t of ordered){{
+    const surface=surfFromSlug(t.slug);
+    // Per-round, filter non-Avoid, sort by courtiq_score desc
+    let tHtml='';
+    for(const r of t.rounds){{
+      if(!r.matches||r.matches.length===0) continue;
+      const picks=r.matches.filter(m=>m.bucket&&m.bucket!=='Avoid');
+      if(!picks.length) continue;
+      picks.sort((a,b)=>(b.courtiq_score||0)-(a.courtiq_score||0));
+      tHtml+=`<div class="sec-hdr" style="margin-top:14px"><div class="sec-title" style="font-size:11px">${{r.round}} <span>${{picks.length}} pick${{picks.length>1?'s':''}}</span></div></div>`;
+      for(const m of picks){{
+        // Reuse the standard match card, then append bucket + score chips
+        let card = buildMatchCard(m, r.round, surface);
+        // Inject bucket + score chips into the match-footer
+        const extra = bucketChipHtml(m.bucket) +
+                      (m.courtiq_score!=null?` <span class="score-chip">SCORE ${{m.courtiq_score.toFixed(1)}}</span>`:'');
+        card = card.replace('<div class="match-footer">', '<div class="match-footer">'+extra+' ');
+        tHtml+=card;
+        total++;
+      }}
+    }}
+    if(tHtml){{
+      html+=`<div class="sec-hdr" style="margin-top:24px"><div class="sec-title">${{t.name.toUpperCase()}}</div></div>${{tHtml}}`;
+    }}
+  }}
+  document.getElementById('picks-wrap').innerHTML=html||
+    '<div style="color:var(--txt2);padding:20px 0;font-size:13px">No non-Avoid picks in current tournaments.</div>';
+  document.getElementById('picks-count').textContent = total ? `(${{total}} active)` : '';
+}}
+
 // ── BOOT ───────────────────────────────────────────────────
 buildPredictions();
+buildPicks();
 buildTourneyCards();
 buildEloList();
 buildPlayersPage();
