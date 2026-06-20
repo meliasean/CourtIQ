@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Score Queens 2026 R16. All 8 results now known.
-Usage:  python score_queens_r16.py [reports_dir]   (default: reports)
+Score Halle 2026 QF. All 4 results inferred from SF matchups.
+Usage:  python score_halle_qf.py [reports_dir]   (default: reports)
 """
 import sys, os
 import pandas as pd
@@ -13,14 +13,10 @@ def al(n):
 reports = sys.argv[1] if len(sys.argv) > 1 else "reports"
 
 RESULTS = {
-    ("Alex De Minaur", "Denis Shapovalov"): "Alex De Minaur",
-    ("Brandon Nakashima", "Ignacio Buse"): "Brandon Nakashima",
-    ("Adrian Mannarino", "Arthur Fery"): "Arthur Fery",
-    ("Jenson Brooksby", "Francisco Cerundolo"): "Francisco Cerundolo",
-    ("Tommy Paul", "Botic van de Zandschulp"): "Tommy Paul",
-    ("Corentin Moutet", "Alejandro Davidovich Fokina"): "Alejandro Davidovich Fokina",
-    ("Hamad Medjedovic", "Ugo Humbert"): "Ugo Humbert",            # Humbert won suspended match
-    ("Rinky Hijikata", "Jiri Lehecka"): "Rinky Hijikata",          # UPSET (Lehecka -313)
+    ("Alexander Zverev", "Raphael Collignon"): "Alexander Zverev",
+    ("Ben Shelton", "Taylor Fritz"): "Taylor Fritz",
+    ("Daniel Altmaier", "Daniil Medvedev"): "Daniel Altmaier",   # UPSET (Medvedev -690)
+    ("Frances Tiafoe", "Felix Auger-Aliassime"): "Frances Tiafoe",
 }
 
 RES = {frozenset([al(a), al(b)]): al(w) for (a, b), w in RESULTS.items()}
@@ -47,11 +43,11 @@ def score_file(path, write_complete_to):
     print(f"  {os.path.basename(write_complete_to)}: {scored} scored, model {int(sc['correct_prediction'].sum())}/{len(sc)} = {acc:.0f}%")
     return df
 
-print("Scoring Queens 2026 R16...")
-score_file(os.path.join(reports, "queens2026_R16_predictions.csv"),
-           os.path.join(reports, "queens2026_R16_predictions_complete.csv"))
-cck = score_file(os.path.join(reports, "queens2026_R16_predictions_cck.csv"),
-                 os.path.join(reports, "queens2026_R16_predictions_cck_complete.csv"))
+print("Scoring Halle 2026 QF...")
+score_file(os.path.join(reports, "halle2026_QF_predictions.csv"),
+           os.path.join(reports, "halle2026_QF_predictions_complete.csv"))
+cck = score_file(os.path.join(reports, "halle2026_QF_predictions_cck.csv"),
+                 os.path.join(reports, "halle2026_QF_predictions_cck_complete.csv"))
 if cck is not None:
     bk = cck[cck["correct_prediction_book"].notna()]
     if len(bk):
