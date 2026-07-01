@@ -1303,6 +1303,116 @@ def _ps_compute(row, std_prob_a):
     except Exception:
         return None
 
+def _profit_units(pick_odds, won):
+    """American odds → profit units. -1.00 on loss, decimal payout on win."""
+    if not won:
+        return -1.0
+    o = float(pick_odds)
+    return 100.0/(-o) if o < 0 else o/100.0
+
+def compute_pick_stats() -> dict:
+    """Walk all prediction CSVs in REPORTS, run the locked v1 formula on each match,
+    aggregate non-Avoid pick stats per tournament + all-time. Identifies the latest
+    in-progress (or just-completed) tournament as 'current'.
+    Returns: {
+      'current': {'tournament': str, 'name': str, 'n', 'w', 'l', 'units', 'roi', 'acc'},
+      'all_time': {'n', 'w', 'l', 'units', 'roi', 'acc'},
+    }
+    """
+    import os, glob
+    rows = []          # one row per non-Avoid pick (resolved or pending)
+    tourney_has_pred = set()  # tournaments with any predictions on disk
+    tourney_has_unresolved = set()  # tournaments with at least one unscored pick
+    REPORTS = str(REPORTS_DIR)
+
+    cck_files = sorted(glob.glob(os.path.join(REPORTS, "*_predictions_cck_complete.csv"))) + \
+                sorted(glob.glob(os.path.join(REPORTS, "*_predictions_cck.csv")))
+    seen = set()  # dedupe by tournament+round (prefer *_complete.csv when both exist)
+    for path in cck_files:
+        fn = os.path.basename(path)
+        # Parse tourney + round from filename
+        # e.g. wimbledon2026_R128_predictions_cck.csv → ("wimbledon2026","R128")
+        base = fn.replace("_predictions_cck_complete.csv","").replace("_predictions_cck.csv","")
+        parts = base.rsplit("_", 1)
+        if len(parts) != 2: continue
+        tourney, rnd = parts[0], parts[1]
+        if tourney not in TOURNEY_ORDER: continue
+        key = (tourney, rnd)
+        # Prefer _complete.csv version when both present
+        if key in seen and not fn.endswith("_complete.csv"): continue
+        if key in seen: continue
+        seen.add(key)
+        tourney_has_pred.add(tourney)
+
+        # Also load the std model CSV for std_prob_a (used in Pick Score computation)
+        std_path = path.replace("_cck_complete.csv","_complete.csv").replace("_cck.csv",".csv")
+        std_df = None
+        if os.path.exists(std_path):
+            try: std_df = pd.read_csv(std_path)
+            except Exception: std_df = None
+
+        try: cck_df = pd.read_csv(path)
+        except Exception: continue
+        is_complete = path.endswith("_complete.csv")
+
+        for idx, m in cck_df.iterrows():
+            std_pA = None
+            if std_df is not None and idx < len(std_df):
+                try: std_pA = float(std_df.iloc[idx].get("prob_player_a_win"))
+                except (TypeError, ValueError): std_pA = None
+            ps = _ps_compute(m.to_dict(), std_pA)
+            if ps is None: continue
+            if ps["bucket"] == "Avoid": continue
+            # Determine outcome
+            outcome = None  # True/False/None
+            if is_complete and pd.notna(m.get("correct_prediction_cck")):
+                outcome = bool(int(m.get("correct_prediction_cck")))
+            elif is_complete and pd.notna(m.get("correct_prediction")):
+                outcome = bool(int(m.get("correct_prediction")))
+            if outcome is None:
+                tourney_has_unresolved.add(tourney)
+            rows.append({
+                "tourney": tourney, "round": rnd,
+                "bucket": ps["bucket"], "pick_odds": ps["pick_odds"],
+                "won": outcome,
+            })
+
+    def aggregate(picks):
+        resolved = [p for p in picks if p["won"] is not None]
+        n = len(resolved)
+        if n == 0:
+            return {"n": 0, "w": 0, "l": 0, "units": 0.0, "roi": None, "acc": None, "pending": len(picks)}
+        w = sum(1 for p in resolved if p["won"])
+        units = sum(_profit_units(p["pick_odds"], p["won"]) for p in resolved)
+        return {
+            "n": n, "w": w, "l": n - w,
+            "units": round(units, 2),
+            "roi": round(units / n * 100, 2),
+            "acc": round(w / n * 100, 1),
+            "pending": len(picks) - n,
+        }
+
+    # All-time aggregation
+    all_time = aggregate(rows)
+
+    # Identify "current" tournament: latest in TOURNEY_ORDER with predictions
+    # Prefer one with unresolved picks (in-progress); else last with any picks (just-completed)
+    in_progress = [t for t in TOURNEY_ORDER if t in tourney_has_unresolved]
+    with_any = [t for t in TOURNEY_ORDER if t in tourney_has_pred]
+    current_t = in_progress[-1] if in_progress else (with_any[-1] if with_any else None)
+
+    current = None
+    if current_t:
+        current_picks = [r for r in rows if r["tourney"] == current_t]
+        current_stats = aggregate(current_picks)
+        current = {
+            "tournament": current_t,
+            "name": TOURNEY_DISPLAY_NAMES.get(current_t, current_t),
+            **current_stats,
+        }
+
+    return {"current": current, "all_time": all_time}
+
 def build_site_data() -> dict:
     from collections import defaultdict
 
@@ -1515,6 +1625,7 @@ def build_site_data() -> dict:
             "book_accuracy": round(total_book / total_book_matches, 4) if total_book_matches else None,
             "book_correct": total_book,
         },
+        "pick_stats": compute_pick_stats(),
         "tourney_acc": tourney_acc,
         "players": players,
         "tournaments": tournaments_out,
@@ -2120,6 +2231,37 @@ body{{
   padding:2px 8px;border-radius:3px;background:var(--bg3);color:var(--txt1);
 }}
 
+/* Picks-page stats cards */
+.pick-stats{{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 18px;
+}}
+.pick-stat-card{{
+  background:var(--bg2);border:1px solid var(--line);border-radius:8px;
+  padding:14px 16px;
+}}
+.pick-stat-label{{
+  font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);
+  margin-bottom:8px;font-family:var(--mono);
+}}
+.pick-stat-row{{
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  font-family:var(--mono);
+}}
+.pick-stat-main{{
+  font-size:20px;color:var(--txt0);font-feature-settings:"tnum";font-weight:500;
+}}
+.pick-stat-main.pos{{color:var(--green-bright);}}
+.pick-stat-main.neg{{color:#ff7b72;}}
+.pick-stat-sub{{
+  font-size:11px;color:var(--txt1);font-feature-settings:"tnum";
+}}
+.pick-stat-meta{{
+  font-size:10px;color:var(--txt2);margin-top:6px;font-family:var(--mono);
+}}
+@media (max-width:600px){{
+  .pick-stats{{grid-template-columns:1fr;}}
+}}
+
 .badge{{
   font-family:var(--mono);font-size:9px;letter-spacing:.05em;
   padding:2px 7px;border-radius:3px;
@@ -2360,6 +2502,7 @@ body{{
       Buckets reflect score and structural overrides. Backtest baseline: ~+10.8% ROI on 176 selections across 23 tournaments;
       live performance may differ. Not betting advice.
     </div>
+    <div class="pick-stats" id="picks-stats-wrap"></div>
     <div id="picks-wrap"></div>
   </div>
 </div>
@@ -2862,6 +3005,41 @@ function buildAccuracyPage(){{
 }}
 
 // ── PICKS PAGE ─────────────────────────────────────────────
+function buildPicksStats(){{
+  const stats = (typeof D!=='undefined' && D.pick_stats) ? D.pick_stats : null;
+  const wrap = document.getElementById('picks-stats-wrap');
+  if(!wrap || !stats) return;
+
+  function card(label, s, subtitle){{
+    if(!s || s.n===0){{
+      return `<div class="pick-stat-card">
+        <div class="pick-stat-label">${{label}}</div>
+        <div class="pick-stat-row"><div class="pick-stat-main">—</div></div>
+        <div class="pick-stat-meta">No resolved picks yet${{s && s.pending? ` · ${{s.pending}} pending` : ''}}</div>
+      </div>`;
+    }}
+    const roiCls = s.roi > 0 ? 'pos' : (s.roi < 0 ? 'neg' : '');
+    const unitsCls = s.units > 0 ? 'pos' : (s.units < 0 ? 'neg' : '');
+    const roiStr = (s.roi > 0 ? '+' : '') + s.roi.toFixed(2) + '%';
+    const unitsStr = (s.units > 0 ? '+' : '') + s.units.toFixed(2) + 'u';
+    const pendingTag = s.pending ? ` · ${{s.pending}} pending` : '';
+    return `<div class="pick-stat-card">
+      <div class="pick-stat-label">${{label}}</div>
+      <div class="pick-stat-row">
+        <div class="pick-stat-main ${{roiCls}}">${{roiStr}}</div>
+        <div class="pick-stat-sub">${{s.w}}-${{s.l}} · ${{s.acc.toFixed(1)}}% acc</div>
+        <div class="pick-stat-sub ${{unitsCls}}">${{unitsStr}}</div>
+      </div>
+      <div class="pick-stat-meta">${{s.n}} resolved · ${{subtitle||''}}${{pendingTag}}</div>
+    </div>`;
+  }}
+
+  const curLabel = stats.current ? stats.current.name.toUpperCase() : 'CURRENT TOURNAMENT';
+  const curHtml  = card(curLabel, stats.current, stats.current ? 'this event' : '');
+  const allHtml  = card('ALL TIME', stats.all_time, 'backtest + live');
+  wrap.innerHTML = curHtml + allHtml;
+}}
+
 function bucketChipHtml(b){{
   if(!b||b==='Avoid') return '';
   const cls = b==='Top Pick' ? 'bucket-top'
@@ -2907,6 +3085,7 @@ function buildPicks(){{
 // ── BOOT ───────────────────────────────────────────────────
 buildPredictions();
 buildPicks();
+buildPicksStats();
 buildTourneyCards();
 buildEloList();
 buildPlayersPage();
