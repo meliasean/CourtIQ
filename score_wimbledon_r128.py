@@ -72,13 +72,12 @@ RESULTS = {
     ("Corentin Moutet", "Marcos Giron"): "Marcos Giron",
     ("Valentin Royer", "Harry Wendelken"): "Valentin Royer",
     ("Alexander Blockx", "Alexander Zverev"): "Alexander Zverev",
-    # ── PENDING (6 R128s not yet finished; uncomment when known) ──
-    # ("Tallon Griekspoor", "James Duckworth"): "?",   # PENDING (both feeders unresolved)
-    # ("Mariano Navone", "Flavio Cobolli"): "?",   # PENDING (both feeders unresolved)
-    # ("Frances Tiafoe", "Terence Atmane"): "?",   # PENDING (both feeders unresolved)
-    # ("Vit Kopriva", "Jan Choinski"): "?",   # PENDING (both feeders unresolved)
-    # ("Jiri Lehecka", "Alexei Popyrin"): "?",   # PENDING (both feeders unresolved)
-    # ("Alex Molcan", "Daniel Altmaier"): "?",   # PENDING (both feeders unresolved)
+    ("Tallon Griekspoor", "James Duckworth"): "James Duckworth",
+    ("Mariano Navone", "Flavio Cobolli"): "Flavio Cobolli",
+    ("Frances Tiafoe", "Terence Atmane"): "Frances Tiafoe",
+    ("Vit Kopriva", "Jan Choinski"): "Jan Choinski",
+    ("Jiri Lehecka", "Alexei Popyrin"): "Jiri Lehecka",
+    ("Alex Molcan", "Daniel Altmaier"): "Alex Molcan",
 }
 
 RES = {frozenset([al(a), al(b)]): al(w) for (a, b), w in RESULTS.items()}
