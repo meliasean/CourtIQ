@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-Score Wimbledon 2026 R16. 7 of 8 results resolved; Lehecka vs Zverev pending (interrupted).
-Uncomment the Lehecka/Zverev entry when it finishes.
+Score Wimbledon 2026 R16. All 8 results resolved.
 Usage:  python score_wimbledon_r16.py [reports_dir]   (default: reports)
 """
 import sys, os
@@ -21,8 +20,7 @@ RESULTS = {
     ("Alex de Minaur", "Flavio Cobolli"): "Flavio Cobolli",
     ("Grigor Dimitrov", "Arthur Fery"): "Arthur Fery",
     ("Taylor Fritz", "Alexander Bublik"): "Taylor Fritz",
-    # ── PENDING (uncomment when it finishes) ──
-    # ("Jiri Lehecka", "Alexander Zverev"): "?",
+    ("Jiri Lehecka", "Alexander Zverev"): "Alexander Zverev",
 }
 
 RES = {frozenset([al(a), al(b)]): al(w) for (a, b), w in RESULTS.items()}

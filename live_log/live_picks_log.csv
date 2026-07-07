@@ -179,7 +179,8 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-07-04T21:56:55+00:00,wimbledon2026,R16,5,Alex De Minaur,Flavio Cobolli,Alex De Minaur,-370.0,False,0.565742,0.519337,0.769053,-0.203311,0.0,0.263,1.0,0.3567,0.1932,19.32,Avoid,False,,,loss,-1.0,2026-07-07T02:27:35+00:00
 2026-07-04T21:56:55+00:00,wimbledon2026,R16,6,Grigor Dimitrov,Arthur Fery,Grigor Dimitrov,-303.0,False,0.582498,0.581081,0.710864,-0.128367,0.0,0.33,1.0,0.309,0.2181,21.81,Avoid,False,,,loss,-1.0,2026-07-07T02:27:35+00:00
 2026-07-04T21:56:55+00:00,wimbledon2026,R16,7,Taylor Fritz,Alexander Bublik,Taylor Fritz,-175.0,False,0.615664,0.857143,0.600291,0.015374,0.1537,0.4627,1.0,0.5646,0.3015,30.15,Lean,False,,,win,0.5714,2026-07-07T02:27:35+00:00
-2026-07-04T21:56:55+00:00,wimbledon2026,R16,8,Jiri Lehecka,Alexander Zverev,Alexander Zverev,-312.0,False,0.662512,0.790123,0.73957,-0.077059,0.0,0.65,1.0,0.3206,0.313,31.3,Avoid,False,,,,,
+2026-07-04T21:56:55+00:00,wimbledon2026,R16,8,Jiri Lehecka,Alexander Zverev,Alexander Zverev,-312.0,False,0.662512,0.790123,0.73957,-0.077059,0.0,0.65,1.0,0.3206,0.313,31.3,Avoid,False,,,win,0.3205,2026-07-07T17:24:50+00:00
 2026-07-07T02:28:55+00:00,wimbledon2026,QF,1,Jannik Sinner,Jan-Lennard Struff,Jannik Sinner,-2500.0,False,0.791107,0.923152,0.929919,-0.138812,0.0,1.0,1.0,0.1761,0.4324,43.24,Avoid,False,,,,,
 2026-07-07T02:28:55+00:00,wimbledon2026,QF,2,Felix Auger Aliassime,Novak Djokovic,Novak Djokovic,-179.0,False,0.643739,0.844037,0.615967,0.027772,0.2777,0.575,1.0,0.5041,0.3971,39.71,Lean,False,,,,,
 2026-07-07T02:28:55+00:00,wimbledon2026,QF,3,Flavio Cobolli,Arthur Fery,Flavio Cobolli,-270.0,False,0.646096,0.857143,0.700162,-0.054066,0.0,0.5844,1.0,0.4161,0.2837,28.37,Avoid,False,,,,,
+2026-07-07T17:25:11+00:00,wimbledon2026,QF,4,Taylor Fritz,Alexander Zverev,Alexander Zverev,-101.0,False,0.568157,0.652381,0.479499,0.088658,0.8866,0.2726,0.8,0.6327,0.5375,53.75,Green,False,,,,,
