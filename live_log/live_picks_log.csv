@@ -186,4 +186,4 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-07-07T17:25:11+00:00,wimbledon2026,QF,4,Taylor Fritz,Alexander Zverev,Alexander Zverev,-101.0,False,0.568157,0.652381,0.479499,0.088658,0.8866,0.2726,0.8,0.6327,0.5375,53.75,Green,False,,,win,0.9901,2026-07-08T18:02:37+00:00
 2026-07-08T18:03:03+00:00,wimbledon2026,SF,1,Jannik Sinner,Novak Djokovic,Jannik Sinner,-476.0,False,0.672013,0.821429,0.788079,-0.116066,0.0,0.6881,1.0,0.324,0.324,32.4,Avoid,False,,,win,0.2101,2026-07-12T15:22:41+00:00
 2026-07-08T18:03:03+00:00,wimbledon2026,SF,2,Arthur Fery,Alexander Zverev,Alexander Zverev,-667.0,False,0.686302,0.844037,0.828111,-0.141809,0.0,0.7452,1.0,0.3019,0.3434,34.34,Avoid,False,,,win,0.1499,2026-07-12T15:22:41+00:00
-2026-07-12T15:23:27+00:00,wimbledon2026,F,1,Jannik Sinner,Alexander Zverev,Jannik Sinner,-350.0,False,0.736441,0.857143,0.744681,-0.00824,0.0,0.9458,1.0,0.1879,0.4149,41.49,Avoid,False,,,,,
+2026-07-12T15:23:27+00:00,wimbledon2026,F,1,Jannik Sinner,Alexander Zverev,Jannik Sinner,-350.0,False,0.736441,0.857143,0.744681,-0.00824,0.0,0.9458,1.0,0.1879,0.4149,41.49,Avoid,False,,,win,0.2857,2026-07-13T15:15:48+00:00
