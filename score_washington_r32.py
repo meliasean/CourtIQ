@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-Score Washington 2026 R32. 15 of 16 results resolved; De Minaur vs Tsitsipas pending.
-Uncomment the De Minaur/Tsitsipas entry when it finishes.
+Score Washington 2026 R32. All 16 results resolved.
 Usage:  python score_washington_r32.py [reports_dir]   (default: reports)
 """
 import sys, os
@@ -29,8 +28,7 @@ RESULTS = {
     ("Ugo Humbert", "Andres Martin"): "Ugo Humbert",
     ("Martin Damm", "Ben Shelton"): "Ben Shelton",
     ("Marcos Giron", "Cruz Hewitt"): "Cruz Hewitt",
-    # ── PENDING (uncomment when finished) ──
-    # ("Alex de Minaur", "Stefanos Tsitsipas"): "?",
+    ("Alex de Minaur", "Stefanos Tsitsipas"): "Alex de Minaur",   # chalk holds
 }
 
 RES = {frozenset([al(a), al(b)]): al(w) for (a, b), w in RESULTS.items()}
