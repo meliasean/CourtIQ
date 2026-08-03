@@ -218,7 +218,7 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-07-31T14:01:39+00:00,washington2026,QF,4,Alejandro Tabilo,Ben Shelton,Ben Shelton,-312.0,False,0.656386,0.844037,0.726064,-0.069678,0.0,0.6255,1.0,0.3737,0.3003,30.03,Avoid,False,,,loss,-1.0,2026-08-01T16:08:18+00:00
 2026-08-01T16:09:09+00:00,washington2026,SF,1,Brandon Nakashima,Taylor Fritz,Taylor Fritz,-190.0,False,0.698452,0.844037,0.624644,0.073808,0.7381,0.7938,1.0,0.4019,0.6801,68.01,Top Pick,False,,,win,0.5263,2026-08-02T15:49:20+00:00
 2026-08-01T16:09:09+00:00,washington2026,SF,2,Rafael Jodar,Alejandro Tabilo,Rafael Jodar,-297.0,False,0.615825,0.746575,0.713566,-0.097741,0.0,0.4633,1.0,0.4254,0.2464,24.64,Avoid,False,,,win,0.3367,2026-08-02T15:49:20+00:00
-2026-08-02T15:49:42+00:00,washington2026,F,1,Taylor Fritz,Rafael Jodar,Taylor Fritz,-149.0,False,0.669789,0.821429,0.580236,0.089553,0.8955,0.6792,1.0,0.4981,0.7069,70.69,Top Pick,False,,,,,
+2026-08-02T15:49:42+00:00,washington2026,F,1,Taylor Fritz,Rafael Jodar,Taylor Fritz,-149.0,False,0.669789,0.821429,0.580236,0.089553,0.8955,0.6792,1.0,0.4981,0.7069,70.69,Top Pick,False,,,win,0.6711,2026-08-03T23:46:43+00:00
 2026-08-03T03:21:16+00:00,canada2026,R128,1,Lorenzo Sonego,Tallon Griekspoor,Tallon Griekspoor,-109.0,False,0.54328,0.790123,0.49891,0.04437,0.4437,0.1731,0.8,0.7797,0.2936,29.36,Upset Watch,False,,,,,
 2026-08-03T03:21:16+00:00,canada2026,R128,2,Shintaro Mochizuki,Fabian Marozsan,Fabian Marozsan,-200.0,False,0.636141,0.844037,0.636804,-0.000663,0.0,0.5446,1.0,0.4954,0.2638,26.38,Avoid,False,,,,,
 2026-08-03T03:21:16+00:00,canada2026,R128,3,Daniel Merida,Liam Draxl,Daniel Merida,-137.0,False,0.533491,0.746575,0.552982,-0.019491,0.0,0.134,1.0,0.7434,0.1158,11.58,Avoid,False,,,,,
