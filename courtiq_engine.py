@@ -893,6 +893,20 @@ def rebuild_profiles_from_event(event_log: pd.DataFrame, seeds: pd.DataFrame, cf
             updated.loc[idx, "form5_wr"] = float(recent5.mean()) if len(recent5) >= 3 else prior_wr
             # Streak
             updated.loc[idx, "streak"] = float(streak)
+            # Last-5 results (JSON) for the players-page Form column.
+            # Merge prior last5 with this event so history survives rounds.
+            try:
+                _prior = json.loads(str(seed_row.iloc[-1].get("last5") or "[]"))
+                if not isinstance(_prior, list):
+                    _prior = []
+            except Exception:
+                _prior = []
+            _event = [
+                {"result": "W" if int(r["is_win"]) == 1 else "L",
+                 "date": r["date"].strftime("%Y-%m-%d")}
+                for _, r in sub.sort_values("date").iterrows()
+            ]
+            updated.loc[idx, "last5"] = json.dumps((_prior + _event)[-5:])
             # Matches 28d — increment
             updated.loc[idx, "matches_28d"] = float(updated.loc[idx, "matches_28d"]) + total_matches
             # Last match date
@@ -910,6 +924,11 @@ def rebuild_profiles_from_event(event_log: pd.DataFrame, seeds: pd.DataFrame, cf
                 "form10_wr": float(sub.tail(10)["is_win"].mean()),
                 "form5_wr": float(sub.tail(5)["is_win"].mean()),
                 "streak": float(streak),
+                "last5": json.dumps([
+                    {"result": "W" if int(r["is_win"]) == 1 else "L",
+                     "date": r["date"].strftime("%Y-%m-%d")}
+                    for _, r in sub.sort_values("date").iterrows()
+                ][-5:]),
                 "avg_rest_days": 20.0, "matches_28d": float(len(sub)),
             }
             updated = pd.concat([updated, pd.DataFrame([new_row])], ignore_index=True)
@@ -1199,7 +1218,7 @@ TOURNEY_DISPLAY_NAMES = {
     "atpfinals2026": "ATP Finals 2026",
 }
 
-ROUND_ORDER = ["R128", "R64", "R32", "R16", "QF", "SF", "F", "RR1", "RR2", "RR3"]
+ROUND_ORDER = ["R128", "R64", "R32", "R16", "QF", "RR1", "RR2", "RR3", "SF", "F"]
 
 # ── Pick Score v1 formula (locked) ─────────────────────────────────────────
 # Identical math to backtest_pickscore.py; kept inline here so the engine
@@ -2907,7 +2926,7 @@ function renderPlayers(list){{
     const e=Math.round(p.current_elo||1500);
     const sc=Math.round(p.selo_Clay||1500);
     const sh=Math.round(p.selo_Hard||1500);
-    let f='<span style="color:var(--txt2)">&#8212;</span>';try{{const l5=p.last5?JSON.parse(p.last5):[];if(l5.length>0)f=l5.slice(-5).reverse().map(m=>{{const c=m.result==='W'?'rgba(74,222,128,0.15)':'rgba(239,68,68,0.15)';const t=m.result==='W'?'#4ade80':'#ef4444';return '<span style="font-family:var(--mono);font-size:10px;padding:1px 5px;border-radius:3px;margin-left:2px;font-weight:600;background:'+c+';color:'+t+'">'+m.result+'</span>';}}).reverse().join('');}}catch(e){{}}
+    let f='<span style="color:var(--txt2)">&#8212;</span>';try{{const l5=p.last5?JSON.parse(p.last5):[];if(l5.length>0){{f=l5.slice(-5).map(m=>{{const c=m.result==='W'?'rgba(74,222,128,0.15)':'rgba(239,68,68,0.15)';const t=m.result==='W'?'#4ade80':'#ef4444';return '<span style="font-family:var(--mono);font-size:10px;padding:1px 5px;border-radius:3px;margin-left:2px;font-weight:600;background:'+c+';color:'+t+'">'+m.result+'</span>';}}).join('');}}else if(p.form5_wr!=null&&p.form5_wr!==''&&!isNaN(p.form5_wr)){{const pct=Math.round(Number(p.form5_wr)*100);const t=pct>=60?'#4ade80':pct<=40?'#ef4444':'var(--txt2)';f='<span style="font-family:var(--mono);font-size:11px;color:'+t+'" title="last-5 win rate">'+pct+'%</span>';}}}}catch(e){{}}
     const st=p.streak||0;
     const stc=st>0?'style="color:var(--green)"':st<0?'style="color:var(--clay)"':'';
     const ld=p.last_match_date?p.last_match_date.slice(0,10):'—';
