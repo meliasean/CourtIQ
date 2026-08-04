@@ -256,7 +256,7 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-08-04T18:00:20+00:00,canada2026,R64,6,Zizou Bergs,Sebastian Baez,Zizou Bergs,-192.0,False,0.542184,0.519337,0.625487,-0.083303,0.0,0.1687,1.0,0.4875,0.1519,15.19,Avoid,False,,,,,
 2026-08-04T18:00:20+00:00,canada2026,R64,7,Jenson Brooksby,Ben Shelton,Ben Shelton,-500.0,False,0.683823,0.844037,0.789842,-0.10602,0.0,0.7353,1.0,0.3059,0.34,34.0,Avoid,False,,,,,
 2026-08-04T18:00:20+00:00,canada2026,R64,8,Jiri Lehecka,Vit Kopriva,Jiri Lehecka,-556.0,False,0.679885,0.857143,0.823371,-0.143486,0.0,0.7195,1.0,0.3122,0.3346,33.46,Avoid,False,,,,,
-2026-08-04T18:00:20+00:00,canada2026,R64,9,Jaume Munar,Alexander Blockx,Jaume Munar,131.0,True,0.545594,0.821429,0.419764,0.12583,1.0,0.1824,0.8,0.8018,0.5445,54.45,Upset Watch,False,,,,,
+2026-08-04T18:00:20+00:00,canada2026,R64,9,Jaume Munar,Alexander Blockx,Jaume Munar,131.0,True,0.545594,0.821429,0.419764,0.12583,1.0,0.1824,0.8,0.8018,0.5445,54.45,Upset Watch,True,2026-08-04T21:07:28+00:00,walkover — Munar WD pre-match,,,
 2026-08-04T18:00:20+00:00,canada2026,R64,10,Rafael Jodar,Corentin Moutet,Rafael Jodar,-345.0,False,0.664916,0.857143,0.745081,-0.080164,0.0,0.6597,1.0,0.3411,0.3138,31.38,Avoid,False,,,,,
 2026-08-04T18:00:20+00:00,canada2026,R64,11,Nicolas Mejia,Lorenzo Musetti,Lorenzo Musetti,-1000.0,False,0.666138,0.844037,0.869048,-0.20291,0.0,0.6646,1.0,0.3342,0.3159,31.59,Avoid,False,,,,,
 2026-08-04T18:00:20+00:00,canada2026,R64,12,Valentin Vacherot,Mariano Navone,Valentin Vacherot,-161.0,False,0.606638,0.857143,0.596849,0.009789,0.0979,0.4266,1.0,0.5825,0.2638,26.38,Avoid,False,,,,,

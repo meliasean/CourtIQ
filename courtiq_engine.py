@@ -1389,6 +1389,11 @@ def compute_pick_stats() -> dict:
             ps = _ps_compute(m.to_dict(), std_pA)
             if ps is None: continue
             if ps["bucket"] == "Avoid": continue
+            # Voided: match never played (pre-match withdrawal, walkover,
+            # abandonment). Leaves BOTH the record and the pending count.
+            # Not for mid-match retirements - those produce a real winner.
+            if str(m.get("voided", "")).strip().lower() in ("true", "1", "yes", "y"):
+                continue
             # Determine outcome
             outcome = None  # True/False/None
             if is_complete and pd.notna(m.get("correct_prediction_cck")):
@@ -2730,9 +2735,13 @@ function buildMatchCard(m, roundCode, surface){{
     return v===1 ? '<span class="badge badge-ok">'+label+' &#10003;</span>'
                  : '<span class="badge badge-no">'+label+' &#10007;</span>';
   }}
-  const badge = isPend
+  const isVoid = String(m.voided ?? '').trim().toLowerCase() === 'true'
+              || String(m.voided ?? '').trim() === '1';
+  const badge = isVoid
+    ? '<span class="badge" style="background:var(--bg4);color:var(--txt2)">void</span>'
+    : (isPend
     ? '<span class="badge badge-pend">pending</span>'
-    : (markChip('M', cpModel) + ' ' + markChip('CCK', cpCck) + ' ' + markChip('BK', cpBook));
+    : (markChip('M', cpModel) + ' ' + markChip('CCK', cpCck) + ' ' + markChip('BK', cpBook)));
 
   return `<div class="match-card">
   <div class="match-inner">
