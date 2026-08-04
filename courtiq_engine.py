@@ -1536,7 +1536,7 @@ def build_site_data() -> dict:
                           "pred_winner", "correct_prediction_model", "correct_prediction_cck",
                           "correct_prediction_book", "confidence", "prob_player_a_win",
                           "prob_player_b_win", "book_fair_prob_a", "book_fair_prob_b",
-                          "p_elo_a", "p_temp_a"]
+                          "p_elo_a", "p_temp_a", "voided"]
             matches = json.loads(merged[[c for c in match_keys if c in merged.columns]].to_json(orient="records"))
 
             # Inject Pick Score / bucket on each match (CCK formula, v1 weights)
