@@ -3093,7 +3093,7 @@ function buildPicks(){{
     let tHtml='';
     for(const r of [...t.rounds].reverse()){{
       if(!r.matches||r.matches.length===0) continue;
-      const picks=r.matches.filter(m=>m.bucket&&m.bucket!=='Avoid');
+      const picks=r.matches.filter(m=>m.bucket&&m.bucket!=='Avoid'&&!['true','1','yes'].includes(String(m.voided??'').trim().toLowerCase()));
       if(!picks.length) continue;
       picks.sort((a,b)=>(b.courtiq_score||0)-(a.courtiq_score||0));
       tHtml+=`<div class="sec-hdr" style="margin-top:14px"><div class="sec-title" style="font-size:11px">${{r.round}} <span>${{picks.length}} pick${{picks.length>1?'s':''}}</span></div></div>`;
