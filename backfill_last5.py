@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Rebuild the missing last5 column in player_profiles_latest.csv.
+Rebuild the missing last5 column and correct the streak column in
+player_profiles_latest.csv.
 
 WHY
 ---
@@ -14,6 +15,15 @@ Actual winners are derivable from the scored prediction files:
     correct_prediction == 1  ->  winner is pred_winner
     correct_prediction == 0  ->  winner is the other player
 That yields a dated W/L record per player, which is exactly what last5 needs.
+
+STREAK
+------
+update_profiles() reset streak to 0 each run and counted only the current
+event, making it a per-tournament streak rather than a career one. Stored
+values therefore disagree with the last5 badges. Streak is recomputed here
+from the SAME sorted history that produces last5, inside the same loop, so
+the two columns cannot fall out of agreement. It is computed over FULL
+history, not last5 - a streak can be longer than five.
 
 DUPLICATE SAFETY
 ----------------
@@ -146,11 +156,21 @@ def main():
         hist[player].append((date, res, k))
 
     last5 = {}
+    streaks = {}
     for player, rows in hist.items():
         rows.sort(key=lambda x: chrono_key(x[0], x[2][0], x[2][1]))  # chronological
         last5[player] = json.dumps(
             [{"result": r, "date": d} for d, r, _k in rows[-keep:]]
         )
+        # Trailing streak over FULL history, same ordering as last5 above.
+        seq = [r for _d, r, _k in rows]
+        last_res = seq[-1]
+        n = 0
+        for r in reversed(seq):
+            if r != last_res:
+                break
+            n += 1
+        streaks[player] = float(n if last_res == "W" else -n)
 
     # ---- attach to profiles ---------------------------------------------
     prof = pd.read_csv(prof_path)
@@ -175,14 +195,39 @@ def main():
         sample = [n for n in prof["name"] if n in last5][:3]
         for n in sample:
             print(f"  sample  {n}: {last5[n]}")
+
+        if "streak" in prof.columns:
+            cmp_rows = []
+            for _, pr in prof.iterrows():
+                nm = pr["name"]
+                if nm in streaks:
+                    try:
+                        old_s = float(pr["streak"] or 0)
+                    except (TypeError, ValueError):
+                        old_s = 0.0
+                    new_s = streaks[nm]
+                    if old_s != new_s:
+                        cmp_rows.append((abs(new_s - old_s), nm, old_s, new_s))
+            cmp_rows.sort(reverse=True)
+            print(f"\n  {len(cmp_rows)} streak value(s) would change. Largest shifts:")
+            for _, nm, old_s, new_s in cmp_rows[:12]:
+                print(f"      {nm:32} {old_s:+.0f}  ->  {new_s:+.0f}")
+            print("      Stored values were per-tournament, so most will grow.")
+            print("      Sanity-check one you know before committing.")
         return
 
     prof["last5"] = prof["name"].map(last5).fillna("[]")
+    if "streak" in prof.columns:
+        # fillna keeps existing values for players with no derived history
+        prof["streak"] = prof["name"].map(streaks).fillna(prof["streak"]).astype(float)
+    else:
+        prof["streak"] = prof["name"].map(streaks).fillna(0.0).astype(float)
     bak = f"{prof_path}.bak_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
     shutil.copy2(prof_path, bak)
     prof.to_csv(prof_path, index=False)
     print(f"\nWROTE {prof_path}  (backup: {bak})")
     print("  added column: last5")
+    print("  recomputed column: streak")
     print("\nNEXT:  python courtiq_engine.py site --output docs/index.html")
 
 

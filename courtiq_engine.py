@@ -862,7 +862,14 @@ def rebuild_profiles_from_event(event_log: pd.DataFrame, seeds: pd.DataFrame, cf
         new_selo = float(last["post_selo"])
 
         # Streak: count from last entry in event
+        # Seed from the player's stored streak so runs continue across
+        # tournaments. Resetting to 0 here made this a per-event streak.
         streak = 0
+        if not seed_row.empty:
+            try:
+                streak = int(float(seed_row.iloc[-1].get("streak") or 0))
+            except Exception:
+                streak = 0
         for _, r in sub.sort_values("date").iterrows():
             if r["is_win"] == 1: streak = streak + 1 if streak >= 0 else 1
             else:                 streak = streak - 1 if streak <= 0 else -1
