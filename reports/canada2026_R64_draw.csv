@@ -1,8 +1,17 @@
 match_no,date,round,player_a,odds_a,player_b,odds_b
+1,2026-08-05,R64,Alexander Zverev,,Tallon Griekspoor,
+2,2026-08-05,R64,Fabian Marozsan,,Matteo Arnaldi,
+3,2026-08-05,R64,Ugo Humbert,-278,Daniel Merida,221
 4,2026-08-06,R64,Alex Michelsen,-175,Francisco Cerundolo,150
 5,2026-08-06,R64,Learner Tien,-303,Gael Monfils,240
-8,2026-08-06,R64,Thiago Agustin Tirante,,Taylor Fritz,
-10,2026-08-06,R64,Hubert Hurkacz,,Alejandro Tabilo,
+6,2026-08-05,R64,Valentin Royer,350,Tommy Paul,-476
+7,2026-08-05,R64,Raphael Collignon,-189,Alexei Popyrin,156
+8,2026-08-06,R64,Thiago Agustin Tirante,491,Taylor Fritz,-714
+9,2026-08-05,R64,Daniil Medvedev,,Botic van de Zandschulp,
+10,2026-08-06,R64,Hubert Hurkacz,-175,Alejandro Tabilo,141
+11,2026-08-05,R64,Karen Khachanov,,Terence Atmane,
+12,2026-08-05,R64,Jacob Fearnley,240,Jakub Mensik,-303
+13,2026-08-05,R64,Casper Ruud,-303,Juan Manuel Cerundolo,240
 14,2026-08-06,R64,Stefanos Tsitsipas,,Joao Fonseca,
 15,2026-08-06,R64,Zizou Bergs,-192,Sebastian Baez,154
 16,2026-08-06,R64,Jenson Brooksby,351,Ben Shelton,-500
@@ -11,12 +20,13 @@ match_no,date,round,player_a,odds_a,player_b,odds_b
 19,2026-08-06,R64,Rafael Jodar,-345,Corentin Moutet,277
 20,2026-08-06,R64,Nicolas Mejia,630,Lorenzo Musetti,-1000
 21,2026-08-06,R64,Valentin Vacherot,-161,Mariano Navone,140
+22,2026-08-05,R64,Zachary Svajda,300,Arthur Fils,-312
 23,2026-08-06,R64,Ignacio Buse,175,Cameron Norrie,-196
 24,2026-08-05,R64,James Duckworth,630,Alex De Minaur,-1000
 25,2026-08-05,R64,Flavio Cobolli,-145,Yannick Hanfmann,120
 26,2026-08-06,R64,Nuno Borges,-189,Tomas Martin Etcheverry,162
 27,2026-08-05,R64,Luciano Darderi,100,Gabriel Diallo,-109
-28,2026-08-06,R64,Juncheng Shang,,Andrey Rublev,
+28,2026-08-06,R64,Juncheng Shang,300,Andrey Rublev,-385
 29,2026-08-05,R64,Frances Tiafoe,-189,Marin Cilic,169
 30,2026-08-06,R64,Miomir Kecmanovic,-102,Arthur Rinderknech,-110
 31,2026-08-05,R64,Brandon Nakashima,-345,Daniel Altmaier,275
