@@ -1,18 +1,18 @@
 match_no,date,round,player_a,odds_a,player_b,odds_b
-1,2026-08-05,R64,Alexander Zverev,,Tallon Griekspoor,
-2,2026-08-05,R64,Fabian Marozsan,,Matteo Arnaldi,
+1,2026-08-05,R64,Alexander Zverev,-714,Tallon Griekspoor,500
+2,2026-08-05,R64,Fabian Marozsan,-137,Matteo Arnaldi,127
 3,2026-08-05,R64,Ugo Humbert,-278,Daniel Merida,221
 4,2026-08-06,R64,Alex Michelsen,-175,Francisco Cerundolo,150
 5,2026-08-06,R64,Learner Tien,-303,Gael Monfils,240
 6,2026-08-05,R64,Valentin Royer,350,Tommy Paul,-476
 7,2026-08-05,R64,Raphael Collignon,-189,Alexei Popyrin,156
 8,2026-08-06,R64,Thiago Agustin Tirante,491,Taylor Fritz,-714
-9,2026-08-05,R64,Daniil Medvedev,,Botic van de Zandschulp,
+9,2026-08-05,R64,Daniil Medvedev,-323,Botic van de Zandschulp,275
 10,2026-08-06,R64,Hubert Hurkacz,-175,Alejandro Tabilo,141
-11,2026-08-05,R64,Karen Khachanov,,Terence Atmane,
+11,2026-08-05,R64,Karen Khachanov,-141,Terence Atmane,120
 12,2026-08-05,R64,Jacob Fearnley,240,Jakub Mensik,-303
 13,2026-08-05,R64,Casper Ruud,-303,Juan Manuel Cerundolo,240
-14,2026-08-06,R64,Stefanos Tsitsipas,,Joao Fonseca,
+14,2026-08-06,R64,Stefanos Tsitsipas,129,Joao Fonseca,-159
 15,2026-08-06,R64,Zizou Bergs,-192,Sebastian Baez,154
 16,2026-08-06,R64,Jenson Brooksby,351,Ben Shelton,-500
 17,2026-08-05,R64,Jiri Lehecka,-556,Vit Kopriva,450
