@@ -328,7 +328,9 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-08-08T15:04:58+00:00,canada2026,R16,6,Arthur Fils,Cameron Norrie,Arthur Fils,-265.0,False,0.60382,0.779661,0.692373,-0.088553,0.0,0.4153,1.0,0.4915,0.2254,22.54,Avoid,False,,,win,0.3774,2026-08-10T14:19:28+00:00
 2026-08-08T15:04:58+00:00,canada2026,R16,7,Nuno Borges,Luciano Darderi,Luciano Darderi,140.0,True,0.542449,0.761905,0.395683,0.146766,1.0,0.1698,0.8,0.7828,0.5427,54.27,Upset Watch,False,,,win,1.4,2026-08-10T14:19:28+00:00
 2026-08-08T15:04:58+00:00,canada2026,R16,8,Arthur Rinderknech,Brandon Nakashima,Brandon Nakashima,-220.0,False,0.640276,0.844037,0.654054,-0.013778,0.0,0.5611,1.0,0.4715,0.2712,27.12,Avoid,False,,,win,0.4545,2026-08-10T14:19:28+00:00
-2026-08-10T14:20:27+00:00,canada2026,QF,1,Daniel Merida,Learner Tien,Learner Tien,-212.0,False,0.61518,0.844037,0.648062,-0.032882,0.0,0.4607,1.0,0.5176,0.2365,23.65,Avoid,False,,,,,
-2026-08-10T14:20:27+00:00,canada2026,QF,2,Jakub Mensik,Ben Shelton,Ben Shelton,-141.0,False,0.595988,0.790123,0.558252,0.037736,0.3774,0.384,1.0,0.6382,0.3712,37.12,Lean,False,,,,,
-2026-08-10T14:20:27+00:00,canada2026,QF,3,Rafael Jodar,Arthur Fils,Arthur Fils,106.0,True,0.534297,0.717391,0.462033,0.072264,0.7226,0.1372,0.8,0.8172,0.4046,40.46,Lean,False,,,,,
-2026-08-10T14:20:27+00:00,canada2026,QF,4,Luciano Darderi,Brandon Nakashima,Brandon Nakashima,-239.0,False,0.632456,0.844037,0.673058,-0.040601,0.0,0.5298,1.0,0.465,0.2624,26.24,Avoid,False,,,,,
+2026-08-10T14:20:27+00:00,canada2026,QF,1,Daniel Merida,Learner Tien,Learner Tien,-212.0,False,0.61518,0.844037,0.648062,-0.032882,0.0,0.4607,1.0,0.5176,0.2365,23.65,Avoid,False,,,win,0.4717,2026-08-12T03:16:11+00:00
+2026-08-10T14:20:27+00:00,canada2026,QF,2,Jakub Mensik,Ben Shelton,Ben Shelton,-141.0,False,0.595988,0.790123,0.558252,0.037736,0.3774,0.384,1.0,0.6382,0.3712,37.12,Lean,False,,,win,0.7092,2026-08-12T03:16:11+00:00
+2026-08-10T14:20:27+00:00,canada2026,QF,3,Rafael Jodar,Arthur Fils,Arthur Fils,106.0,True,0.534297,0.717391,0.462033,0.072264,0.7226,0.1372,0.8,0.8172,0.4046,40.46,Lean,False,,,loss,-1.0,2026-08-12T03:16:11+00:00
+2026-08-10T14:20:27+00:00,canada2026,QF,4,Luciano Darderi,Brandon Nakashima,Brandon Nakashima,-239.0,False,0.632456,0.844037,0.673058,-0.040601,0.0,0.5298,1.0,0.465,0.2624,26.24,Avoid,False,,,win,0.4184,2026-08-12T03:16:11+00:00
+2026-08-12T03:16:50+00:00,canada2026,SF,1,Learner Tien,Ben Shelton,Ben Shelton,-187.0,False,0.60464,0.844037,0.621492,-0.016852,0.0,0.4186,1.0,0.5611,0.2195,21.95,Avoid,False,,,,,
+2026-08-12T03:16:50+00:00,canada2026,SF,2,Rafael Jodar,Brandon Nakashima,Rafael Jodar,-233.0,False,0.616523,0.7,0.667568,-0.051046,0.0,0.4661,1.0,0.4073,0.2491,24.91,Avoid,False,,,,,
