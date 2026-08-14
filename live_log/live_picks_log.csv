@@ -334,7 +334,7 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-08-10T14:20:27+00:00,canada2026,QF,4,Luciano Darderi,Brandon Nakashima,Brandon Nakashima,-239.0,False,0.632456,0.844037,0.673058,-0.040601,0.0,0.5298,1.0,0.465,0.2624,26.24,Avoid,False,,,win,0.4184,2026-08-12T03:16:11+00:00
 2026-08-12T03:16:50+00:00,canada2026,SF,1,Learner Tien,Ben Shelton,Ben Shelton,-187.0,False,0.60464,0.844037,0.621492,-0.016852,0.0,0.4186,1.0,0.5611,0.2195,21.95,Avoid,False,,,win,0.5348,2026-08-13T18:32:57+00:00
 2026-08-12T03:16:50+00:00,canada2026,SF,2,Rafael Jodar,Brandon Nakashima,Rafael Jodar,-233.0,False,0.616523,0.7,0.667568,-0.051046,0.0,0.4661,1.0,0.4073,0.2491,24.91,Avoid,False,,,loss,-1.0,2026-08-13T18:32:57+00:00
-2026-08-13T18:33:19+00:00,canada2026,F,1,Ben Shelton,Brandon Nakashima,Ben Shelton,-240.0,False,0.617141,0.746575,0.673328,-0.056188,0.0,0.4686,1.0,0.4618,0.2444,24.44,Avoid,False,,,,,
+2026-08-13T18:33:19+00:00,canada2026,F,1,Ben Shelton,Brandon Nakashima,Ben Shelton,-240.0,False,0.617141,0.746575,0.673328,-0.056188,0.0,0.4686,1.0,0.4618,0.2444,24.44,Avoid,False,,,win,0.4167,2026-08-14T02:55:46+00:00
 2026-08-13T18:59:19+00:00,cincinnati2026,R128,1,Cameron Norrie,Dino Prizmic,Cameron Norrie,-217.0,False,0.588367,0.746575,0.649751,-0.061384,0.0,0.3535,1.0,0.5589,0.2002,20.02,Avoid,False,,,,,
 2026-08-13T18:59:19+00:00,cincinnati2026,R128,2,Marton Fucsovics,Terence Atmane,Terence Atmane,-233.0,False,0.62009,0.844037,0.664446,-0.044356,0.0,0.4804,1.0,0.4934,0.2448,24.48,Avoid,False,,,,,
 2026-08-13T18:59:19+00:00,cincinnati2026,R128,3,Denis Shapovalov,Adrian Mannarino,Adrian Mannarino,106.0,True,0.524185,0.652381,0.462033,0.062152,0.6215,0.0967,0.8,0.8043,0.3483,34.83,Lean,False,,,,,
