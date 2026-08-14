@@ -1,6 +1,8 @@
 match_no,date,round,player_a,odds_a,player_b,odds_b
 1,2026-08-13,R128,Cameron Norrie,-217,Dino Prizmic,171
 2,2026-08-13,R128,Marton Fucsovics,183,Terence Atmane,-233
+3,2026-08-14,R128,Sho Shimabukuro,275,Hubert Hurkacz,-345
+4,2026-08-14,R128,Kyrian Jacquet,-178,Adolfo Daniel Vallejo,145
 5,2026-08-13,R128,Denis Shapovalov,-130,Adrian Mannarino,106
 6,2026-08-13,R128,Roman Andres Burruchaga,105,Jan-Lennard Struff,-130
 7,2026-08-13,R128,Mariano Navone,120,Raphael Collignon,-149
@@ -9,12 +11,23 @@ match_no,date,round,player_a,odds_a,player_b,odds_b
 10,2026-08-13,R128,Martin Landaluce,222,Jack Draper,-278
 11,2026-08-14,R128,Rinky Hijikata,117,Gael Monfils,-145
 12,2026-08-14,R128,Zachary Svajda,-200,Mattia Bellucci,159
+13,2026-08-14,R128,Titouan Droguet,172,Matteo Berrettini,-213
+14,2026-08-14,R128,Yannick Hanfmann,-125,Luca Van Assche,103
+15,2026-08-14,R128,J.J. Wolf,-205,James Duckworth,166
+16,2026-08-14,R128,Vit Kopriva,201,Quentin Halys,-253
 17,2026-08-14,R128,Alex Michelsen,-476,Jesper de Jong,341
 18,2026-08-14,R128,Daniel Merida,-123,Marin Cilic,100
 19,2026-08-14,R128,Botic van de Zandschulp,-120,Tallon Griekspoor,-102
+20,2026-08-14,R128,Christopher O'Connell,170,Kamil Majchrzak,-210
 21,2026-08-14,R128,Tomas Machac,-122,Pablo Carreno Busta,-102
 22,2026-08-14,R128,Nuno Borges,-192,Thanasi Kokkinakis,157
 23,2026-08-14,R128,Aleksandar Kovacevic,206,Karen Khachanov,-256
+24,2026-08-14,R128,Hamad Medjedovic,-249,Marco Trungelliti,199
+25,2026-08-14,R128,Jaime Faria,122,Jenson Brooksby,-149
+26,2026-08-14,R128,Adam Walton,-202,Nicolas Mejia,163
+27,2026-08-14,R128,Fabian Marozsan,109,Michael Zheng,-132
+28,2026-08-14,R128,Coleman Wong,-134,Daniel Altmaier,110
 29,2026-08-14,R128,Sebastian Baez,122,Grigor Dimitrov,-149
 30,2026-08-14,R128,Juncheng Shang,-175,Lorenzo Sonego,141
+31,2026-08-14,R128,Mark Lajal,-109,Juan Manuel Cerundolo,-112
 32,2026-08-14,R128,Valentin Royer,271,Stefanos Tsitsipas,-357
