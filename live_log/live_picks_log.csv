@@ -370,7 +370,7 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-08-14T03:34:44+00:00,cincinnati2026,R128,16,Vit Kopriva,Quentin Halys,Quentin Halys,-253.0,False,0.594173,0.774194,0.683275,-0.089101,0.0,0.3767,1.0,0.516,0.2114,21.14,Avoid,False,,,,,
 2026-08-14T03:34:44+00:00,cincinnati2026,R128,17,Alex Michelsen,Jesper de Jong,Alex Michelsen,-476.0,False,0.639816,0.821429,0.784686,-0.14487,0.0,0.5593,1.0,0.3763,0.2801,28.01,Avoid,False,,,,,
 2026-08-14T03:34:44+00:00,cincinnati2026,R128,18,Daniel Merida,Marin Cilic,Daniel Merida,-123.0,False,0.502405,0.519337,0.52452,-0.022115,0.0,0.0096,1.0,0.6442,0.0885,8.85,Avoid,False,,,,,
-2026-08-14T03:34:44+00:00,cincinnati2026,R128,19,Botic van de Zandschulp,Tallon Griekspoor,Tallon Griekspoor,-102.0,False,0.555299,0.717391,0.48072,0.074579,0.7458,0.2212,0.8,0.7422,0.4477,44.77,Lean,False,,,,,
+2026-08-14T03:34:44+00:00,cincinnati2026,R128,19,Botic van de Zandschulp,Tallon Griekspoor,Tallon Griekspoor,-102.0,False,0.555299,0.717391,0.48072,0.074579,0.7458,0.2212,0.8,0.7422,0.4477,44.77,Lean,True,2026-08-14T22:52:42+00:00,opponent swap → Botic van de Zandschulp vs Aleksandr Shevchenko,,,
 2026-08-14T03:34:44+00:00,cincinnati2026,R128,20,Christopher O'Connell,Kamil Majchrzak,Kamil Majchrzak,-210.0,False,0.569395,0.844037,0.646522,-0.077128,0.0,0.2776,1.0,0.5924,0.174,17.4,Avoid,False,,,,,
 2026-08-14T03:34:44+00:00,cincinnati2026,R128,21,Tomas Machac,Pablo Carreno Busta,Tomas Machac,-122.0,False,0.566496,0.821429,0.521147,0.045349,0.4535,0.266,1.0,0.7225,0.3616,36.16,Lean,False,,,,,
 2026-08-14T03:34:44+00:00,cincinnati2026,R128,22,Nuno Borges,Thanasi Kokkinakis,Nuno Borges,-192.0,False,0.50996,0.347619,0.628234,-0.118274,0.0,0.0398,0.5,0.7058,0.0164,1.64,Avoid,False,,,,,
@@ -384,3 +384,4 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-08-14T03:34:44+00:00,cincinnati2026,R128,30,Juncheng Shang,Lorenzo Sonego,Juncheng Shang,-175.0,False,0.560665,0.746575,0.60531,-0.044646,0.0,0.2427,1.0,0.6476,0.158,15.8,Avoid,False,,,,,
 2026-08-14T03:34:44+00:00,cincinnati2026,R128,31,Mark Lajal,Juan Manuel Cerundolo,Juan Manuel Cerundolo,-112.0,False,0.501717,0.480663,0.503225,-0.001508,0.0,0.0069,0.5,0.6721,0.0099,0.99,Avoid,False,,,,,
 2026-08-14T03:34:44+00:00,cincinnati2026,R128,32,Valentin Royer,Stefanos Tsitsipas,Stefanos Tsitsipas,-357.0,False,0.636856,0.844037,0.74347,-0.106615,0.0,0.5474,1.0,0.3876,0.2755,27.55,Avoid,False,,,,,
+2026-08-14T22:52:42+00:00,cincinnati2026,R128,19,Botic van de Zandschulp,Aleksandr Shevchenko,Botic van de Zandschulp,-227.0,False,0.573677,0.746575,0.659492,-0.085815,0.0,0.2947,1.0,0.5726,0.1812,18.12,Avoid,False,,,,,
