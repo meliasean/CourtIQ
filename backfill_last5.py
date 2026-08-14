@@ -162,13 +162,36 @@ def main():
         last5[player] = json.dumps(
             [{"result": r, "date": d} for d, r, _k in rows[-keep:]]
         )
-        # Trailing streak over FULL history, same ordering as last5 above.
-        seq = [r for _d, r, _k in rows]
-        last_res = seq[-1]
+        # Trailing streak, same ordering as last5 above.
+        # The derived history is sparse, so a missing loss would otherwise let
+        # a streak run straight through a tournament exit. In a knockout draw a
+        # player either takes the title or loses exactly one match, which gives
+        # a structural test for the gap.
+        last_in_tourney = {}
+        n_in_tourney = {}
+        for _d, _res, (t, rnd) in rows:
+            n_in_tourney[t] = n_in_tourney.get(t, 0) + 1
+        for _d, res, (t, rnd) in rows:
+            last_in_tourney[t] = (rnd, res)
+
+        last_res = rows[-1][1]
+        cur_t = rows[-1][2][0]
         n = 0
-        for r in reversed(seq):
-            if r != last_res:
+        for _d, res, (t, _rnd) in reversed(rows):
+            if res != last_res:
                 break
+            if t != cur_t:
+                if last_res == "W":
+                    # may only continue if the earlier event ended in a title
+                    prev_rnd, prev_res = last_in_tourney[t]
+                    if not (prev_rnd == "F" and prev_res == "W"):
+                        break
+                else:
+                    # may only continue if the later event was a lone loss,
+                    # i.e. no unrecorded wins are implied before it
+                    if n_in_tourney[cur_t] != 1:
+                        break
+                cur_t = t
             n += 1
         streaks[player] = float(n if last_res == "W" else -n)
 
