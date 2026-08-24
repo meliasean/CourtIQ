@@ -46,6 +46,16 @@ from datetime import datetime
 import pandas as pd
 from courtiq_engine import TOURNEY_ORDER, ROUND_ORDER
 
+# Share the rebuild's alias map so profile names and derived history cannot
+# disagree. rebuild_profiles_new_elo guards its entry point, so this is safe.
+try:
+    from rebuild_profiles_new_elo import alias as _alias
+except Exception as _e:  # pragma: no cover
+    print(f"WARNING: could not import alias() from rebuild_profiles_new_elo ({_e}).")
+    print("         Falling back to identity - streaks for merged players will be wrong.")
+    def _alias(n):
+        return str(n).strip()
+
 PROFILES = "reports/player_profiles_latest.csv"
 KEEP = 5
 
@@ -130,7 +140,7 @@ def main():
             pw = str(r["pred_winner"]).strip()
             date = str(r.get("date", "")).strip()[:10]
 
-            dedupe = (date, a, b)
+            dedupe = (date, _alias(a), _alias(b))
             if dedupe in seen:
                 continue
             seen.add(dedupe)
@@ -142,8 +152,10 @@ def main():
             else:
                 continue  # pred_winner matches neither player - leave it alone
 
-            results.append((date, win, "W", k))
-            results.append((date, lose, "L", k))
+            # Canonicalise before recording, so history for a player split
+            # across spellings forms one chain rather than several fragments.
+            results.append((date, _alias(win), "W", k))
+            results.append((date, _alias(lose), "L", k))
 
     print(f"Derived {len(results)//2} unique match result(s) "
           f"covering {len(set(p for _, p, _, _ in results))} player(s)")
