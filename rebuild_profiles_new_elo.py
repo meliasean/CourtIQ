@@ -58,11 +58,45 @@ CFG = EloConfig()
 
 # -- ALIASES ----------------------------------------------------
 ALIASES = {
+    # --- formatting variants -> the spelling profiles should key on ---
     "Felix Auger-Aliassime":        "Felix Auger Aliassime",
     "Botic Van De Zandschulp":      "Botic van de Zandschulp",
-    "Adolfo Daniel Vallejo":        "Diego Vallejo",
     "Jan Lennard Struff":           "Jan-Lennard Struff",
-    "Otto Virtanen":                "Oscar Virtanen",
+    "Pierre Hugues Herbert":        "Pierre-Hugues Herbert",
+    "Marc Andrea Huesler":          "Marc-Andrea Huesler",
+    "Chun Hsin Tseng":              "Chun-Hsin Tseng",
+    "Jesper De Jong":               "Jesper de Jong",
+    "Alex de Minaur":               "Alex De Minaur",
+    "Mackenzie Mcdonald":           "Mackenzie McDonald",
+    "James Mccabe":                 "James McCabe",
+    "Joao Lucas Reis Da Silva":     "Joao Lucas Reis da Silva",
+    "Luca van Assche":              "Luca Van Assche",
+
+    # --- CORRECTED 2026-08-23: these two pointed at the typo, so the
+    #     rebuild was renaming correct spellings INTO wrong ones. ---
+    "Diego Vallejo":                "Adolfo Daniel Vallejo",
+    "Daniel Vallejo":               "Adolfo Daniel Vallejo",
+    "Oscar Virtanen":               "Otto Virtanen",
+
+    # --- given-name / nickname variants ---
+    "Soon Woo Kwon":                "Soonwoo Kwon",
+    "Stan Wawrinka":                "Stanislas Wawrinka",
+    "Alexander Molcan":             "Alex Molcan",
+
+    # --- shortened vs full name ---
+    "Thiago Tirante":               "Thiago Agustin Tirante",
+    "Roman Burruchaga":             "Roman Andres Burruchaga",
+    "Tomas Barrios Vera":           "Marcelo Tomas Barrios Vera",
+    "Chak Lam Coleman Wong":        "Coleman Wong",
+
+    # --- transliteration used consistently by one feed (15 real matches) ---
+    "Alexander Shevchenko":         "Aleksandr Shevchenko",
+
+    # --- name-order flip ---
+    "Zhang Zhizhen":                "Zhizhen Zhang",
+
+    # --- confirmed typos (canonical absent from the affected round) ---
+    "Dino Dedura":                  "Diego Dedura",
 }
 def alias(n: str) -> str:
     if not n or pd.isna(n): return str(n)
