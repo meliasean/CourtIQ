@@ -447,4 +447,4 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-08-20T14:09:24+00:00,cincinnati2026,QF,4,Lorenzo Musetti,Frances Tiafoe,Lorenzo Musetti,-117.0,False,0.525962,0.581081,0.513998,0.011964,0.1196,0.1038,1.0,0.668,0.1682,16.82,Avoid,False,,,loss,-1.0,2026-08-22T15:14:12+00:00
 2026-08-22T15:14:40+00:00,cincinnati2026,SF,1,Flavio Cobolli,Arthur Fils,Arthur Fils,-286.0,False,0.638729,0.844037,0.707212,-0.068483,0.0,0.5549,1.0,0.4208,0.2744,27.44,Avoid,False,,,win,0.3497,2026-08-23T14:22:25+00:00
 2026-08-22T15:14:40+00:00,cincinnati2026,SF,2,Brandon Nakashima,Frances Tiafoe,Brandon Nakashima,-128.0,False,0.539214,0.611511,0.535073,0.00414,0.0414,0.1569,1.0,0.6486,0.1508,15.08,Avoid,False,,,loss,-1.0,2026-08-23T14:22:25+00:00
-2026-08-23T14:22:55+00:00,cincinnati2026,F,1,Arthur Fils,Frances Tiafoe,Arthur Fils,-210.0,False,0.631687,0.779661,0.645674,-0.013987,0.0,0.5267,1.0,0.4909,0.2589,25.89,Avoid,False,,,,,
+2026-08-23T14:22:55+00:00,cincinnati2026,F,1,Arthur Fils,Frances Tiafoe,Arthur Fils,-210.0,False,0.631687,0.779661,0.645674,-0.013987,0.0,0.5267,1.0,0.4909,0.2589,25.89,Avoid,False,,,win,0.4762,2026-08-24T15:37:01+00:00
