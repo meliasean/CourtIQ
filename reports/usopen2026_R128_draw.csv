@@ -1,0 +1,65 @@
+match_no,date,round,player_a,odds_a,player_b,odds_b
+1,2026-09-01,R128,Alexander Zverev,-2000,Lorenzo Sonego,945
+2,2026-08-31,R128,Quentin Halys,-345,Facundo Diaz Acosta,266
+3,2026-08-31,R128,Grigor Dimitrov,-196,Alexei Popyrin,158
+4,2026-08-31,R128,Yannick Hanfmann,121,Alejandro Tabilo,-154
+5,2026-08-31,R128,Luciano Darderi,-323,Harry Wendelken,245
+6,2026-08-31,R128,Dalibor Svrcina,-105,Valentin Royer,-119
+7,2026-09-01,R128,Dane Sweeny,249,Corentin Moutet,-333
+8,2026-09-01,R128,Arthur Fery,298,Lorenzo Musetti,-400
+9,2026-09-01,R128,Rafael Jodar,-1000,Thanasi Kokkinakis,605
+10,2026-09-01,R128,Fabian Marozsan,111,Michael Zheng,-139
+11,2026-09-01,R128,Zachary Svajda,-156,Daniel Altmaier,126
+12,2026-09-01,R128,Juan Manuel Cerundolo,149,Casper Ruud,-189
+13,2026-09-01,R128,Zizou Bergs,-2500,Carlos Taberner,1130
+14,2026-09-01,R128,Jesper de Jong,-137,Francesco Passaro,109
+15,2026-09-01,R128,Jan Choinski,291,Botic van de Zandschulp,-385
+16,2026-09-01,R128,Andrea Guerrieri,1190,Alex De Minaur,-3333
+17,2026-08-31,R128,Felix Auger Aliassime,-1000,Rinky Hijikata,605
+18,2026-08-31,R128,Roman Andres Burruchaga,294,Karen Khachanov,-400
+19,2026-09-01,R128,Alex Molcan,178,Benjamin Bonzi,-233
+20,2026-09-01,R128,Marcos Giron,110,Ignacio Buse,-139
+21,2026-08-31,R128,Jakub Mensik,-1000,Shintaro Mochizuki,600
+22,2026-08-31,R128,Jurij Rodionov,100,Giovanni Mpetshi Perricard,-125
+23,2026-09-01,R128,Adolfo Daniel Vallejo,-133,Gael Monfils,107
+24,2026-08-31,R128,Nuno Borges,174,Learner Tien,-227
+25,2026-09-01,R128,Taylor Fritz,-5000,Darwin Blanch,1550
+26,2026-09-01,R128,Mattia Bellucci,-238,Zsombor Piros,182
+27,2026-09-01,R128,Camilo Ugo Carabelli,161,Jan-Lennard Struff,-200
+28,2026-09-01,R128,Filip Misolic,870,Francisco Cerundolo,-1667
+29,2026-08-31,R128,Alexander Blockx,-500,Marcelo Tomas Barrios Vera,349
+30,2026-08-31,R128,Juncheng Shang,-217,Marco Trungelliti,170
+31,2026-09-01,R128,Nishesh Basavareddy,-313,Tristan Schoolkate,238
+32,2026-09-01,R128,Francisco Comesana,339,Flavio Cobolli,-476
+33,2026-08-30,R128,Daniil Medvedev,-833,Hugo Gaston,514
+34,2026-08-30,R128,Sebastian Gorzny,504,Raphael Collignon,-769
+35,2026-08-30,R128,Jaume Munar,152,Terence Atmane,-192
+36,2026-08-30,R128,Sho Shimabukuro,293,Arthur Rinderknech,-400
+37,2026-08-31,R128,Valentin Vacherot,-111,Aleksandar Kovacevic,-111
+38,2026-08-30,R128,Kamil Majchrzak,-128,Hamad Medjedovic,101
+39,2026-08-30,R128,Aleksandar Vukic,134,Rei Sakamoto,-169
+40,2026-08-31,R128,Martin Damm,290,Frances Tiafoe,-385
+41,2026-08-31,R128,Brandon Nakashima,-714,Sebastian Baez,455
+42,2026-08-30,R128,Alex Michelsen,-476,Federico Cina,331
+43,2026-08-30,R128,Daniel Merida,-526,Marton Fucsovics,355
+44,2026-08-31,R128,Marin Cilic,247,Andrey Rublev,-333
+45,2026-08-30,R128,Tomas Martin Etcheverry,-185,Vit Kopriva,147
+46,2026-08-30,R128,Martin Landaluce,-122,Jacob Fearnley,-102
+47,2026-08-31,R128,Matteo Berrettini,-500,Stanislas Wawrinka,350
+48,2026-08-30,R128,Mariano Navone,387,Novak Djokovic,-588
+49,2026-08-31,R128,Ben Shelton,-769,Tallon Griekspoor,498
+50,2026-08-31,R128,Damir Dzumhur,715,Hubert Hurkacz,-1250
+51,2026-08-30,R128,Miomir Kecmanovic,111,Denis Shapovalov,-139
+52,2026-08-30,R128,Luca Van Assche,176,Cameron Norrie,-227
+53,2026-08-30,R128,Jiri Lehecka,-476,Pablo Carreno Busta,340
+54,2026-08-30,R128,Toby Samuel,-152,Tomas Machac,120
+55,2026-08-30,R128,Lloyd Harris,-667,Jack Kennedy,422
+56,2026-08-31,R128,Stefanos Tsitsipas,311,Arthur Fils,-435
+57,2026-08-30,R128,Alexander Bublik,-244,J.J. Wolf,191
+58,2026-08-30,R128,Thiago Agustin Tirante,-286,Adrian Mannarino,223
+59,2026-08-30,R128,Dino Prizmic,-256,Aleksandr Shevchenko,201
+60,2026-08-30,R128,Coleman Wong,421,Tommy Paul,-667
+61,2026-08-31,R128,Matteo Arnaldi,-169,James Duckworth,134
+62,2026-08-30,R128,Yibing Wu,106,Adam Walton,-133
+63,2026-08-30,R128,Jaime Faria,103,Jenson Brooksby,-128
+64,2026-08-31,R128,Roman Safiullin,358,Carlos Alcaraz,-526
