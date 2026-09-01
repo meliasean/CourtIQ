@@ -456,7 +456,7 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-08-30T13:37:38+00:00,usopen2026,R128,6,Dalibor Svrcina,Valentin Royer,Dalibor Svrcina,-105.0,False,0.519557,0.779661,0.485229,0.034328,0.3433,0.0782,0.8,0.8039,0.2176,21.76,Upset Watch,False,,,,,
 2026-08-30T13:37:38+00:00,usopen2026,R128,7,Dane Sweeny,Corentin Moutet,Corentin Moutet,-333.0,False,0.560064,0.652381,0.728556,-0.168492,0.0,0.2403,1.0,0.4484,0.1772,17.72,Avoid,False,,,,,
 2026-08-30T13:37:38+00:00,usopen2026,R128,8,Arthur Fery,Lorenzo Musetti,Lorenzo Musetti,-400.0,False,0.659457,0.844037,0.760994,-0.101538,0.0,0.6378,1.0,0.3449,0.3069,30.69,Avoid,False,,,,,
-2026-08-30T13:37:38+00:00,usopen2026,R128,9,Rafael Jodar,Thanasi Kokkinakis,Rafael Jodar,-1000.0,False,0.639498,0.924748,0.865031,-0.225533,0.0,0.558,1.0,0.3768,0.2797,27.97,Avoid,False,,,,,
+2026-08-30T13:37:38+00:00,usopen2026,R128,9,Rafael Jodar,Thanasi Kokkinakis,Rafael Jodar,-1000.0,False,0.639498,0.924748,0.865031,-0.225533,0.0,0.558,1.0,0.3768,0.2797,27.97,Avoid,True,2026-09-01T18:34:37+00:00,opponent swap → Rafael Jodar vs Yunchaokete Bu,,,
 2026-08-30T13:37:38+00:00,usopen2026,R128,10,Fabian Marozsan,Michael Zheng,Michael Zheng,-139.0,False,0.555987,0.717391,0.550997,0.00499,0.0499,0.2239,1.0,0.7094,0.1687,16.87,Avoid,False,,,,,
 2026-08-30T13:37:38+00:00,usopen2026,R128,11,Zachary Svajda,Daniel Altmaier,Zachary Svajda,-156.0,False,0.512358,0.515152,0.579335,-0.066977,0.0,0.0494,1.0,0.5546,0.1094,10.94,Avoid,False,,,,,
 2026-08-30T13:37:38+00:00,usopen2026,R128,12,Juan Manuel Cerundolo,Casper Ruud,Casper Ruud,-189.0,False,0.583061,0.652381,0.619542,-0.03648,0.0,0.3322,1.0,0.49,0.2007,20.07,Avoid,True,2026-09-01T15:43:48+00:00,opponent swap → Juan Manuel Cerundolo vs Arthur Gea,,,
@@ -513,3 +513,4 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-08-30T13:37:38+00:00,usopen2026,R128,63,Jaime Faria,Jenson Brooksby,Jaime Faria,103.0,True,0.542579,0.746575,0.467366,0.075213,0.7521,0.1703,0.8,0.8092,0.4286,42.86,Lean,False,,,,,
 2026-08-30T13:37:38+00:00,usopen2026,R128,64,Roman Safiullin,Carlos Alcaraz,Carlos Alcaraz,-526.0,False,0.706842,0.844037,0.793745,-0.086903,0.0,0.8274,1.0,0.252,0.373,37.3,Avoid,False,,,,,
 2026-09-01T15:43:48+00:00,usopen2026,R128,12,Juan Manuel Cerundolo,Arthur Gea,Arthur Gea,-138.0,False,0.500529,0.480663,0.54789,-0.04736,0.0,0.0021,0.5,0.6278,0.0129,1.29,Avoid,False,,,,,
+2026-09-01T18:34:37+00:00,usopen2026,R128,9,Rafael Jodar,Yunchaokete Bu,Rafael Jodar,-1020.0,False,0.642875,0.956527,0.863903,-0.221028,0.0,0.5715,1.0,0.3714,0.2843,28.43,Avoid,False,,,,,
