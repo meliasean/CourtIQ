@@ -491,7 +491,7 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-08-30T13:37:38+00:00,usopen2026,R128,41,Brandon Nakashima,Sebastian Baez,Brandon Nakashima,-714.0,False,0.71556,0.92,0.829589,-0.11403,0.0,0.8622,1.0,0.2551,0.3832,38.32,Avoid,False,,,,,
 2026-08-30T13:37:38+00:00,usopen2026,R128,42,Alex Michelsen,Federico Cina,Alex Michelsen,-476.0,False,0.644508,0.833762,0.780785,-0.136278,0.0,0.578,1.0,0.3688,0.2865,28.65,Avoid,False,,,,,
 2026-08-30T13:37:38+00:00,usopen2026,R128,43,Daniel Merida,Marton Fucsovics,Daniel Merida,-526.0,False,0.627364,0.821429,0.792667,-0.165304,0.0,0.5095,1.0,0.3962,0.2632,26.32,Avoid,False,,,,,
-2026-08-30T13:37:38+00:00,usopen2026,R128,44,Marin Cilic,Andrey Rublev,Andrey Rublev,-333.0,False,0.560724,0.5,0.727418,-0.166694,0.0,0.2429,0.5,0.4064,0.1072,10.72,Avoid,False,,,,,
+2026-08-30T13:37:38+00:00,usopen2026,R128,44,Marin Cilic,Andrey Rublev,Andrey Rublev,-333.0,False,0.560724,0.5,0.727418,-0.166694,0.0,0.2429,0.5,0.4064,0.1072,10.72,Avoid,True,2026-09-01T18:41:15+00:00,opponent swap → Otto Virtanen vs Andrey Rublev,,,
 2026-08-30T13:37:38+00:00,usopen2026,R128,45,Tomas Martin Etcheverry,Vit Kopriva,Tomas Martin Etcheverry,-185.0,False,0.550061,0.611511,0.615877,-0.065816,0.0,0.2002,1.0,0.536,0.1565,15.65,Avoid,False,,,,,
 2026-08-30T13:37:38+00:00,usopen2026,R128,46,Martin Landaluce,Jacob Fearnley,Martin Landaluce,-122.0,False,0.576529,0.857143,0.521147,0.055382,0.5538,0.3061,1.0,0.7064,0.4204,42.04,Lean,False,,,,,
 2026-08-30T13:37:38+00:00,usopen2026,R128,47,Matteo Berrettini,Stanislas Wawrinka,Matteo Berrettini,-500.0,False,0.612285,0.779661,0.789474,-0.177189,0.0,0.4491,1.0,0.4203,0.2427,24.27,Avoid,False,,,,,
@@ -514,3 +514,4 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-08-30T13:37:38+00:00,usopen2026,R128,64,Roman Safiullin,Carlos Alcaraz,Carlos Alcaraz,-526.0,False,0.706842,0.844037,0.793745,-0.086903,0.0,0.8274,1.0,0.252,0.373,37.3,Avoid,False,,,,,
 2026-09-01T15:43:48+00:00,usopen2026,R128,12,Juan Manuel Cerundolo,Arthur Gea,Arthur Gea,-138.0,False,0.500529,0.480663,0.54789,-0.04736,0.0,0.0021,0.5,0.6278,0.0129,1.29,Avoid,False,,,,,
 2026-09-01T18:34:37+00:00,usopen2026,R128,9,Rafael Jodar,Yunchaokete Bu,Rafael Jodar,-1020.0,False,0.642875,0.956527,0.863903,-0.221028,0.0,0.5715,1.0,0.3714,0.2843,28.43,Avoid,False,,,,,
+2026-09-01T18:41:15+00:00,usopen2026,R128,44,Otto Virtanen,Andrey Rublev,Andrey Rublev,-667.0,False,0.640761,0.844037,0.82254,-0.181779,0.0,0.563,1.0,0.3748,0.2814,28.14,Avoid,False,,,,,
