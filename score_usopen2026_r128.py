@@ -1,21 +1,19 @@
 #!/usr/bin/env python3
 """
-Score US Open 2026 R128 - 54 of 64 matches.
+Score US Open 2026 R128 - all 64 matches.
 
 PROVENANCE
 ----------
 Winners DERIVED from the R64 pairings (DraftKings, 2026-09-02), not read from
-R128 score lines. Every available R64 slot resolves to consecutive R128 bracket
+R128 score lines. Every R64 slot resolves to consecutive R128 bracket
 positions, so the mapping is unambiguous - but a derived winner cannot tell a
 match that was PLAYED from one that was awarded.
 
-Matches 9-12, 15, 16 and 19 were reported directly by Sean (2026-09-02),
-not derived from a later round.
-
-NOT YET RESOLVED (3 matches, still live):
-    13 Bergs / Taberner
-    14 de Jong / Passaro
-    20 Giron / Buse
+Matches 9-12, 15, 16 and 19 were reported directly by Sean (2026-09-02), not
+derived from a later round. Matches 13, 14 and 20 - the last three, all
+outcomes confirmed via the completed R64 draw lines (Bergs/de Jong/Buse each
+priced as the favourite in their R64 match) - close out the round: all three
+were chalk, no upsets.
 
 Book went 44/61 this round - 17 favourites beaten, including Bu over Jodar
 (-1020), Navone over Djokovic (-588), Tsitsipas over Fils (-435) and Gorzny
@@ -45,9 +43,12 @@ RESULTS = {
     ("Fabian Marozsan", "Michael Zheng"):                      "Michael Zheng",             # 10
     ("Zachary Svajda", "Daniel Altmaier"):                     "Zachary Svajda",            # 11
     ("Juan Manuel Cerundolo", "Arthur Gea"):                   "Arthur Gea",                # 12
+    ("Zizou Bergs", "Carlos Taberner"):                        "Zizou Bergs",               # 13
+    ("Jesper de Jong", "Francesco Passaro"):                   "Jesper de Jong",            # 14
     ("Jan Choinski", "Botic van de Zandschulp"):               "Botic van de Zandschulp",   # 15
     ("Andrea Guerrieri", "Alex De Minaur"):                    "Alex De Minaur",            # 16
     ("Alex Molcan", "Benjamin Bonzi"):                         "Benjamin Bonzi",            # 19
+    ("Marcos Giron", "Ignacio Buse"):                          "Ignacio Buse",              # 20
     ("Felix Auger Aliassime", "Rinky Hijikata"):               "Felix Auger Aliassime",     # 17
     ("Roman Andres Burruchaga", "Karen Khachanov"):            "Karen Khachanov",           # 18
     ("Jakub Mensik", "Shintaro Mochizuki"):                    "Jakub Mensik",              # 21
@@ -97,7 +98,7 @@ RESULTS = {
 }
 
 RES = {frozenset([al(a), al(b)]): al(w) for (a, b), w in RESULTS.items()}
-assert len(RES) == 61, f"expected 61 unique matches, built {len(RES)}"
+assert len(RES) == 64, f"expected 64 unique matches, built {len(RES)}"
 
 def score_file(path, write_complete_to):
     if not os.path.exists(path):
@@ -134,7 +135,7 @@ def score_file(path, write_complete_to):
           f"model {int(sc['correct_prediction'].sum())}/{len(sc)} = {acc:.0f}%")
     return df
 
-print("Scoring US Open 2026 R128 (61 of 64; 3 still live)...")
+print("Scoring US Open 2026 R128 (all 64)...")
 score_file(os.path.join(reports, "usopen2026_R128_predictions.csv"),
            os.path.join(reports, "usopen2026_R128_predictions_complete.csv"))
 cck = score_file(os.path.join(reports, "usopen2026_R128_predictions_cck.csv"),
@@ -145,4 +146,3 @@ if cck is not None:
         print(f"\nBook: {int(bk['correct_prediction_book'].sum())}/{len(bk)} = "
               f"{bk['correct_prediction_book'].mean()*100:.0f}%")
     print("\nNOTE: winners derived from R64 pairings, not score lines.")
-    print("      3 matches remain unscored; re-run once they resolve.")
