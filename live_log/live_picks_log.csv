@@ -600,4 +600,4 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-09-08T15:05:41+00:00,usopen2026,QF,4,Ben Shelton,Carlos Alcaraz,Carlos Alcaraz,-421.0,False,0.655274,0.652381,0.771147,-0.115873,0.0,0.6211,1.0,0.1554,0.3208,32.08,Avoid,False,,,loss,-1.0,2026-09-10T15:14:45+00:00
 2026-09-10T15:15:10+00:00,usopen2026,SF,1,Alexander Zverev,Karen Khachanov,Alexander Zverev,-487.0,False,0.692404,0.92,0.791656,-0.099253,0.0,0.7696,1.0,0.2922,0.3517,35.17,Avoid,False,,,win,0.2053,2026-09-13T06:03:40+00:00
 2026-09-10T15:15:10+00:00,usopen2026,SF,2,Frances Tiafoe,Ben Shelton,Ben Shelton,-325.0,False,0.60457,0.652381,0.729687,-0.125117,0.0,0.4183,1.0,0.3167,0.2438,24.38,Avoid,False,,,win,0.3077,2026-09-13T06:03:40+00:00
-2026-09-13T06:04:25+00:00,usopen2026,F,1,Alexander Zverev,Ben Shelton,Ben Shelton,124.0,True,0.54697,0.714286,0.425331,0.121639,1.0,0.1879,0.8,0.7602,0.5503,55.03,Upset Watch,False,,,,,
+2026-09-13T06:04:25+00:00,usopen2026,F,1,Alexander Zverev,Ben Shelton,Ben Shelton,124.0,True,0.54697,0.714286,0.425331,0.121639,1.0,0.1879,0.8,0.7602,0.5503,55.03,Upset Watch,False,,,loss,-1.0,2026-09-14T14:20:12+00:00
