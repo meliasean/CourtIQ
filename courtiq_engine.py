@@ -2027,35 +2027,36 @@ def _build_html(js_data: str) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CourtIQ — ATP Tennis Analytics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{{box-sizing:border-box;margin:0;padding:0}}
 :root{{
-  --bg0:#080c10;
-  --bg1:#0d1117;
+  /* --console-theme: hairline panels, square corners, mono for figures only */
+  --bg0:#0d1117;
+  --bg1:#11161c;
   --bg2:#161b22;
-  --bg3:#21262d;
-  --bg4:#30363d;
-  --line:rgba(255,255,255,0.06);
-  --line2:rgba(255,255,255,0.12);
+  --bg3:#1c2229;
+  --bg4:#22282f;
+  --line:#1c2229;
+  --line2:#22282f;
   --txt0:#e6edf3;
-  --txt1:#8b949e;
-  --txt2:#484f58;
+  --txt1:#7d8590;
+  --txt2:#6e7681;
   --green:#3fb950;
-  --green-dim:rgba(63,185,80,0.1);
+  --green-dim:rgba(63,185,80,0.12);
   --green-bright:#56d364;
   --clay:#f0883e;
-  --clay-dim:rgba(240,136,62,0.1);
+  --clay-dim:rgba(240,136,62,0.12);
   --blue:#58a6ff;
-  --blue-dim:rgba(88,166,255,0.1);
+  --blue-dim:rgba(88,166,255,0.12);
   --purple:#bc8cff;
-  --purple-dim:rgba(188,140,255,0.1);
+  --purple-dim:rgba(188,140,255,0.12);
   --gold:#e3b341;
-  --mono:'DM Mono',monospace;
-  --display:'Syne',sans-serif;
-  --sans:'DM Sans',sans-serif;
-  --radius:6px;
-  --radius-lg:10px;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --display:'Inter Tight',system-ui,sans-serif;
+  --sans:'Inter Tight',system-ui,sans-serif;
+  --radius:0px;
+  --radius-lg:0px;
 }}
 html{{scroll-behavior:smooth}}
 body{{
@@ -2070,11 +2071,10 @@ body{{
 /* ── HEADER ─────────────────────────────────────────────── */
 .hdr{{
   display:flex;align-items:center;justify-content:space-between;
-  padding:16px 0;
+  padding:14px 0;
   border-bottom:1px solid var(--line2);
   position:sticky;top:0;
-  background:rgba(8,12,16,0.92);
-  backdrop-filter:blur(12px);
+  background:var(--bg0);
   z-index:100;
 }}
 .logo{{
@@ -2083,9 +2083,8 @@ body{{
   display:flex;align-items:center;gap:8px;
 }}
 .logo-dot{{
-  width:8px;height:8px;border-radius:50%;
+  width:7px;height:7px;
   background:var(--green);
-  box-shadow:0 0 8px var(--green);
 }}
 .logo em{{color:var(--green);font-style:normal}}
 .nav{{display:flex;gap:2px}}
