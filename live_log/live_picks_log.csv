@@ -601,3 +601,19 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-09-10T15:15:10+00:00,usopen2026,SF,1,Alexander Zverev,Karen Khachanov,Alexander Zverev,-487.0,False,0.692404,0.92,0.791656,-0.099253,0.0,0.7696,1.0,0.2922,0.3517,35.17,Avoid,False,,,win,0.2053,2026-09-13T06:03:40+00:00
 2026-09-10T15:15:10+00:00,usopen2026,SF,2,Frances Tiafoe,Ben Shelton,Ben Shelton,-325.0,False,0.60457,0.652381,0.729687,-0.125117,0.0,0.4183,1.0,0.3167,0.2438,24.38,Avoid,False,,,win,0.3077,2026-09-13T06:03:40+00:00
 2026-09-13T06:04:25+00:00,usopen2026,F,1,Alexander Zverev,Ben Shelton,Ben Shelton,124.0,True,0.54697,0.714286,0.425331,0.121639,1.0,0.1879,0.8,0.7602,0.5503,55.03,Upset Watch,False,,,loss,-1.0,2026-09-14T14:20:12+00:00
+2026-09-30T03:04:28+00:00,beijing2026,R32,1,Alexander Zverev,Cameron Norrie,Alexander Zverev,-1429.0,False,0.72034,0.857143,0.893002,-0.172662,0.0,0.8814,1.0,0.2299,0.3914,39.14,Avoid,False,,,,,
+2026-09-30T03:04:28+00:00,beijing2026,R32,2,Juncheng Shang,Sebastian Baez,Sebastian Baez,123.0,True,0.553445,0.844037,0.425162,0.128284,1.0,0.2138,0.8,0.7496,0.5592,55.92,Upset Watch,False,,,,,
+2026-09-30T03:04:28+00:00,beijing2026,R32,3,Juan Manuel Cerundolo,Yunchaokete Bu,Yunchaokete Bu,-156.0,False,0.534177,0.652381,0.578254,-0.044077,0.0,0.1367,1.0,0.6747,0.1235,12.35,Avoid,False,,,,,
+2026-09-30T03:04:28+00:00,beijing2026,R32,4,Nuno Borges,Novak Djokovic,Novak Djokovic,-250.0,False,0.621714,0.774194,0.677419,-0.055705,0.0,0.4869,1.0,0.4778,0.2483,24.83,Avoid,False,,,,,
+2026-09-30T03:04:28+00:00,beijing2026,R32,5,Daniil Medvedev,Pablo Carreno Busta,Daniil Medvedev,-400.0,False,0.648059,0.857143,0.761905,-0.113846,0.0,0.5922,1.0,0.3631,0.2914,29.14,Avoid,False,,,,,
+2026-09-30T03:04:28+00:00,beijing2026,R32,6,Jan-Lennard Struff,Thiago Agustin Tirante,Thiago Agustin Tirante,-175.0,False,0.59373,0.761905,0.60531,-0.01158,0.0,0.3749,1.0,0.5947,0.203,20.3,Avoid,False,,,,,
+2026-09-30T03:04:28+00:00,beijing2026,R32,7,Botic van de Zandschulp,Francisco Cerundolo,Francisco Cerundolo,-149.0,False,0.514547,0.480663,0.56942,-0.054873,0.0,0.0582,0.5,0.6025,0.0322,3.22,Avoid,False,,,,,
+2026-09-30T03:04:28+00:00,beijing2026,R32,8,Alexander Bublik,Jakub Mensik,Jakub Mensik,-175.0,False,0.57615,0.717391,0.603318,-0.027167,0.0,0.3046,1.0,0.6132,0.1801,18.01,Avoid,False,,,,,
+2026-09-30T03:04:28+00:00,beijing2026,R32,9,Alex De Minaur,Mariano Navone,Alex De Minaur,-455.0,False,0.711237,0.857143,0.780606,-0.06937,0.0,0.8449,1.0,0.2566,0.3778,37.78,Avoid,False,,,,,
+2026-09-30T03:04:28+00:00,beijing2026,R32,10,Ignacio Buse,Quentin Halys,Quentin Halys,-125.0,False,0.556647,0.717391,0.526316,0.030331,0.3033,0.2266,1.0,0.733,0.2812,28.12,Upset Watch,False,,,,,
+2026-09-30T03:04:28+00:00,beijing2026,R32,11,Tallon Griekspoor,Andrey Rublev,Andrey Rublev,-189.0,False,0.586886,0.717391,0.623291,-0.036405,0.0,0.3475,1.0,0.5617,0.1981,19.81,Avoid,False,,,,,
+2026-09-30T03:04:28+00:00,beijing2026,R32,12,Roman Safiullin,Flavio Cobolli,Flavio Cobolli,-127.0,False,0.564913,0.844037,0.531775,0.033138,0.3314,0.2597,1.0,0.7144,0.3056,30.56,Lean,False,,,,,
+2026-09-30T03:04:28+00:00,beijing2026,R32,13,Learner Tien,Hubert Hurkacz,Learner Tien,-167.0,False,0.627117,0.821429,0.595117,0.032,0.32,0.5085,1.0,0.5515,0.3914,39.14,Lean,False,,,,,
+2026-09-30T03:04:28+00:00,beijing2026,R32,14,Zhizhen Zhang,Arthur Gea,Arthur Gea,-323.0,False,0.588115,0.717391,0.724272,-0.136157,0.0,0.3525,1.0,0.4571,0.21,21.0,Avoid,False,,,,,
+2026-09-30T03:04:28+00:00,beijing2026,R32,15,Alex Molcan,Arthur Rinderknech,Arthur Rinderknech,-164.0,False,0.54372,0.693548,0.593471,-0.049751,0.0,0.1749,1.0,0.6863,0.1338,13.38,Avoid,False,,,,,
+2026-09-30T03:04:28+00:00,beijing2026,R32,16,Karen Khachanov,Felix Auger Aliassime,Felix Auger Aliassime,-164.0,False,0.513883,0.432836,0.590367,-0.076485,0.0,0.0555,0.5,0.6455,0.0271,2.71,Avoid,False,,,,,

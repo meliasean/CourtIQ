@@ -1,81 +1,80 @@
 rank,name,source_tourney
 1,Jannik Sinner,wimbledon2026
-2,Alexander Zverev,usopen2026
-3,Carlos Alcaraz,usopen2026
-4,Felix Auger Aliassime,usopen2026
-5,Flavio Cobolli,usopen2026
-6,Daniil Medvedev,usopen2026
+2,Alexander Zverev,beijing2026
+3,Carlos Alcaraz,tokyo2026
+5,Felix Auger Aliassime,beijing2026
+6,Daniil Medvedev,beijing2026
+7,Flavio Cobolli,beijing2026
 7,Ben Shelton,usopen2026
-8,Alex De Minaur,usopen2026
-9,Arthur Fils,usopen2026
-10,Taylor Fritz,usopen2026
-11,Holger Rune,wimbledon2025_onward
-11,Novak Djokovic,usopen2026
-12,Rafael Jodar,usopen2026
-13,Frances Tiafoe,usopen2026
-14,Learner Tien,usopen2026
-15,Brandon Nakashima,usopen2026
-16,Jakub Mensik,usopen2026
-17,Casper Ruud,cincinnati2026
-18,Alexander Bublik,usopen2026
-19,Lorenzo Musetti,usopen2026
-20,Valentin Vacherot,usopen2026
-21,Tommy Paul,usopen2026
-22,Jiri Lehecka,usopen2026
-23,Luciano Darderi,usopen2026
-24,Francisco Cerundolo,usopen2026
-25,Andrey Rublev,usopen2026
-25,Alejandro Davidovich Fokina,wimbledon2026
+8,Frances Tiafoe,tokyo2026
+9,Arthur Fils,tokyo2026
+10,Alex De Minaur,beijing2026
+11,Novak Djokovic,beijing2026
+12,Taylor Fritz,tokyo2026
+13,Rafael Jodar,tokyo2026
+14,Jakub Mensik,beijing2026
+15,Learner Tien,beijing2026
+16,Tommy Paul,tokyo2026
+17,Brandon Nakashima,tokyo2026
+18,Valentin Vacherot,tokyo2026
+19,Luciano Darderi,tokyo2026
+20,Alexander Bublik,beijing2026
+21,Casper Ruud,tokyo2026
+22,Francisco Cerundolo,beijing2026
+23,Jiri Lehecka,tokyo2026
+24,Andrey Rublev,beijing2026
+25,Lorenzo Musetti,tokyo2026
+26,Alejandro Davidovich Fokina,tokyo2026
 26,Joao Fonseca,cincinnati2026
-28,Alejandro Tabilo,usopen2026
-30,Arthur Rinderknech,usopen2026
-30,Ugo Humbert,cincinnati2026
-31,Arthur Fery,usopen2026
-32,Tomas Martin Etcheverry,usopen2026
-33,Alexander Blockx,usopen2026
-34,Ignacio Buse,usopen2026
-35,Matteo Arnaldi,usopen2026
-36,Cameron Norrie,usopen2026
-37,Zizou Bergs,usopen2026
-38,Luca Van Assche,usopen2026
-39,Matteo Berrettini,usopen2026
+27,Karen Khachanov,beijing2026
+28,Alexander Blockx,tokyo2026
+30,Tomas Martin Etcheverry,tokyo2026
+31,Alejandro Tabilo,tokyo2026
+32,Ugo Humbert,tokyo2026
+33,Arthur Rinderknech,beijing2026
+34,Alex Michelsen,tokyo2026
+35,Ignacio Buse,beijing2026
+36,Arthur Fery,tokyo2026
+37,Matteo Arnaldi,tokyo2026
+38,Zizou Bergs,tokyo2026
+39,Hubert Hurkacz,beijing2026
+40,Cameron Norrie,beijing2026
 40,Raphael Collignon,usopen2026
+41,Botic van de Zandschulp,beijing2026
 41,Daniel Merida,usopen2026
-42,Nuno Borges,usopen2026
-43,Hubert Hurkacz,usopen2026
-44,Alex Michelsen,usopen2026
-45,Mariano Navone,usopen2026
-46,Sebastian Baez,usopen2026
-47,Quentin Halys,usopen2026
-48,Karen Khachanov,usopen2026
-49,Thiago Agustin Tirante,usopen2026
-50,Juan Manuel Cerundolo,usopen2026
+43,Luca Van Assche,tokyo2026
+44,Stefanos Tsitsipas,tokyo2026
+45,Mariano Navone,beijing2026
+46,Denis Shapovalov,tokyo2026
+47,Matteo Berrettini,tokyo2026
+49,Nuno Borges,beijing2026
+50,Quentin Halys,beijing2026
+51,Sebastian Baez,beijing2026
 51,Yannick Hanfmann,usopen2026
-52,Stefanos Tsitsipas,usopen2026
-53,Tallon Griekspoor,usopen2026
-54,Denis Shapovalov,usopen2026
+52,Thiago Agustin Tirante,beijing2026
+53,Juan Manuel Cerundolo,beijing2026
 54,Sebastian Korda,wimbledon2025_onward
 55,Roman Andres Burruchaga,usopen2026
-57,Adolfo Daniel Vallejo,usopen2026
+55,Tallon Griekspoor,beijing2026
+56,Adolfo Daniel Vallejo,tokyo2026
 58,Corentin Moutet,usopen2026
+58,Jan-Lennard Struff,beijing2026
 59,Fabian Marozsan,usopen2026
+59,Jaume Munar,tokyo2026
 60,Miomir Kecmanovic,usopen2026
 61,Martin Landaluce,usopen2026
 62,Arthur Cazaux,wimbledon2025_onward
-63,Vit Kopriva,usopen2026
 63,Ethan Quinn,wimbledon2026
+63,Vit Kopriva,usopen2026
 64,Daniel Altmaier,usopen2026
-65,Jan-Lennard Struff,usopen2026
-66,Botic van de Zandschulp,usopen2026
+65,Pablo Carreno Busta,beijing2026
 66,Roman Burruchaga,hamburg2026
-67,Pablo Carreno Busta,usopen2026
 68,James Duckworth,usopen2026
 69,Jaime Faria,usopen2026
-70,Jaume Munar,usopen2026
 71,Jan Choinski,usopen2026
 72,Tomas Machac,usopen2026
-73,Pedro Martinez,wimbledon2025_onward
 73,Camilo Ugo Carabelli,usopen2026
+73,Pedro Martinez,wimbledon2025_onward
 74,Hamad Medjedovic,usopen2026
 75,Jenson Brooksby,usopen2026
 76,Reilly Opelka,rg2026
@@ -85,22 +84,23 @@ rank,name,source_tourney
 79,Aleksandar Kovacevic,usopen2026
 80,Marcos Giron,usopen2026
 81,Rinky Hijikata,usopen2026
-82,Arthur Gea,usopen2026
 82,Laslo Djere,wimbledon2025_onward
+82,Arthur Gea,beijing2026
 83,Facundo Diaz Acosta,usopen2026
+83,Roman Safiullin,beijing2026
 84,Adrian Mannarino,usopen2026
-85,Jordan Thompson,wimbledon2025_onward
+85,Kyrian Jacquet,tokyo2026
 85,Lorenzo Sonego,usopen2026
+85,Jordan Thompson,wimbledon2025_onward
 86,Terence Atmane,usopen2026
-87,Zachary Svajda,usopen2026
-87,Roberto Carballes Baena,wimbledon2025_onward
 87,Emilio Nava,wimbledon2026
+87,Roberto Carballes Baena,wimbledon2025_onward
+87,Alex Molcan,beijing2026
+87,Zachary Svajda,usopen2026
 88,Aleksandar Vukic,usopen2026
 89,Aleksandr Shevchenko,usopen2026
-90,Alex Molcan,usopen2026
-91,Eliot Spizzirri,rg2026
 91,Gabriel Diallo,canada2026
-91,Sho Shimabukuro,usopen2026
+91,Eliot Spizzirri,rg2026
 92,Adam Walton,usopen2026
 93,Hugo Gaston,usopen2026
 94,Martin Damm,usopen2026
@@ -110,23 +110,24 @@ rank,name,source_tourney
 98,Toby Samuel,usopen2026
 99,Jesper de Jong,usopen2026
 99,Mackenzie Mcdonald,wimbledon2025_onward
-100,Roman Safiullin,usopen2026
 101,Dino Prizmic,usopen2026
 102,Michael Zheng,usopen2026
 102,Nicolas Jarry,wimbledon2025_onward
 102,Daniel Merida Aguilar,2026
+103,Yunchaokete Bu,beijing2026
 104,David Goffin,wimbledon2025_onward
 105,Coleman Wong,usopen2026
 105,Borna Coric,wimbledon2025_onward
 106,Otto Virtanen,usopen2026
 107,Marco Trungelliti,usopen2026
+107,Sho Shimabukuro,tokyo2026
 109,Christopher Oconnell,wimbledon2025_onward
-109,Elmer Moller,wimbledon2025_onward
 109,Benjamin Bonzi,usopen2026
-110,Stan Wawrinka,wimbledon2026
-110,Titouan Droguet,cincinnati2026
+109,Elmer Moller,wimbledon2025_onward
 110,Brandon Holt,wimbledon2025_onward
+110,Stan Wawrinka,wimbledon2026
 110,Yibing Wu,usopen2026
+110,Titouan Droguet,cincinnati2026
 111,Sebastian Ofner,wimbledon2026
 112,Zsombor Piros,usopen2026
 112,Francesco Maestrelli,rome2026
@@ -135,9 +136,7 @@ rank,name,source_tourney
 114,Cristian Garin,rg2026
 114,Marton Fucsovics,usopen2026
 117,Nikoloz Basilashvili,rome2026
-117,Yunchaokete Bu,usopen2026
 118,Chun Hsin Tseng,wimbledon2025_onward
-118,Kyrian Jacquet,cincinnati2026
 119,Pablo Llamas Ruiz,wimbledon2026
 120,Dalibor Svrcina,usopen2026
 121,Nicolas Mejia,cincinnati2026
@@ -150,38 +149,39 @@ rank,name,source_tourney
 125,Alexandre Muller,wimbledon2026
 126,Shintaro Mochizuki,usopen2026
 128,Christopher O'Connell,cincinnati2026
-129,Vilius Gaubas,wimbledon2026
 129,Stanislas Wawrinka,usopen2026
+129,Vilius Gaubas,wimbledon2026
 130,Christopher Eubanks,wimbledon2025_onward
-131,Marcelo Tomas Barrios Vera,usopen2026
 131,Daniel Elahi Galan,wimbledon2025_onward
+131,Marcelo Tomas Barrios Vera,usopen2026
 133,Alexei Popyrin,usopen2026
 134,Jurij Rodionov,usopen2026
+136,Rei Sakamoto,tokyo2026
 137,Nicolai Budkov Kjaer,wimbledon2025_onward
-138,Rei Sakamoto,usopen2026
-138,Colton Smith,wimbledon2025_onward
 138,Fabio Fognini,wimbledon2025_onward
+138,Colton Smith,wimbledon2025_onward
 139,Lloyd Harris,usopen2026
+140,Juan Pablo Ficovich,wimbledon2025_onward
 140,Mackenzie McDonald,washington2026
 140,Billy Harris,wimbledon2026
-140,Juan Pablo Ficovich,wimbledon2025_onward
 141,Moez Echargui,2026
 142,Jack Draper,cincinnati2026
 142,Pierre Hugues Herbert,wimbledon2025_onward
 143,Tomas Barrios Vera,wimbledon2025_onward
-144,Daniel Evans,wimbledon2025_onward
 144,Nishesh Basavareddy,usopen2026
 144,Hugo Dellien,rg2026
+144,Daniel Evans,wimbledon2025_onward
 145,Jack Pinnington Jones,wimbledon2026
 147,Yosuke Watanuki,wimbledon2025_onward
-151,Luca Nardi,rome2026
 151,Ugo Blanchet,wimbledon2025_onward
+151,Luca Nardi,rome2026
 153,Dusan Lajovic,wimbledon2026
-158,Andrea Guerrieri,usopen2026
 158,Mark Lajal,cincinnati2026
+158,Andrea Guerrieri,usopen2026
 159,Federico Cina,usopen2026
-163,Chris Rodesch,wimbledon2025_onward
 163,Roberto Bautista Agut,wimbledon2026
+163,Chris Rodesch,wimbledon2025_onward
+164,Zhizhen Zhang,beijing2026
 165,Harry Wendelken,usopen2026
 169,Guy Den Ouden,2026
 171,Clement Tabur,rg2026
@@ -194,9 +194,10 @@ rank,name,source_tourney
 180,Alexis Galarneau,canada2026
 181,James Mccabe,wimbledon2025_onward
 185,Murphy Cassone,wimbledon2025_onward
+187,Holger Rune,tokyo2026
 188,Hugo Grenier,2026
-190,Elias Ymer,2026
 190,Justin Engel,hamburg2026
+190,Elias Ymer,2026
 193,Tristan Boyer,wimbledon2026
 194,Jason Kubler,2026
 195,Francesco Passaro,usopen2026
@@ -205,22 +206,21 @@ rank,name,source_tourney
 200,Liam Draxl,canada2026
 202,Soonwoo Kwon,wimbledon2026
 203,Federico Agustin Gomez,wimbledon2025_onward
-205,Juncheng Shang,usopen2026
 207,Joao Lucas Reis Da Silva,2026
-208,Thiago Monteiro,2026
 208,Vitaliy Sachko,2026
+208,Thiago Monteiro,2026
 213,James Trotter,wimbledon2025_onward
-218,Rodrigo Pacheco Mendez,2026
 218,Beibit Zhukayev,wimbledon2025_onward
+218,Rodrigo Pacheco Mendez,2026
 219,Darwin Blanch,usopen2026
-220,Pierre-Hugues Herbert,rg2026
 220,Felix Gill,wimbledon2026
+220,Pierre-Hugues Herbert,rg2026
 221,J.J. Wolf,usopen2026
 224,Johannus Monday,wimbledon2025_onward
-224,Zhizhen Zhang,rg2026
 239,Zhang Zhizhen,rome2026
 241,Luka Pavlovic,rg2026
 248,Oliver Crawford,wimbledon2025_onward
+250,Juncheng Shang,beijing2026
 258,Diego Dedura Palomero,2026
 258,Gustavo Heide,2026
 260,Marko Topo,2026
@@ -246,8 +246,9 @@ rank,name,source_tourney
 391,Carlos Taberner,usopen2026
 421,Henry Searle,wimbledon2025_onward
 434,Thanasi Kokkinakis,cincinnati2026
-435,Trevor Svajda,washington2026
 435,Leandro Riedi,wimbledon2025_onward
+435,Trevor Svajda,washington2026
+438,Kei Nishikori,tokyo2026
 452,Max Schoenhaus,hamburg2026
 464,Filip Misolic,usopen2026
 481,Henry Bernet,wimbledon2025_onward
@@ -257,7 +258,6 @@ rank,name,source_tourney
 645,Dhakshineswar Suresh,wimbledon2025_onward
 689,Sebastian Gorzny,usopen2026
 689,Facundo Bagnis,wimbledon2025_onward
-719,Kei Nishikori,washington2026
 752,Emil Ruusuvuori,wimbledon2025_onward
 1048,Thijs Boogaard,2026
 1250,Vasek Pospisil,wimbledon2025_onward
