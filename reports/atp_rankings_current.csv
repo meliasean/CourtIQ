@@ -4,8 +4,8 @@ rank,name,source_tourney
 3,Carlos Alcaraz,tokyo2026
 5,Felix Auger Aliassime,beijing2026
 6,Daniil Medvedev,beijing2026
-7,Flavio Cobolli,beijing2026
 7,Ben Shelton,usopen2026
+7,Flavio Cobolli,beijing2026
 8,Frances Tiafoe,tokyo2026
 9,Arthur Fils,tokyo2026
 10,Alex De Minaur,beijing2026
@@ -17,13 +17,13 @@ rank,name,source_tourney
 16,Tommy Paul,tokyo2026
 17,Brandon Nakashima,tokyo2026
 18,Valentin Vacherot,tokyo2026
+19,Lorenzo Musetti,usopen2026
 19,Luciano Darderi,tokyo2026
 20,Alexander Bublik,beijing2026
 21,Casper Ruud,tokyo2026
 22,Francisco Cerundolo,beijing2026
 23,Jiri Lehecka,tokyo2026
 24,Andrey Rublev,beijing2026
-25,Lorenzo Musetti,tokyo2026
 26,Alejandro Davidovich Fokina,tokyo2026
 26,Joao Fonseca,cincinnati2026
 27,Karen Khachanov,beijing2026
@@ -38,8 +38,8 @@ rank,name,source_tourney
 37,Matteo Arnaldi,tokyo2026
 38,Zizou Bergs,tokyo2026
 39,Hubert Hurkacz,beijing2026
-40,Cameron Norrie,beijing2026
 40,Raphael Collignon,usopen2026
+40,Cameron Norrie,beijing2026
 41,Botic van de Zandschulp,beijing2026
 41,Daniel Merida,usopen2026
 43,Luca Van Assche,tokyo2026
@@ -49,19 +49,20 @@ rank,name,source_tourney
 47,Matteo Berrettini,tokyo2026
 49,Nuno Borges,beijing2026
 50,Quentin Halys,beijing2026
-51,Sebastian Baez,beijing2026
 51,Yannick Hanfmann,usopen2026
+51,Sebastian Baez,beijing2026
 52,Thiago Agustin Tirante,beijing2026
 53,Juan Manuel Cerundolo,beijing2026
 54,Sebastian Korda,wimbledon2025_onward
 55,Roman Andres Burruchaga,usopen2026
 55,Tallon Griekspoor,beijing2026
 56,Adolfo Daniel Vallejo,tokyo2026
-58,Corentin Moutet,usopen2026
 58,Jan-Lennard Struff,beijing2026
+58,Corentin Moutet,usopen2026
 59,Fabian Marozsan,usopen2026
 59,Jaume Munar,tokyo2026
 60,Miomir Kecmanovic,usopen2026
+60,Jaime Faria,tokyo2026
 61,Martin Landaluce,usopen2026
 62,Arthur Cazaux,wimbledon2025_onward
 63,Ethan Quinn,wimbledon2026
@@ -70,7 +71,6 @@ rank,name,source_tourney
 65,Pablo Carreno Busta,beijing2026
 66,Roman Burruchaga,hamburg2026
 68,James Duckworth,usopen2026
-69,Jaime Faria,usopen2026
 71,Jan Choinski,usopen2026
 72,Tomas Machac,usopen2026
 73,Camilo Ugo Carabelli,usopen2026

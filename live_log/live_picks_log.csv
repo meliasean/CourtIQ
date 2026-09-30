@@ -622,7 +622,7 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-09-30T03:07:10+00:00,tokyo2026,R32,3,Denis Shapovalov,Sho Shimabukuro,Denis Shapovalov,-357.0,False,0.612745,0.821429,0.746015,-0.133271,0.0,0.451,1.0,0.4236,0.2429,24.29,Avoid,False,,,,,
 2026-09-30T03:07:10+00:00,tokyo2026,R32,4,Alejandro Tabilo,Tommy Paul,Tommy Paul,-294.0,False,0.698853,0.844037,0.709936,-0.011082,0.0,0.7954,1.0,0.3155,0.3571,35.71,Avoid,False,,,,,
 2026-09-30T03:07:10+00:00,tokyo2026,R32,5,Taylor Fritz,Jaume Munar,Taylor Fritz,-526.0,False,0.651946,0.821429,0.794458,-0.142512,0.0,0.6078,1.0,0.3569,0.2966,29.66,Avoid,False,,,,,
-2026-09-30T03:07:10+00:00,tokyo2026,R32,6,Lorenzo Musetti,Arthur Fery,Lorenzo Musetti,-238.0,False,0.632172,0.857143,0.665856,-0.033684,0.0,0.5287,1.0,0.4727,0.2613,26.13,Avoid,False,,,,,
+2026-09-30T03:07:10+00:00,tokyo2026,R32,6,Lorenzo Musetti,Arthur Fery,Lorenzo Musetti,-238.0,False,0.632172,0.857143,0.665856,-0.033684,0.0,0.5287,1.0,0.4727,0.2613,26.13,Avoid,True,2026-09-30T19:41:39+00:00,opponent swap → Jaime Faria vs Arthur Fery,,,
 2026-09-30T03:07:10+00:00,tokyo2026,R32,7,Holger Rune,Kyrian Jacquet,Holger Rune,-185.0,False,0.610611,0.821429,0.615877,-0.005266,0.0,0.4424,1.0,0.5571,0.227,22.7,Avoid,False,,,,,
 2026-09-30T03:07:10+00:00,tokyo2026,R32,8,Luciano Darderi,Casper Ruud,Casper Ruud,-238.0,False,0.525842,0.388489,0.672029,-0.146188,0.0,0.1034,0.5,0.6198,0.044,4.4,Avoid,False,,,,,
 2026-09-30T03:07:10+00:00,tokyo2026,R32,9,Brandon Nakashima,Ugo Humbert,Brandon Nakashima,-256.0,False,0.64022,0.821429,0.68471,-0.04449,0.0,0.5609,1.0,0.4409,0.2742,27.42,Avoid,False,,,,,
@@ -633,3 +633,4 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-09-30T03:07:10+00:00,tokyo2026,R32,14,Tomas Martin Etcheverry,Stefanos Tsitsipas,Stefanos Tsitsipas,-294.0,False,0.607283,0.652381,0.709936,-0.102653,0.0,0.4291,1.0,0.3285,0.2459,24.59,Avoid,False,,,,,
 2026-09-30T03:07:10+00:00,tokyo2026,R32,15,Arthur Fils,Luca Van Assche,Arthur Fils,-667.0,False,0.684582,0.857143,0.824705,-0.140122,0.0,0.7383,1.0,0.3047,0.341,34.1,Avoid,False,,,,,
 2026-09-30T03:07:10+00:00,tokyo2026,R32,16,Kei Nishikori,Frances Tiafoe,Frances Tiafoe,-500.0,False,0.645834,0.844037,0.792746,-0.146912,0.0,0.5833,1.0,0.3667,0.2883,28.83,Avoid,False,,,,,
+2026-09-30T19:41:39+00:00,tokyo2026,R32,6,Jaime Faria,Arthur Fery,Jaime Faria,-118.0,False,0.519433,0.611511,0.516161,0.003272,0.0327,0.0777,1.0,0.7255,0.1155,11.55,Avoid,False,,,,,
