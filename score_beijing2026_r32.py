@@ -2,19 +2,13 @@
 """
 Score Beijing 2026 R32.
 
-14 of 16 matches resolved. Winners derived from the R16 field: every player
+All 16 matches resolved. Winners derived from the R16 field: every player
 contesting an R16 match necessarily won their R32 match, and each R16 pairing
 was checked against adjacent R32 bracket slots before being accepted.
 
-STILL OPEN - deliberately absent from RESULTS:
-    match 5  Daniil Medvedev vs Pablo Carreno Busta
-    match 6  Jan-Lennard Struff vs Thiago Agustin Tirante
-
-The R16 odds list re-priced Medvedev/Carreno Busta (-500/+366) rather than
-pairing either of them against a Struff/Tirante winner, which means that
-quarter of the draw had not resolved. Neither Struff nor Tirante appears in
-the R16 field, so match 6 cannot be read either. Re-run this script once
-both land; it is safe to run repeatedly.
+Matches 5 and 6 resolved last. Medvedev beating Carreno Busta was reported
+directly; Struff beating Tirante follows from the Medvedev/Struff R16
+pairing, since only the match-6 winner can occupy that slot.
 
 Usage:  python score_beijing2026_r32.py [reports_dir]   (default: reports)
 """
@@ -31,13 +25,15 @@ def al(n):
 
 reports = sys.argv[1] if len(sys.argv) > 1 else "reports"
 
-EXPECTED = 14
+EXPECTED = 16
 
 RESULTS = {
     ("Alexander Zverev",        "Cameron Norrie"):            "Alexander Zverev",
     ("Juncheng Shang",          "Sebastian Baez"):             "Juncheng Shang",
     ("Juan Manuel Cerundolo",   "Yunchaokete Bu"):             "Yunchaokete Bu",
     ("Nuno Borges",             "Novak Djokovic"):             "Novak Djokovic",
+    ("Daniil Medvedev",         "Pablo Carreno Busta"):        "Daniil Medvedev",
+    ("Jan-Lennard Struff",      "Thiago Agustin Tirante"):     "Jan-Lennard Struff",
     ("Botic van de Zandschulp", "Francisco Cerundolo"):        "Francisco Cerundolo",
     ("Alexander Bublik",        "Jakub Mensik"):               "Jakub Mensik",
     ("Alex De Minaur",          "Mariano Navone"):             "Alex De Minaur",
@@ -119,6 +115,3 @@ if unmatched:
     print("  -> check spelling against the draw CSV before trusting the totals")
 else:
     print(f"\nAll {EXPECTED} results matched.")
-
-print("\nStill open: match 5 Medvedev/Carreno Busta, match 6 Struff/Tirante.")
-print("Re-run this script once those resolve.")
