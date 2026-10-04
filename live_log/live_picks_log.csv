@@ -656,11 +656,13 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-10-02T15:44:07+00:00,beijing2026,R16,6,Andrey Rublev,Roman Safiullin,Andrey Rublev,-146.0,False,0.551839,0.779661,0.566291,-0.014451,0.0,0.2074,1.0,0.7008,0.1421,14.21,Avoid,False,,,win,0.6849,2026-10-04T01:03:28+00:00
 2026-10-02T15:44:07+00:00,beijing2026,R16,7,Hubert Hurkacz,Arthur Gea,Hubert Hurkacz,-147.0,False,0.600887,0.746575,0.568084,0.032803,0.328,0.4035,1.0,0.6147,0.3572,35.72,Lean,False,,,win,0.6803,2026-10-04T01:03:28+00:00
 2026-10-02T15:44:07+00:00,beijing2026,R16,8,Alex Molcan,Karen Khachanov,Karen Khachanov,-393.0,False,0.586732,0.774194,0.760347,-0.173615,0.0,0.3469,1.0,0.4612,0.208,20.8,Avoid,False,,,win,0.2545,2026-10-04T01:03:28+00:00
-2026-10-04T01:03:58+00:00,beijing2026,QF,1,Alexander Zverev,Novak Djokovic,Alexander Zverev,-300.0,False,0.586012,0.746575,0.715302,-0.12929,0.0,0.344,1.0,0.4971,0.2035,20.35,Avoid,False,,,,,
-2026-10-04T01:03:58+00:00,beijing2026,QF,2,Daniil Medvedev,Francisco Cerundolo,Daniil Medvedev,-276.0,False,0.553754,0.519337,0.700083,-0.146329,0.0,0.215,1.0,0.4098,0.1735,17.35,Avoid,False,,,,,
-2026-10-04T01:03:58+00:00,beijing2026,QF,3,Alex De Minaur,Andrey Rublev,Alex De Minaur,-123.0,False,0.536465,0.581081,0.525764,0.010701,0.107,0.1459,1.0,0.6254,0.1794,17.94,Avoid,False,,,,,
-2026-10-04T01:03:58+00:00,beijing2026,QF,4,Hubert Hurkacz,Karen Khachanov,Karen Khachanov,-144.0,False,0.607905,0.8,0.562661,0.045244,0.4524,0.4316,1.0,0.6147,0.4216,42.16,Lean,False,,,,,
+2026-10-04T01:03:58+00:00,beijing2026,QF,1,Alexander Zverev,Novak Djokovic,Alexander Zverev,-300.0,False,0.586012,0.746575,0.715302,-0.12929,0.0,0.344,1.0,0.4971,0.2035,20.35,Avoid,False,,,loss,-1.0,2026-10-04T23:57:29+00:00
+2026-10-04T01:03:58+00:00,beijing2026,QF,2,Daniil Medvedev,Francisco Cerundolo,Daniil Medvedev,-276.0,False,0.553754,0.519337,0.700083,-0.146329,0.0,0.215,1.0,0.4098,0.1735,17.35,Avoid,False,,,win,0.3623,2026-10-04T23:57:29+00:00
+2026-10-04T01:03:58+00:00,beijing2026,QF,3,Alex De Minaur,Andrey Rublev,Alex De Minaur,-123.0,False,0.536465,0.581081,0.525764,0.010701,0.107,0.1459,1.0,0.6254,0.1794,17.94,Avoid,False,,,win,0.813,2026-10-04T23:57:29+00:00
+2026-10-04T01:03:58+00:00,beijing2026,QF,4,Hubert Hurkacz,Karen Khachanov,Karen Khachanov,-144.0,False,0.607905,0.8,0.562661,0.045244,0.4524,0.4316,1.0,0.6147,0.4216,42.16,Lean,False,,,loss,-1.0,2026-10-04T23:57:29+00:00
 2026-10-04T01:07:24+00:00,tokyo2026,QF,1,Carlos Alcaraz,Denis Shapovalov,Carlos Alcaraz,-760.0,False,0.734062,0.857143,0.843739,-0.109677,0.0,0.9362,1.0,0.1896,0.4119,41.19,Avoid,False,,,,,
 2026-10-04T01:07:24+00:00,tokyo2026,QF,2,Jaume Munar,Kyrian Jacquet,Jaume Munar,-149.0,False,0.588601,0.857143,0.570527,0.018074,0.1807,0.3544,1.0,0.6377,0.2739,27.39,Avoid,False,,,,,
 2026-10-04T01:07:24+00:00,tokyo2026,QF,3,Jiri Lehecka,Adolfo Daniel Vallejo,Jiri Lehecka,-277.0,False,0.650218,0.857143,0.700943,-0.050725,0.0,0.6009,1.0,0.4087,0.2894,28.94,Avoid,False,,,,,
 2026-10-04T01:07:24+00:00,tokyo2026,QF,4,Valentin Vacherot,Arthur Fils,Arthur Fils,-407.0,False,0.673861,0.844037,0.766096,-0.092235,0.0,0.6954,1.0,0.3218,0.3265,32.65,Avoid,False,,,,,
+2026-10-04T23:58:07+00:00,beijing2026,SF,1,Novak Djokovic,Daniil Medvedev,Novak Djokovic,119.0,True,0.525827,0.567164,0.435517,0.09031,0.9031,0.1033,0.8,0.6593,0.4915,49.15,Upset Watch,False,,,,,
+2026-10-04T23:58:07+00:00,beijing2026,SF,2,Alex De Minaur,Hubert Hurkacz,Alex De Minaur,-129.0,False,0.594879,0.746575,0.537131,0.057748,0.5775,0.3795,1.0,0.6611,0.4576,45.76,Green,False,,,,,
