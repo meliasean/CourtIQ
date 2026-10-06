@@ -668,5 +668,5 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-10-04T23:58:07+00:00,beijing2026,SF,2,Alex De Minaur,Hubert Hurkacz,Alex De Minaur,-129.0,False,0.594879,0.746575,0.537131,0.057748,0.5775,0.3795,1.0,0.6611,0.4576,45.76,Green,False,,,win,0.7752,2026-10-05T18:52:13+00:00
 2026-10-05T00:01:45+00:00,tokyo2026,SF,1,Carlos Alcaraz,Jaume Munar,Carlos Alcaraz,-890.0,False,0.68155,0.821429,0.85816,-0.17661,0.0,0.7262,1.0,0.296,0.3383,33.83,Avoid,False,,,win,0.1124,2026-10-05T18:56:05+00:00
 2026-10-05T00:01:45+00:00,tokyo2026,SF,2,Jiri Lehecka,Valentin Vacherot,Jiri Lehecka,-184.0,False,0.539836,0.509896,0.617333,-0.077497,0.0,0.1593,1.0,0.5088,0.1469,14.69,Avoid,False,,,win,0.5435,2026-10-05T18:56:05+00:00
-2026-10-05T18:52:59+00:00,beijing2026,F,1,Novak Djokovic,Alex De Minaur,Novak Djokovic,-184.0,False,0.570883,0.611111,0.617333,-0.04645,0.0,0.2835,1.0,0.4729,0.1878,18.78,Avoid,False,,,,,
-2026-10-05T18:56:21+00:00,tokyo2026,F,1,Carlos Alcaraz,Jiri Lehecka,Carlos Alcaraz,-405.0,False,0.710915,0.821429,0.76504,-0.054124,0.0,0.8437,1.0,0.2099,0.3821,38.21,Avoid,False,,,,,
+2026-10-05T18:52:59+00:00,beijing2026,F,1,Novak Djokovic,Alex De Minaur,Novak Djokovic,-184.0,False,0.570883,0.611111,0.617333,-0.04645,0.0,0.2835,1.0,0.4729,0.1878,18.78,Avoid,False,,,win,0.5435,2026-10-06T15:27:31+00:00
+2026-10-05T18:56:21+00:00,tokyo2026,F,1,Carlos Alcaraz,Jiri Lehecka,Carlos Alcaraz,-405.0,False,0.710915,0.821429,0.76504,-0.054124,0.0,0.8437,1.0,0.2099,0.3821,38.21,Avoid,False,,,win,0.2469,2026-10-06T15:27:45+00:00
