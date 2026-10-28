@@ -765,22 +765,22 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-10-16T17:17:26+00:00,shanghai2026,SF,1,Alexander Zverev,Alejandro Davidovich Fokina,Alexander Zverev,-324.0,False,0.625706,0.821429,0.728983,-0.103278,0.0,0.5028,1.0,0.4199,0.2589,25.89,Avoid,False,,,loss,-1.0,2026-10-18T01:42:47+00:00
 2026-10-16T17:17:26+00:00,shanghai2026,SF,2,Rafael Jodar,Daniil Medvedev,Daniil Medvedev,-197.0,False,0.622826,0.844037,0.632075,-0.00925,0.0,0.4913,1.0,0.5214,0.2453,24.53,Avoid,False,,,loss,-1.0,2026-10-18T01:42:47+00:00
 2026-10-18T01:43:33+00:00,shanghai2026,F,1,Alejandro Davidovich Fokina,Rafael Jodar,Rafael Jodar,-142.0,False,0.538,0.652381,0.560112,-0.022112,0.0,0.152,1.0,0.6816,0.1274,12.74,Avoid,False,,,loss,-1.0,2026-10-19T14:24:56+00:00
-2026-10-25T23:32:39+00:00,basel2026,R32,1,Ben Shelton,Aleksandar Kovacevic,Ben Shelton,-690.0,False,0.656499,0.857143,0.834187,-0.177688,0.0,0.626,1.0,0.3496,0.3028,30.28,Avoid,False,,,,,
-2026-10-25T23:32:39+00:00,basel2026,R32,2,Jerome Kym,Arthur Rinderknech,Arthur Rinderknech,117.0,True,0.581222,0.844037,0.439175,0.142047,1.0,0.3249,0.8,0.7192,0.5955,59.55,Upset Watch,False,,,,,
-2026-10-25T23:32:39+00:00,basel2026,R32,3,Daniel Altmaier,Juan Manuel Cerundolo,Juan Manuel Cerundolo,-167.0,False,0.542813,0.652381,0.59614,-0.053326,0.0,0.1713,1.0,0.6314,0.1382,13.82,Avoid,False,,,,,
-2026-10-25T23:32:39+00:00,basel2026,R32,4,Stan Wawrinka,Jiri Lehecka,Jiri Lehecka,-547.0,False,0.596031,0.844037,0.806818,-0.210787,0.0,0.3841,1.0,0.4464,0.2206,22.06,Avoid,False,,,,,
+2026-10-25T23:32:39+00:00,basel2026,R32,1,Ben Shelton,Aleksandar Kovacevic,Ben Shelton,-690.0,False,0.656499,0.857143,0.834187,-0.177688,0.0,0.626,1.0,0.3496,0.3028,30.28,Avoid,False,,,win,0.1449,2026-10-28T01:00:34+00:00
+2026-10-25T23:32:39+00:00,basel2026,R32,2,Jerome Kym,Arthur Rinderknech,Arthur Rinderknech,117.0,True,0.581222,0.844037,0.439175,0.142047,1.0,0.3249,0.8,0.7192,0.5955,59.55,Upset Watch,False,,,loss,-1.0,2026-10-28T01:00:34+00:00
+2026-10-25T23:32:39+00:00,basel2026,R32,3,Daniel Altmaier,Juan Manuel Cerundolo,Juan Manuel Cerundolo,-167.0,False,0.542813,0.652381,0.59614,-0.053326,0.0,0.1713,1.0,0.6314,0.1382,13.82,Avoid,False,,,loss,-1.0,2026-10-28T01:00:34+00:00
+2026-10-25T23:32:39+00:00,basel2026,R32,4,Stan Wawrinka,Jiri Lehecka,Jiri Lehecka,-547.0,False,0.596031,0.844037,0.806818,-0.210787,0.0,0.3841,1.0,0.4464,0.2206,22.06,Avoid,False,,,win,0.1828,2026-10-28T01:00:34+00:00
 2026-10-25T23:32:39+00:00,basel2026,R32,5,Novak Djokovic,Ugo Humbert,Novak Djokovic,-270.0,False,0.660915,0.857143,0.696173,-0.035258,0.0,0.6437,1.0,0.3964,0.3035,30.35,Avoid,False,,,,,
 2026-10-25T23:32:39+00:00,basel2026,R32,6,Yannick Hanfmann,Jan-Lennard Struff,Jan-Lennard Struff,-124.0,False,0.556518,0.717391,0.527904,0.028614,0.2861,0.2261,1.0,0.7317,0.2734,27.34,Upset Watch,False,,,,,
-2026-10-25T23:32:39+00:00,basel2026,R32,7,Mika Brunold,Nuno Borges,Nuno Borges,-207.0,False,0.546361,0.844037,0.642895,-0.096534,0.0,0.1854,1.0,0.6329,0.1423,14.23,Avoid,False,,,,,
-2026-10-25T23:32:39+00:00,basel2026,R32,8,Dominic Stricker,Casper Ruud,Casper Ruud,-312.0,False,0.682223,0.844037,0.722611,-0.040388,0.0,0.7289,1.0,0.3358,0.3351,33.51,Avoid,False,,,,,
-2026-10-25T23:32:39+00:00,basel2026,R32,9,Hubert Hurkacz,Zizou Bergs,Hubert Hurkacz,-187.0,False,0.646441,0.779661,0.621492,0.024949,0.2495,0.5858,1.0,0.4718,0.3908,39.08,Lean,False,,,,,
-2026-10-25T23:32:39+00:00,basel2026,R32,10,Holger Rune,Quentin Halys,Quentin Halys,-116.0,False,0.511558,0.652381,0.513007,-0.001449,0.0,0.0462,1.0,0.8063,0.0832,8.32,Avoid,False,,,,,
-2026-10-25T23:32:39+00:00,basel2026,R32,11,Valentin Vacherot,Mariano Navone,Valentin Vacherot,-197.0,False,0.624287,0.821429,0.632971,-0.008684,0.0,0.4971,1.0,0.5182,0.2473,24.73,Avoid,False,,,,,
-2026-10-25T23:32:39+00:00,basel2026,R32,12,Alejandro Tabilo,Rafael Jodar,Rafael Jodar,-353.0,False,0.670996,0.844037,0.743511,-0.072516,0.0,0.684,1.0,0.3329,0.3219,32.19,Avoid,False,,,,,
+2026-10-25T23:32:39+00:00,basel2026,R32,7,Mika Brunold,Nuno Borges,Nuno Borges,-207.0,False,0.546361,0.844037,0.642895,-0.096534,0.0,0.1854,1.0,0.6329,0.1423,14.23,Avoid,False,,,win,0.4831,2026-10-28T01:00:34+00:00
+2026-10-25T23:32:39+00:00,basel2026,R32,8,Dominic Stricker,Casper Ruud,Casper Ruud,-312.0,False,0.682223,0.844037,0.722611,-0.040388,0.0,0.7289,1.0,0.3358,0.3351,33.51,Avoid,False,,,win,0.3205,2026-10-28T01:00:34+00:00
+2026-10-25T23:32:39+00:00,basel2026,R32,9,Hubert Hurkacz,Zizou Bergs,Hubert Hurkacz,-187.0,False,0.646441,0.779661,0.621492,0.024949,0.2495,0.5858,1.0,0.4718,0.3908,39.08,Lean,False,,,win,0.5348,2026-10-28T01:00:34+00:00
+2026-10-25T23:32:39+00:00,basel2026,R32,10,Holger Rune,Quentin Halys,Quentin Halys,-116.0,False,0.511558,0.652381,0.513007,-0.001449,0.0,0.0462,1.0,0.8063,0.0832,8.32,Avoid,False,,,loss,-1.0,2026-10-28T01:00:34+00:00
+2026-10-25T23:32:39+00:00,basel2026,R32,11,Valentin Vacherot,Mariano Navone,Valentin Vacherot,-197.0,False,0.624287,0.821429,0.632971,-0.008684,0.0,0.4971,1.0,0.5182,0.2473,24.73,Avoid,False,,,win,0.5076,2026-10-28T01:00:34+00:00
+2026-10-25T23:32:39+00:00,basel2026,R32,12,Alejandro Tabilo,Rafael Jodar,Rafael Jodar,-353.0,False,0.670996,0.844037,0.743511,-0.072516,0.0,0.684,1.0,0.3329,0.3219,32.19,Avoid,False,,,win,0.2833,2026-10-28T01:00:34+00:00
 2026-10-25T23:32:39+00:00,basel2026,R32,13,Taylor Fritz,Rinky Hijikata,Taylor Fritz,-1260.0,False,0.663425,0.857143,0.884921,-0.221497,0.0,0.6537,1.0,0.3385,0.3123,31.23,Avoid,False,,,,,
 2026-10-25T23:32:39+00:00,basel2026,R32,14,Remy Bertola,Denis Shapovalov,Denis Shapovalov,-371.0,False,0.587565,0.844037,0.751535,-0.16397,0.0,0.3503,1.0,0.4599,0.2091,20.91,Avoid,False,,,,,
-2026-10-25T23:32:39+00:00,basel2026,R32,15,Alex Michelsen,Botic van de Zandschulp,Botic van de Zandschulp,163.0,True,0.576876,0.844037,0.362432,0.214444,1.0,0.3075,0.8,0.6944,0.5928,59.28,Upset Watch,False,,,,,
-2026-10-25T23:32:39+00:00,basel2026,R32,16,Giovanni Mpetshi Perricard,Arthur Fils,Arthur Fils,-830.0,False,0.65099,0.844037,0.852383,-0.201393,0.0,0.604,1.0,0.3584,0.2953,29.53,Avoid,False,,,,,
+2026-10-25T23:32:39+00:00,basel2026,R32,15,Alex Michelsen,Botic van de Zandschulp,Botic van de Zandschulp,163.0,True,0.576876,0.844037,0.362432,0.214444,1.0,0.3075,0.8,0.6944,0.5928,59.28,Upset Watch,False,,,loss,-1.0,2026-10-28T01:00:34+00:00
+2026-10-25T23:32:39+00:00,basel2026,R32,16,Giovanni Mpetshi Perricard,Arthur Fils,Arthur Fils,-830.0,False,0.65099,0.844037,0.852383,-0.201393,0.0,0.604,1.0,0.3584,0.2953,29.53,Avoid,False,,,win,0.1205,2026-10-28T01:00:34+00:00
 2026-10-25T23:36:41+00:00,vienna2026,R32,1,Alexander Zverev,Martin Landaluce,Alexander Zverev,-1040.0,False,0.67385,0.857143,0.870982,-0.197133,0.0,0.6954,1.0,0.3218,0.3264,32.64,Avoid,False,,,,,
 2026-10-25T23:36:41+00:00,vienna2026,R32,2,Tallon Griekspoor,Brandon Nakashima,Brandon Nakashima,-242.0,False,0.628022,0.844037,0.674614,-0.046592,0.0,0.5121,1.0,0.4705,0.2566,25.66,Avoid,False,,,,,
 2026-10-25T23:36:41+00:00,vienna2026,R32,3,Arthur Fery,Jacob Fearnley,Arthur Fery,-112.0,False,0.526993,0.567164,0.503225,0.023768,0.2377,0.108,1.0,0.6571,0.2236,22.36,Upset Watch,False,,,,,
@@ -797,3 +797,9 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-10-25T23:36:41+00:00,vienna2026,R32,14,Luciano Darderi,Matteo Arnaldi,Luciano Darderi,-105.0,False,0.611559,0.857143,0.488162,0.123397,1.0,0.4462,0.8,0.6597,0.6379,63.79,Green,False,,,,,
 2026-10-25T23:36:41+00:00,vienna2026,R32,15,Jurij Rodionov,Nikoloz Basilashvili,Jurij Rodionov,127.0,True,0.500966,0.611511,0.420203,0.080764,0.8076,0.0039,0.8,0.776,0.407,40.7,Lean,False,,,,,
 2026-10-25T23:36:41+00:00,vienna2026,R32,16,Karen Khachanov,Carlos Alcaraz,Carlos Alcaraz,-466.0,False,0.747739,0.844037,0.785582,-0.037843,0.0,0.991,1.0,0.132,0.4341,43.41,Avoid,False,,,,,
+2026-10-28T01:01:08+00:00,basel2026,R16,1,Ben Shelton,Jerome Kym,Ben Shelton,-365.0,False,0.666179,0.857143,0.74892,-0.082741,0.0,0.6647,1.0,0.3352,0.3159,31.59,Avoid,False,,,,,
+2026-10-28T01:01:08+00:00,basel2026,R16,2,Daniel Altmaier,Jiri Lehecka,Jiri Lehecka,-640.0,False,0.663903,0.844037,0.824976,-0.161074,0.0,0.6556,1.0,0.3378,0.3129,31.29,Avoid,False,,,,,
+2026-10-28T01:01:08+00:00,basel2026,R16,3,Nuno Borges,Casper Ruud,Casper Ruud,-209.0,False,0.604717,0.717391,0.645321,-0.040604,0.0,0.4189,1.0,0.4874,0.2269,22.69,Avoid,False,,,,,
+2026-10-28T01:01:08+00:00,basel2026,R16,4,Hubert Hurkacz,Holger Rune,Hubert Hurkacz,-191.0,False,0.582089,0.821429,0.625988,-0.043899,0.0,0.3284,1.0,0.5927,0.1892,18.92,Avoid,False,,,,,
+2026-10-28T01:01:08+00:00,basel2026,R16,5,Valentin Vacherot,Rafael Jodar,Rafael Jodar,-316.0,False,0.703762,0.844037,0.724386,-0.020625,0.0,0.815,1.0,0.2866,0.3659,36.59,Avoid,False,,,,,
+2026-10-28T01:01:08+00:00,basel2026,R16,6,Alex Michelsen,Arthur Fils,Arthur Fils,-224.0,False,0.655335,0.844037,0.659378,-0.004043,0.0,0.6213,1.0,0.4421,0.2922,29.22,Avoid,False,,,,,
