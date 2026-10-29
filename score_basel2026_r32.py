@@ -2,23 +2,13 @@
 """
 Score Basel 2026 R32.
 
-PARTIAL ROUND - 12 of 16 matches resolved.
+All 16 matches resolved. Winners derived from the R16 field: every player
+contesting an R16 match necessarily won their R32 match. Each of the 8 R16
+pairings was asserted against adjacent R32 bracket slots - match k must pair
+the winners of R32 (2k-1, 2k), in that order - and all 8 hold.
 
-Winners derived from the R16 field: a player contesting an R16 match
-necessarily won their R32 match. Each listed R16 pairing was asserted against
-its R32 bracket slots - R16 slot k pairs the winners of R32 (2k-1, 2k), in
-that order - and all of them hold.
-
-STILL OPEN - deliberately absent from RESULTS:
-    match 5  Novak Djokovic vs Ugo Humbert
-    match 6  Yannick Hanfmann vs Jan-Lennard Struff
-    match 13 Taylor Fritz vs Rinky Hijikata
-    match 14 Remy Bertola vs Denis Shapovalov
-
-Re-run this script once those land; it is safe to run repeatedly. Note that
-re-running `predict` on a fuller R16 draw shifts every row's positional
-match_no, so the earlier R16 log rows must be dropped and re-logged rather
-than appended to.
+This replaces the earlier partial version of this scorer, which covered only
+the matches resolved at the time.
 
 Usage:  python score_basel2026_r32.py [reports_dir]   (default: reports)
 """
@@ -35,19 +25,23 @@ def al(n):
 
 reports = sys.argv[1] if len(sys.argv) > 1 else "reports"
 
-EXPECTED = 12
+EXPECTED = 16
 
 RESULTS = {
     ("Ben Shelton",                "Aleksandar Kovacevic"    ): "Ben Shelton",
     ("Jerome Kym",                 "Arthur Rinderknech"      ): "Jerome Kym",
     ("Daniel Altmaier",            "Juan Manuel Cerundolo"   ): "Daniel Altmaier",
     ("Stan Wawrinka",              "Jiri Lehecka"            ): "Jiri Lehecka",
+    ("Novak Djokovic",             "Ugo Humbert"             ): "Novak Djokovic",
+    ("Yannick Hanfmann",           "Jan-Lennard Struff"      ): "Jan-Lennard Struff",
     ("Mika Brunold",               "Nuno Borges"             ): "Nuno Borges",
     ("Dominic Stricker",           "Casper Ruud"             ): "Casper Ruud",
     ("Hubert Hurkacz",             "Zizou Bergs"             ): "Hubert Hurkacz",
     ("Holger Rune",                "Quentin Halys"           ): "Holger Rune",
     ("Valentin Vacherot",          "Mariano Navone"          ): "Valentin Vacherot",
     ("Alejandro Tabilo",           "Rafael Jodar"            ): "Rafael Jodar",
+    ("Taylor Fritz",               "Rinky Hijikata"          ): "Taylor Fritz",
+    ("Remy Bertola",               "Denis Shapovalov"        ): "Denis Shapovalov",
     ("Alex Michelsen",             "Botic van de Zandschulp" ): "Alex Michelsen",
     ("Giovanni Mpetshi Perricard", "Arthur Fils"             ): "Arthur Fils",
 }
