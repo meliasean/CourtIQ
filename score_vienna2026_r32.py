@@ -2,27 +2,13 @@
 """
 Score Vienna 2026 R32.
 
-PARTIAL ROUND - 8 of 16 matches resolved.
+All 16 matches resolved. Winners derived from the R16 field: every player
+contesting an R16 match necessarily won their R32 match. Each of the 8 R16
+pairings was asserted against adjacent R32 bracket slots - match k must pair
+the winners of R32 (2k-1, 2k), in that order - and all 8 hold.
 
-Winners derived from the R16 field: a player contesting an R16 match
-necessarily won their R32 match. Each listed R16 pairing was asserted against
-its R32 bracket slots - R16 slot k pairs the winners of R32 (2k-1, 2k), in
-that order - and all of them hold.
-
-STILL OPEN - deliberately absent from RESULTS:
-    match 1  Alexander Zverev vs Martin Landaluce
-    match 2  Tallon Griekspoor vs Brandon Nakashima
-    match 3  Arthur Fery vs Jacob Fearnley
-    match 4  Lorenzo Musetti vs Frances Tiafoe
-    match 11 Cameron Norrie vs Francisco Cerundolo
-    match 12 Daniel Merida vs Daniil Medvedev
-    match 15 Jurij Rodionov vs Nikoloz Basilashvili
-    match 16 Karen Khachanov vs Carlos Alcaraz
-
-Re-run this script once those land; it is safe to run repeatedly. Note that
-re-running `predict` on a fuller R16 draw shifts every row's positional
-match_no, so the earlier R16 log rows must be dropped and re-logged rather
-than appended to.
+This replaces the earlier partial version of this scorer, which covered only
+the matches resolved at the time.
 
 Usage:  python score_vienna2026_r32.py [reports_dir]   (default: reports)
 """
@@ -39,17 +25,25 @@ def al(n):
 
 reports = sys.argv[1] if len(sys.argv) > 1 else "reports"
 
-EXPECTED = 8
+EXPECTED = 16
 
 RESULTS = {
+    ("Alexander Zverev",  "Martin Landaluce"        ): "Alexander Zverev",
+    ("Tallon Griekspoor", "Brandon Nakashima"       ): "Tallon Griekspoor",
+    ("Arthur Fery",       "Jacob Fearnley"          ): "Arthur Fery",
+    ("Lorenzo Musetti",   "Frances Tiafoe"          ): "Lorenzo Musetti",
     ("Flavio Cobolli",    "Grigor Dimitrov"         ): "Flavio Cobolli",
     ("Matteo Berrettini", "Tomas Martin Etcheverry" ): "Matteo Berrettini",
     ("Luca Van Assche",   "Learner Tien"            ): "Learner Tien",
     ("Tomas Machac",      "Alex De Minaur"          ): "Alex De Minaur",
     ("Jakub Mensik",      "Lukas Neumayer"          ): "Jakub Mensik",
     ("Adrian Mannarino",  "Ignacio Buse"            ): "Adrian Mannarino",
+    ("Cameron Norrie",    "Francisco Cerundolo"     ): "Cameron Norrie",
+    ("Daniel Merida",     "Daniil Medvedev"         ): "Daniil Medvedev",
     ("Tommy Paul",        "Andrey Rublev"           ): "Tommy Paul",
     ("Luciano Darderi",   "Matteo Arnaldi"          ): "Luciano Darderi",
+    ("Jurij Rodionov",    "Nikoloz Basilashvili"    ): "Nikoloz Basilashvili",
+    ("Karen Khachanov",   "Carlos Alcaraz"          ): "Carlos Alcaraz",
 }
 
 assert len(RESULTS) == EXPECTED, f"RESULTS holds {len(RESULTS)}, expected {EXPECTED}"
