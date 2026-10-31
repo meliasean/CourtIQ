@@ -821,11 +821,13 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-10-29T01:21:42+00:00,vienna2026,R16,6,Cameron Norrie,Daniil Medvedev,Daniil Medvedev,-567.0,False,0.661547,0.844037,0.81137,-0.149823,0.0,0.6462,1.0,0.3415,0.3097,30.97,Avoid,False,,,win,0.1764,2026-10-30T01:45:05+00:00
 2026-10-29T01:21:42+00:00,vienna2026,R16,7,Tommy Paul,Luciano Darderi,Tommy Paul,-375.0,False,0.672101,0.821429,0.753407,-0.081306,0.0,0.6884,1.0,0.3237,0.3241,32.41,Avoid,False,,,win,0.2667,2026-10-30T01:45:05+00:00
 2026-10-29T01:21:42+00:00,vienna2026,R16,8,Nikoloz Basilashvili,Carlos Alcaraz,Carlos Alcaraz,-820.0,False,0.656599,0.844037,0.850645,-0.194046,0.0,0.6264,1.0,0.3494,0.303,30.3,Avoid,False,,,win,0.122,2026-10-30T01:45:05+00:00
-2026-10-30T01:43:15+00:00,basel2026,QF,1,Jerome Kym,Jiri Lehecka,Jiri Lehecka,-279.0,False,0.629485,0.774194,0.701997,-0.072512,0.0,0.5179,1.0,0.4338,0.262,26.2,Avoid,False,,,,,
-2026-10-30T01:43:15+00:00,basel2026,QF,2,Jan-Lennard Struff,Nuno Borges,Nuno Borges,114.0,True,0.526484,0.652381,0.446261,0.080223,0.8022,0.1059,0.8,0.7817,0.4346,43.46,Lean,False,,,,,
-2026-10-30T01:43:15+00:00,basel2026,QF,3,Holger Rune,Valentin Vacherot,Valentin Vacherot,111.0,True,0.520452,0.717391,0.452053,0.068399,0.684,0.0818,0.8,0.8293,0.3694,36.94,Lean,False,,,,,
-2026-10-30T01:43:15+00:00,basel2026,QF,4,Taylor Fritz,Arthur Fils,Arthur Fils,-122.0,False,0.574804,0.717391,0.523605,0.051199,0.512,0.2992,1.0,0.6968,0.4005,40.05,Lean,False,,,,,
+2026-10-30T01:43:15+00:00,basel2026,QF,1,Jerome Kym,Jiri Lehecka,Jiri Lehecka,-279.0,False,0.629485,0.774194,0.701997,-0.072512,0.0,0.5179,1.0,0.4338,0.262,26.2,Avoid,False,,,win,0.3584,2026-10-31T00:44:40+00:00
+2026-10-30T01:43:15+00:00,basel2026,QF,2,Jan-Lennard Struff,Nuno Borges,Nuno Borges,114.0,True,0.526484,0.652381,0.446261,0.080223,0.8022,0.1059,0.8,0.7817,0.4346,43.46,Lean,False,,,loss,-1.0,2026-10-31T00:44:40+00:00
+2026-10-30T01:43:15+00:00,basel2026,QF,3,Holger Rune,Valentin Vacherot,Valentin Vacherot,111.0,True,0.520452,0.717391,0.452053,0.068399,0.684,0.0818,0.8,0.8293,0.3694,36.94,Lean,False,,,win,1.11,2026-10-31T00:44:40+00:00
+2026-10-30T01:43:15+00:00,basel2026,QF,4,Taylor Fritz,Arthur Fils,Arthur Fils,-122.0,False,0.574804,0.717391,0.523605,0.051199,0.512,0.2992,1.0,0.6968,0.4005,40.05,Lean,False,,,loss,-1.0,2026-10-31T00:44:40+00:00
 2026-10-30T01:45:28+00:00,vienna2026,QF,1,Alexander Zverev,Arthur Fery,Alexander Zverev,-790.0,False,0.704432,0.857143,0.847276,-0.142844,0.0,0.8177,1.0,0.2729,0.368,36.8,Avoid,False,,,,,
 2026-10-30T01:45:28+00:00,vienna2026,QF,2,Matteo Berrettini,Alex De Minaur,Alex De Minaur,-226.0,False,0.660063,0.844037,0.661587,-0.001524,0.0,0.6403,1.0,0.4323,0.2988,29.88,Avoid,False,,,,,
 2026-10-30T01:45:28+00:00,vienna2026,QF,3,Adrian Mannarino,Daniil Medvedev,Daniil Medvedev,-518.0,False,0.68765,0.844037,0.799926,-0.112276,0.0,0.7506,1.0,0.2998,0.3452,34.52,Avoid,False,,,,,
 2026-10-30T01:45:28+00:00,vienna2026,QF,4,Tommy Paul,Carlos Alcaraz,Carlos Alcaraz,-412.0,False,0.738718,0.844037,0.767834,-0.029117,0.0,0.9549,1.0,0.1585,0.4206,42.06,Avoid,False,,,,,
+2026-10-31T00:46:09+00:00,basel2026,SF,1,Jiri Lehecka,Jan-Lennard Struff,Jiri Lehecka,-227.0,False,0.652911,0.821429,0.66189,-0.008979,0.0,0.6116,1.0,0.4435,0.2891,28.91,Avoid,False,,,,,
+2026-10-31T00:46:09+00:00,basel2026,SF,2,Valentin Vacherot,Taylor Fritz,Taylor Fritz,-329.0,False,0.53161,0.388889,0.731363,-0.199753,0.0,0.1264,0.5,0.5584,0.0571,5.71,Avoid,False,,,,,
