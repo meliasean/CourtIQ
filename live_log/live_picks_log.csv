@@ -837,7 +837,7 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-10-31T21:53:06+00:00,vienna2026,F,1,Alex De Minaur,Carlos Alcaraz,Carlos Alcaraz,-417.0,False,0.736747,0.844037,0.769544,-0.032798,0.0,0.947,1.0,0.1643,0.4177,41.77,Avoid,False,,,win,0.2398,2026-11-02T01:05:20+00:00
 2026-11-02T01:21:38+00:00,paris2026,R64,1,Lorenzo Musetti,Hubert Hurkacz,Hubert Hurkacz,-117.0,False,0.500912,0.480663,0.513998,-0.013085,0.0,0.0036,0.5,0.6615,0.0099,0.99,Avoid,False,,,,,
 2026-11-02T01:21:38+00:00,paris2026,R64,2,Luca Van Assche,Mariano Navone,Mariano Navone,139.0,True,0.540744,0.774194,0.399231,0.141513,1.0,0.163,0.8,0.789,0.54,54.0,Upset Watch,False,,,,,
-2026-11-02T01:21:38+00:00,paris2026,R64,3,Stefanos Tsitsipas,Learner Tien,Stefanos Tsitsipas,116.0,True,0.566067,0.746575,0.441748,0.124319,1.0,0.2643,0.8,0.746,0.5747,57.47,Upset Watch,False,,,,,
+2026-11-02T01:21:38+00:00,paris2026,R64,3,Stefanos Tsitsipas,Learner Tien,Stefanos Tsitsipas,116.0,True,0.566067,0.746575,0.441748,0.124319,1.0,0.2643,0.8,0.746,0.5747,57.47,Upset Watch,True,2026-11-03T17:31:25+00:00,opponent swap → Adolfo Daniel Vallejo vs Learner Tien,,,
 2026-11-02T01:21:38+00:00,paris2026,R64,4,Novak Djokovic,Valentin Vacherot,Novak Djokovic,-224.0,False,0.565375,0.515152,0.659378,-0.094003,0.0,0.2615,1.0,0.453,0.1832,18.32,Avoid,False,,,,,
 2026-11-02T01:21:38+00:00,paris2026,R64,5,Luciano Darderi,Rinky Hijikata,Luciano Darderi,-110.0,False,0.563247,0.857143,0.5,0.063247,0.6325,0.253,1.0,0.7488,0.4356,43.56,Lean,False,,,,,
 2026-11-02T01:21:38+00:00,paris2026,R64,6,Andrey Rublev,Tomas Martin Etcheverry,Andrey Rublev,-260.0,False,0.599505,0.746575,0.688474,-0.088969,0.0,0.398,1.0,0.4984,0.2196,21.96,Avoid,False,,,,,
@@ -850,7 +850,7 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-11-02T01:21:38+00:00,paris2026,R64,13,Jan-Lennard Struff,Arthur Gea,Jan-Lennard Struff,104.0,True,0.508717,0.5,0.46787,0.040847,0.4085,0.0349,0.8,0.6755,0.2467,24.67,Upset Watch,False,,,,,
 2026-11-02T01:21:38+00:00,paris2026,R64,14,Casper Ruud,Juan Manuel Cerundolo,Casper Ruud,-304.0,False,0.64146,0.821429,0.717782,-0.076322,0.0,0.5658,1.0,0.4059,0.2792,27.92,Avoid,False,,,,,
 2026-11-02T01:21:38+00:00,paris2026,R64,15,Alejandro Tabilo,Rafael Jodar,Rafael Jodar,-495.0,False,0.659038,0.844037,0.793893,-0.134855,0.0,0.6362,1.0,0.3455,0.3063,30.63,Avoid,False,,,,,
-2026-11-02T01:21:38+00:00,paris2026,R64,16,Alejandro Davidovich Fokina,Moise Kouame,Alejandro Davidovich Fokina,-300.0,False,0.654947,0.857143,0.715302,-0.060355,0.0,0.6198,1.0,0.3868,0.2973,29.73,Avoid,False,,,,,
+2026-11-02T01:21:38+00:00,paris2026,R64,16,Alejandro Davidovich Fokina,Moise Kouame,Alejandro Davidovich Fokina,-300.0,False,0.654947,0.857143,0.715302,-0.060355,0.0,0.6198,1.0,0.3868,0.2973,29.73,Avoid,True,2026-11-03T17:31:25+00:00,opponent swap → Nuno Borges vs Moise Kouame,,,
 2026-11-02T01:21:38+00:00,paris2026,R64,17,Denis Shapovalov,Karen Khachanov,Karen Khachanov,-167.0,False,0.590596,0.717391,0.59614,-0.005544,0.0,0.3624,1.0,0.578,0.2009,20.09,Avoid,False,,,,,
 2026-11-02T01:21:38+00:00,paris2026,R64,18,Ignacio Buse,Zizou Bergs,Zizou Bergs,-274.0,False,0.602902,0.8,0.699013,-0.096111,0.0,0.4116,1.0,0.4863,0.2248,22.48,Avoid,False,,,,,
 2026-11-02T01:21:38+00:00,paris2026,R64,19,Kyrian Jacquet,Tomas Machac,Tomas Machac,-163.0,False,0.566555,0.652381,0.590846,-0.024292,0.0,0.2662,1.0,0.5671,0.1732,17.32,Avoid,False,,,,,
@@ -860,3 +860,5 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-11-02T01:21:38+00:00,paris2026,R64,23,Ugo Humbert,Botic van de Zandschulp,Botic van de Zandschulp,135.0,True,0.540146,0.774194,0.405426,0.13472,1.0,0.1606,0.8,0.7962,0.5386,53.86,Upset Watch,False,,,,,
 2026-11-02T01:21:38+00:00,paris2026,R64,24,Alex Michelsen,Jiri Lehecka,Jiri Lehecka,-149.0,False,0.62584,0.844037,0.570527,0.055313,0.5531,0.5034,1.0,0.5781,0.4921,49.21,Green,False,,,,,
 2026-11-02T14:28:24+00:00,paris2026,R64,11,Daniel Merida,Sebastian Baez,Daniel Merida,-278.0,False,0.572117,0.581081,0.723057,-0.150939,0.0,0.2885,1.0,0.3235,0.2042,20.42,Avoid,False,,,,,
+2026-11-03T17:31:25+00:00,paris2026,R64,3,Adolfo Daniel Vallejo,Learner Tien,Learner Tien,-435.0,False,0.618468,0.652381,0.781543,-0.163075,0.0,0.4739,1.0,0.2557,0.2666,26.66,Avoid,False,,,,,
+2026-11-03T17:31:25+00:00,paris2026,R64,16,Nuno Borges,Moise Kouame,Nuno Borges,-143.0,False,0.546378,0.567164,0.577215,-0.030837,0.0,0.1855,1.0,0.5263,0.153,15.3,Avoid,False,,,,,

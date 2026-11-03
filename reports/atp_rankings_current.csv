@@ -14,51 +14,51 @@ rank,name,source_tourney
 12,Taylor Fritz,paris2026
 14,Tommy Paul,paris2026
 15,Jiri Lehecka,paris2026
-16,Alejandro Davidovich Fokina,paris2026
 16,Jakub Mensik,vienna2026
 18,Brandon Nakashima,paris2026
 19,Learner Tien,paris2026
 20,Francisco Cerundolo,paris2026
 21,Luciano Darderi,paris2026
-22,Andrey Rublev,paris2026
 22,Alexander Bublik,shanghai2026
+22,Andrey Rublev,paris2026
 23,Casper Ruud,paris2026
 24,Lorenzo Musetti,paris2026
 25,Karen Khachanov,paris2026
+25,Alejandro Davidovich Fokina,shanghai2026
 26,Joao Fonseca,cincinnati2026
-27,Alexander Blockx,shanghai2026
 27,Valentin Vacherot,paris2026
+27,Alexander Blockx,shanghai2026
 29,Hubert Hurkacz,paris2026
 30,Alejandro Tabilo,paris2026
 31,Tomas Martin Etcheverry,paris2026
 32,Arthur Fery,paris2026
 33,Ignacio Buse,paris2026
-34,Stefanos Tsitsipas,paris2026
 35,Alex Michelsen,paris2026
 36,Matteo Arnaldi,paris2026
 37,Botic van de Zandschulp,paris2026
 38,Ugo Humbert,paris2026
 39,Jan-Lennard Struff,paris2026
-40,Raphael Collignon,usopen2026
+39,Stefanos Tsitsipas,shanghai2026
 40,Zizou Bergs,paris2026
+40,Raphael Collignon,usopen2026
 42,Daniel Merida,paris2026
 43,Matteo Berrettini,paris2026
 44,Arthur Gea,paris2026
 45,Cameron Norrie,paris2026
 46,Quentin Halys,paris2026
-47,Tallon Griekspoor,vienna2026
 47,Luca Van Assche,paris2026
+47,Tallon Griekspoor,vienna2026
 48,Mariano Navone,paris2026
 49,Thiago Agustin Tirante,shanghai2026
+49,Nuno Borges,paris2026
 50,Jaume Munar,shanghai2026
 51,Denis Shapovalov,paris2026
 52,Sebastian Baez,paris2026
-54,Nuno Borges,basel2026
-54,Juan Manuel Cerundolo,paris2026
 54,Sebastian Korda,wimbledon2025_onward
-55,Adolfo Daniel Vallejo,shanghai2026
+54,Juan Manuel Cerundolo,paris2026
 55,Roman Andres Burruchaga,usopen2026
 56,Jaime Faria,shanghai2026
+56,Adolfo Daniel Vallejo,paris2026
 57,Miomir Kecmanovic,shanghai2026
 58,Corentin Moutet,usopen2026
 60,Yannick Hanfmann,basel2026
@@ -66,12 +66,12 @@ rank,name,source_tourney
 62,Arthur Cazaux,wimbledon2025_onward
 63,Ethan Quinn,wimbledon2026
 64,Fabian Marozsan,shanghai2026
-65,Vit Kopriva,shanghai2026
 65,Mattia Bellucci,paris2026
+65,Vit Kopriva,shanghai2026
 66,Roman Burruchaga,hamburg2026
 67,Arthur Rinderknech,paris2026
-68,Martin Landaluce,vienna2026
 68,Facundo Diaz Acosta,shanghai2026
+68,Martin Landaluce,vienna2026
 69,Roman Safiullin,shanghai2026
 70,James Duckworth,shanghai2026
 71,Hamad Medjedovic,shanghai2026
