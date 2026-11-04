@@ -2,40 +2,17 @@
 """
 Score Paris 2026 R64.
 
-PARTIAL ROUND - only 3 of 24 matches resolved.
+All 24 matches resolved. Winners derived from the R32 field: every player
+contesting an R32 match necessarily won their R64 match. Paris has 64 bracket
+slots with 8 byes, so the R32 pairs on slot-pair numbers 1-32, not on this
+draw CSV's 1-24 match numbering; each of the 16 R32 pairings was asserted
+against its adjacent slot-pair, and all 16 hold.
 
-Paris has 64 bracket slots, 8 of them byes for seeds 1-8, so 24 matches were
-played in the R64. Winners here are derived from the two published R32
-pairings: Shelton vs Norrie fixes Norrie, and Ruud vs Jodar fixes both Ruud
-and Jodar. Each was asserted against its R64 slot-pair before being accepted.
+Match 5 (Darderi/Hijikata) was priced -110 both sides - no favourite at all -
+so it cannot be classified as a hold or an upset. Hijikata won it.
 
-STILL OPEN - deliberately absent from RESULTS:
-    match 1  Lorenzo Musetti vs Hubert Hurkacz
-    match 2  Luca Van Assche vs Mariano Navone
-    match 3  Adolfo Daniel Vallejo vs Learner Tien
-    match 4  Novak Djokovic vs Valentin Vacherot
-    match 5  Luciano Darderi vs Rinky Hijikata
-    match 6  Andrey Rublev vs Tomas Martin Etcheverry
-    match 8  Mattia Bellucci vs Lorenzo Sonego
-    match 9  Arthur Rinderknech vs Francisco Cerundolo
-    match 10 Tommy Paul vs Holger Rune
-    match 11 Daniel Merida vs Sebastian Baez
-    match 12 Quentin Halys vs Arthur Fery
-    match 13 Jan-Lennard Struff vs Arthur Gea
-    match 16 Nuno Borges vs Moise Kouame
-    match 17 Denis Shapovalov vs Karen Khachanov
-    match 18 Ignacio Buse vs Zizou Bergs
-    match 19 Kyrian Jacquet vs Tomas Machac
-    match 20 Alex Molcan vs Titouan Droguet
-    match 21 Benjamin Bonzi vs Taylor Fritz
-    match 22 Brandon Nakashima vs Matteo Berrettini
-    match 23 Ugo Humbert vs Botic van de Zandschulp
-    match 24 Alex Michelsen vs Jiri Lehecka
-
-Re-run this script as those land; it is safe to run repeatedly. Note that
-re-running `predict` on a fuller R32 draw shifts every row's positional
-match_no, so the earlier R32 log rows must be dropped and re-logged rather
-than appended to.
+This replaces the earlier partial version of this scorer, which covered only
+the three matches fixed by the first two R32 pairings.
 
 Usage:  python score_paris2026_r64.py [reports_dir]   (default: reports)
 """
@@ -52,12 +29,33 @@ def al(n):
 
 reports = sys.argv[1] if len(sys.argv) > 1 else "reports"
 
-EXPECTED = 3
+EXPECTED = 24
 
 RESULTS = {
-    ("Cameron Norrie",   "Matteo Arnaldi"        ): "Cameron Norrie",
-    ("Casper Ruud",      "Juan Manuel Cerundolo" ): "Casper Ruud",
-    ("Alejandro Tabilo", "Rafael Jodar"          ): "Rafael Jodar",
+    ("Lorenzo Musetti",       "Hubert Hurkacz"          ): "Lorenzo Musetti",
+    ("Luca Van Assche",       "Mariano Navone"          ): "Luca Van Assche",
+    ("Adolfo Daniel Vallejo", "Learner Tien"            ): "Learner Tien",
+    ("Novak Djokovic",        "Valentin Vacherot"       ): "Novak Djokovic",
+    ("Luciano Darderi",       "Rinky Hijikata"          ): "Rinky Hijikata",
+    ("Andrey Rublev",         "Tomas Martin Etcheverry" ): "Tomas Martin Etcheverry",
+    ("Cameron Norrie",        "Matteo Arnaldi"          ): "Cameron Norrie",
+    ("Mattia Bellucci",       "Lorenzo Sonego"          ): "Mattia Bellucci",
+    ("Arthur Rinderknech",    "Francisco Cerundolo"     ): "Arthur Rinderknech",
+    ("Tommy Paul",            "Holger Rune"             ): "Tommy Paul",
+    ("Daniel Merida",         "Sebastian Baez"          ): "Daniel Merida",
+    ("Quentin Halys",         "Arthur Fery"             ): "Quentin Halys",
+    ("Jan-Lennard Struff",    "Arthur Gea"              ): "Jan-Lennard Struff",
+    ("Casper Ruud",           "Juan Manuel Cerundolo"   ): "Casper Ruud",
+    ("Alejandro Tabilo",      "Rafael Jodar"            ): "Rafael Jodar",
+    ("Nuno Borges",           "Moise Kouame"            ): "Nuno Borges",
+    ("Denis Shapovalov",      "Karen Khachanov"         ): "Karen Khachanov",
+    ("Ignacio Buse",          "Zizou Bergs"             ): "Ignacio Buse",
+    ("Kyrian Jacquet",        "Tomas Machac"            ): "Tomas Machac",
+    ("Alex Molcan",           "Titouan Droguet"         ): "Alex Molcan",
+    ("Benjamin Bonzi",        "Taylor Fritz"            ): "Taylor Fritz",
+    ("Brandon Nakashima",     "Matteo Berrettini"       ): "Matteo Berrettini",
+    ("Ugo Humbert",           "Botic van de Zandschulp" ): "Ugo Humbert",
+    ("Alex Michelsen",        "Jiri Lehecka"            ): "Alex Michelsen",
 }
 
 assert len(RESULTS) == EXPECTED, f"RESULTS holds {len(RESULTS)}, expected {EXPECTED}"
