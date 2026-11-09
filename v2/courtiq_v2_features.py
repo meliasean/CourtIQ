@@ -7,7 +7,9 @@ after the match is recorded, never before.
 
 Features (all oriented as player A minus player B unless noted):
   elo_diff, selo_diff, blend_elo_diff  - V1-style Elo (K=24 overall, 18 surface) and a 50/50 blend
-  mov_elo_diff                         - Elo updated on share of games won instead of win/loss
+  mov_elo_diff                         - Elo updated on share of games won instead of win/loss (superseded)
+  mult_elo_diff, mult_selo_diff        - margin-multiplier Elo: winner always gains, the score scales the step
+                                         M = clip((margin / mean_margin) ** 0.5, 0.25, 3), K=64 overall, 48 surface
   srv_adj, ret_adj                     - opponent-adjusted serve / return points-won skill (above tour avg),
                                          recency-weighted by points and shrunk toward long-run then tour average
   p_point_model                        - match-win probability from a point-by-point model fed with the above
@@ -35,6 +37,9 @@ PRIOR_LONG_PTS = 300.0       # shrink long-run serve/return toward tour average
 PRIOR_RECENT_PTS = 250.0     # shrink recent toward long-run
 LUCK_DECAY = 0.90
 LUCK_PRIOR = 8.0             # matches of shrinkage toward zero luck
+K_MULT, K_MULT_SURF = 64.0, 48.0   # margin-multiplier Elo (tuned on 2022, tested on 2023-24)
+MULT_GAMMA = 0.5                   # concave: blowouts count more, with diminishing returns
+MEAN_MARGIN = 0.228                # overwritten in build() from the warm-up year
 
 
 # ---------------- point-model math ----------------
@@ -105,11 +110,23 @@ def est_offset_days(round_code, draw_size, best_of):
     return max(0.0, (r - first) * step)
 
 
+def margin_multiplier(score):
+    """Score -> K multiplier. Margin = (games won - games lost) / total games. Retirements and unparseable scores -> 1."""
+    s = str(score)
+    if any(t in s for t in ("RET", "DEF", "ABD")): return 1.0
+    g = games_from_score(s)
+    if not g: return 1.0
+    m = (g[0] - g[1]) / (g[0] + g[1])
+    return float(np.clip((max(m, 1e-3) / MEAN_MARGIN) ** MULT_GAMMA, 0.25, 3.0))
+
+
 class Rater:
     def __init__(self):
         self.elo = defaultdict(lambda: ELO_BASE)
         self.selo = defaultdict(lambda: ELO_BASE)
         self.mov = defaultdict(lambda: ELO_BASE)
+        self.melo = defaultdict(lambda: ELO_BASE)
+        self.mselo = defaultdict(lambda: ELO_BASE)
         # serve/return: weighted sums (num = sum w * pts * residual, den = sum w * pts)
         self.sr = defaultdict(lambda: dict(sNl=0., sDl=0., sNr=0., sDr=0., rNl=0., rDl=0., rNr=0., rDr=0.))
         self.base = defaultdict(lambda: [0.0, 0.0])        # surface -> [serve pts won, serve pts]
@@ -153,6 +170,11 @@ class Rater:
         self.elo[w] = ew + K_ELO * (1 - e); self.elo[l] = el - K_ELO * (1 - e)
         sw, sl = self.selo[(w, surf)], self.selo[(l, surf)]; e = 1 / (1 + 10 ** ((sl - sw) / 400))
         self.selo[(w, surf)] = sw + K_SELO * (1 - e); self.selo[(l, surf)] = sl - K_SELO * (1 - e)
+        mult = margin_multiplier(row.score)
+        mw, ml = self.melo[w], self.melo[l]; e = 1 / (1 + 10 ** ((ml - mw) / 400))
+        self.melo[w] = mw + K_MULT * mult * (1 - e); self.melo[l] = ml - K_MULT * mult * (1 - e)
+        mw, ml = self.mselo[(w, surf)], self.mselo[(l, surf)]; e = 1 / (1 + 10 ** ((ml - mw) / 400))
+        self.mselo[(w, surf)] = mw + K_MULT_SURF * mult * (1 - e); self.mselo[(l, surf)] = ml - K_MULT_SURF * mult * (1 - e)
         g = games_from_score(row.score)
         if g:
             share = g[0] / (g[0] + g[1])
@@ -206,7 +228,11 @@ def build(matches: pd.DataFrame, seed=7, warmup_end="2022-01-01"):
     # total-points-won share per match (winner's), used for luck and to calibrate its win mapping on warm-up only
     tpw = ((m.w_1stWon + m.w_2ndWon) + (m.l_svpt - m.l_1stWon - m.l_2ndWon)) / (m.w_svpt + m.l_svpt)
     m["tpw_w"] = tpw
-    global TPW_SLOPE
+    global TPW_SLOPE, MEAN_MARGIN
+    gm = m.score.map(games_from_score)
+    marg = pd.Series([(x[0] - x[1]) / (x[0] + x[1]) if x else np.nan for x in gm], index=m.index)
+    clean = ~m.score.astype(str).str.contains("RET|DEF|ABD|W/O", regex=True)
+    MEAN_MARGIN = float(marg[(m.tdate < warmup_end) & clean].mean())
     wu = m[(m.tdate < warmup_end) & tpw.notna()]
     if len(wu) > 200:
         # symmetric fit: P(win | share) for both orientations
@@ -231,6 +257,7 @@ def build(matches: pd.DataFrame, seed=7, warmup_end="2022-01-01"):
                     score=r.score, is_wo=("W/O" in str(r.score)),
                     elo_diff=R.elo[A] - R.elo[B], selo_diff=R.selo[(A, s)] - R.selo[(B, s)],
                     mov_elo_diff=R.mov[A] - R.mov[B],
+                    mult_elo_diff=R.melo[A] - R.melo[B], mult_selo_diff=R.mselo[(A, s)] - R.mselo[(B, s)],
                     srv_adj=R.srv(A) - R.srv(B), ret_adj=R.ret(A) - R.ret(B),
                     pa_serve=pa, pb_serve=pb, p_point_model=p_match(pa, pb, bo),
                     luck=R.luck_of(A) - R.luck_of(B),
@@ -250,4 +277,4 @@ if __name__ == "__main__":
     src, out = sys.argv[1], sys.argv[2]
     df = build(pd.read_csv(src, low_memory=False))
     df.to_csv(out, index=False)
-    print(f"{len(df)} matches -> {out}; TPW slope {TPW_SLOPE:.1f}")
+    print(f"{len(df)} matches -> {out}; TPW slope {TPW_SLOPE:.1f}; mean margin {MEAN_MARGIN:.3f}")
