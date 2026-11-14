@@ -895,3 +895,7 @@ logged_at,tourney,round,match_no,player_a,player_b,pick_player,pick_odds,is_unde
 2026-11-07T05:47:46+00:00,paris2026,SF,1,Luca Van Assche,Ben Shelton,Ben Shelton,-358.0,False,0.651923,0.844037,0.745626,-0.093703,0.0,0.6077,1.0,0.3613,0.2962,29.62,Avoid,False,,,win,0.2793,2026-11-07T22:43:38+00:00
 2026-11-07T05:47:46+00:00,paris2026,SF,2,Casper Ruud,Carlos Alcaraz,Carlos Alcaraz,-521.0,False,0.718696,0.844037,0.800744,-0.082048,0.0,0.8748,1.0,0.2172,0.3907,39.07,Avoid,False,,,win,0.1919,2026-11-07T22:43:38+00:00
 2026-11-07T22:44:13+00:00,paris2026,F,1,Ben Shelton,Carlos Alcaraz,Carlos Alcaraz,-374.0,False,0.701055,0.844037,0.752821,-0.051767,0.0,0.8042,1.0,0.269,0.3644,36.44,Avoid,False,,,win,0.2674,2026-11-08T21:40:32+00:00
+2026-11-14T17:01:38+00:00,atpfinals2026,RR1,1,Alexander Zverev,Rafael Jodar,Alexander Zverev,-249.0,False,0.663108,0.746575,0.680844,-0.017736,0.0,0.6524,1.0,0.3195,0.3138,31.38,Avoid,False,,,,,
+2026-11-14T17:01:38+00:00,atpfinals2026,RR1,2,Ben Shelton,Arthur Fils,Ben Shelton,-191.0,False,0.608837,0.7,0.625988,-0.017151,0.0,0.4353,1.0,0.4714,0.2335,23.35,Avoid,False,,,,,
+2026-11-14T17:01:38+00:00,atpfinals2026,RR1,3,Carlos Alcaraz,Frances Tiafoe,Carlos Alcaraz,-1020.0,False,0.731308,0.857143,0.869251,-0.137942,0.0,0.9252,1.0,0.1977,0.4078,40.78,Avoid,False,,,,,
+2026-11-14T17:01:38+00:00,atpfinals2026,RR1,4,Daniil Medvedev,Flavio Cobolli,Daniil Medvedev,-376.0,False,0.626259,0.746575,0.75399,-0.12773,0.0,0.505,1.0,0.3584,0.2657,26.57,Avoid,False,,,,,
