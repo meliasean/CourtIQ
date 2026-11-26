@@ -106,6 +106,15 @@ def est_match_offset(round_code, draw_size, level):
     return max(0.0, (r - first) * step)
 
 
+def _ymd(col):
+    """YYYYMMDD column -> dates, whether pandas read it as text, int or float (blanks make it float in pandas 2)."""
+    v = pd.to_numeric(col, errors="coerce")
+    ok = v.notna()
+    out = pd.Series(pd.NaT, index=col.index, dtype="datetime64[ns]")
+    out[ok] = pd.to_datetime(v[ok].astype("int64").astype(str), format="%Y%m%d")
+    return out
+
+
 def from_sackmann(path, alias):
     d = pd.read_csv(path, low_memory=False)
     out = pd.DataFrame({
@@ -119,12 +128,12 @@ def from_sackmann(path, alias):
         "winner_rank": d.winner_rank, "loser_rank": d.loser_rank,
         "score": d.score, "minutes": d.minutes,
         # optional columns (TennisMyLife files written by import_tml.py); plain Sackmann files have neither
-        "match_date": pd.to_datetime(d["match_date"].astype("string"), format="%Y%m%d") if "match_date" in d else pd.NaT,
+        "match_date": _ymd(d["match_date"]) if "match_date" in d else pd.NaT,
     })
     for side in ("w", "l"):
         for c in STAT_COLS:
             out[f"{side}_{c}"] = d.get(f"{side}_{c}", np.nan)
-    out["event_end"] = pd.to_datetime(d["event_end"].astype("string"), format="%Y%m%d") if "event_end" in d else pd.NaT
+    out["event_end"] = _ymd(d["event_end"]) if "event_end" in d else pd.NaT
     return out
 
 

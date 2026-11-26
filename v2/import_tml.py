@@ -79,6 +79,13 @@ def main():
     t = t[~t.tourney_name.isin(EXCLUDE) & ~t["round"].astype(str).str.fullmatch(r"Q\d")].copy()
     t["tourney_level"] = t.tourney_level.astype(str).replace(LEVEL)
     t["date"] = t.tourney_date.map(ymd)
+    # TML sometimes leaves match_num blank (489 rows in 2025); number those 9000+ within their event so match ids
+    # stay unique and identical across pandas versions
+    gap = t.match_num.isna()
+    if gap.any():
+        t.loc[gap, "match_num"] = 9000 + t[gap].groupby("tourney_id").cumcount()
+        print(f"numbered {int(gap.sum())} TML rows that had no match_num (9000+ within their event)")
+    t["match_num"] = t.match_num.astype(int)
     per_match = t.groupby("tourney_id").date.transform("nunique") > 1
     t["ev_start"] = t.groupby("tourney_id").date.transform("min")
     t["ev_end"] = t.groupby("tourney_id").date.transform("max").where(per_match)       # real final date when known
