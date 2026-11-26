@@ -145,7 +145,7 @@ def main():
             rows.append({"tourney_slug": slug, "round": x["round"], "match_no": int(x.match_no),
                          "winner": x.player_a if a_won else x.player_b, "loser": x.player_b if a_won else x.player_a, "_y": y})
         um = unmatched.get(slug, [])
-        if um and not a.allow_missing and (len(um) > 2 or len(um) > 0.03 * len(p)):
+        if um and not a.allow_missing and len(um) > 2:
             hard.extend(um)
         extra = g.drop(index=list(used))
         for k, (_, y) in enumerate(extra.iterrows()):
