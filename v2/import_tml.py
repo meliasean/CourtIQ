@@ -166,9 +166,13 @@ def main():
                              "match_date": "" if pd.isna(r["_y"].m_date) else r["_y"].m_date.strftime("%Y-%m-%d"),
                              "event_end": "" if pd.isna(r["_y"].ev_end) else r["_y"].ev_end.strftime("%Y-%m-%d"),
                              "winner_rank": r["_y"].winner_rank, "loser_rank": r["_y"].loser_rank,
-                             **{c: r["_y"].get(c, np.nan) for c in STATS}} for r in rows])
+                             **{c: r["_y"].get(c, np.nan) for c in STATS},
+                             # event details, used by match_store only when the engine has no config for this slug
+                             "tourney_name": r["_y"].tourney_name, "surface": r["_y"].surface,
+                             "level": r["_y"].tourney_level, "best_of": r["_y"].best_of, "draw_size": r["_y"].draw_size} for r in rows])
         cols = ["tourney_slug", "event_start", "round", "match_no", "winner", "loser", "score", "minutes",
-                "match_date", "event_end", "winner_rank", "loser_rank"] + STATS
+                "match_date", "event_end", "winner_rank", "loser_rank"] + STATS + \
+               ["tourney_name", "surface", "level", "best_of", "draw_size"]
         written[f"{slug}.csv"] = out[cols].assign(score_source="tml")
 
     # ---- page-built cross-checks

@@ -25,6 +25,7 @@ ROUND_ORDER = {"Q1": 0, "Q2": 0, "Q3": 0, "ER": 1, "R128": 1, "R64": 2, "R32": 3
 STAT_COLS = ["ace", "df", "svpt", "1stIn", "1stWon", "2ndWon", "SvGms", "bpSaved", "bpFaced"]
 TEMPLATE_COLUMNS = ["tourney_slug", "event_start", "round", "match_no", "winner", "loser", "score",   # required
                     "minutes", "match_date", "event_end", "winner_rank", "loser_rank"]               # optional
+EVENT_COLS = ["tourney_name", "surface", "level", "best_of", "draw_size"]   # optional; used only when the engine has no config
 # Serve stats are optional in the template too: w_svpt, w_1stIn, ... l_bpFaced (Sackmann names).
 
 
@@ -144,13 +145,21 @@ def from_courtiq(path, alias, configs):
     rows = []
     for _, r in d.iterrows():
         m = re.match(r"^([a-z]+)(\d{4})$", str(r.tourney_slug).lower())
-        if not m or m.group(1) not in configs: sys.exit(f"{path}: unknown tourney_slug {r.tourney_slug}")
-        cfg = configs[m.group(1)]
+        if not m: sys.exit(f"{path}: bad tourney_slug {r.tourney_slug}")
         key = m.group(1)
-        if cfg["level"] == "G": draw = 128
-        elif cfg["level"] == "M": draw = 56 if key in ("montecarlo", "paris") else 96   # 12-day Masters since 2025
-        elif cfg["level"] == "F": draw = 8
-        else: draw = {"R32": 32, "R16": 16}.get(cfg["rounds"][0], 32)
+        if key in configs:                                   # engine config wins whenever it exists
+            cfg = configs[key]
+            if cfg["level"] == "G": draw = 128
+            elif cfg["level"] == "M": draw = 56 if key in ("montecarlo", "paris") else 96   # 12-day Masters since 2025
+            elif cfg["level"] == "F": draw = 8
+            else: draw = {"R32": 32, "R16": 16}.get(cfg["rounds"][0], 32)
+        elif all(c in d.columns and pd.notna(r.get(c)) for c in EVENT_COLS):
+            # event V1 predicted without a TOURNAMENT_CONFIGS entry (e.g. Hamburg, Munich): use the values
+            # the importer wrote from the source data
+            cfg = {"name": str(r.tourney_name), "surface": str(r.surface), "level": str(r.level), "best_of": int(r.best_of)}
+            draw = int(r.draw_size)
+        else:
+            sys.exit(f"{path}: unknown tourney_slug {r.tourney_slug} (not in TOURNAMENT_CONFIGS and no {EVENT_COLS} columns)")
         rows.append({
             "source": f"courtiq:{Path(path).name}", "tourney_id": str(r.tourney_slug).lower(), "tourney_name": f"{cfg['name']} {m.group(2)}",
             "tourney_slug": str(r.tourney_slug).lower(), "level": {"A": "A"}.get(cfg["level"], cfg["level"]),
