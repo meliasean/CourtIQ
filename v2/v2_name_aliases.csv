@@ -1,0 +1,23 @@
+variant,canonical,status,note
+Aleksander Vukic,Aleksandar Vukic,confirmed,prediction-file misspelling
+Alexander Shevchenko,Aleksandr Shevchenko,confirmed,already in engine ALIASES
+Christopher Oconnell,Christopher O'Connell,confirmed,Sackmann drops the apostrophe
+Jesper De Jong,Jesper de Jong,confirmed,already in engine ALIASES
+Luca Darderi,Luciano Darderi,confirmed,prediction-file misspelling
+Lorenzo Darderi,Luciano Darderi,confirmed,prediction-file misspelling
+Matteo Bellucci,Mattia Bellucci,confirmed,prediction-file misspelling
+Nikolai Budov Kjaer,Nicolai Budkov Kjaer,confirmed,prediction-file misspelling
+Raphael Collingnon,Raphael Collignon,confirmed,prediction-file misspelling
+Alexander Molcan,Alex Molcan,confirmed,ATP uses Alex
+Diego Vallejo,Adolfo Daniel Vallejo,confirmed,matches the engine's Vallejo convention
+J J Wolf,J.J. Wolf,confirmed,Sackmann drops the periods
+Stanislas Wawrinka,Stan Wawrinka,confirmed,ATP uses Stan
+Thiago Agustin Tirante,Thiago Tirante,confirmed,ATP uses the short form
+Marcelo Tomas Barrios Vera,Tomas Barrios Vera,confirmed,ATP uses the short form
+Roman Andres Burruchaga,Roman Burruchaga,confirmed,ATP uses the short form
+Bu Yunchaokete,Yunchaokete Bu,confirmed,Sackmann writes the surname first
+Guy Gen Ouden,Guy Den Ouden,confirmed,prediction-file typo
+Jan Engel,,review,possibly Justin Engel - check the draw before mapping
+Joao Faria,,review,possibly Jaime Faria - check the draw before mapping
+Duncan Chan,,review,unclear - not obviously Kwok Shun Dasson Chan
+Miroslav Topo,,review,possibly Marko Topo - check the draw before mapping
