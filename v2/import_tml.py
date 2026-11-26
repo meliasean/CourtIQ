@@ -34,6 +34,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from match_store import load_repo_maps, make_alias, STAT_COLS   # noqa: E402
 
+ALIAS = lambda n: n          # replaced in main() by the repo's alias table
 STATS = [f"{s}_{c}" for s in ("w", "l") for c in STAT_COLS]
 LEVEL = {"250": "A", "500": "A"}
 EXCLUDE = {"United Cup"}                     # not in the 2021-25 store
@@ -48,6 +49,7 @@ def tokens(s):
 
 
 def same_player(a, b):
+    a, b = ALIAS(a), ALIAS(b)
     if norm(a) == norm(b) or tokens(a) == tokens(b): return True
     ta, tb = tokens(a), tokens(b)
     if not ta or not tb: return False
@@ -65,14 +67,16 @@ def main():
     ap.add_argument("--repo", default="."); ap.add_argument("--tml", required=True, nargs="+")
     ap.add_argument("--out-dir", required=True); ap.add_argument("--check", nargs="*", default=[])
     ap.add_argument("--allow-missing", action="store_true", help="testing only: tolerate prediction rows TML lacks")
+    ap.add_argument("--year", default="2026", help="season of the prediction files to match (default 2026)")
     a = ap.parse_args()
     repo = Path(a.repo)
     aliases, _ = load_repo_maps(repo)
     alias = make_alias(aliases)
+    global ALIAS; ALIAS = alias
 
     t = pd.concat([pd.read_csv(f, low_memory=False) for f in a.tml], ignore_index=True)
     t = t.drop_duplicates(subset=["tourney_id", "round", "winner_name", "loser_name"])
-    t = t[~t.tourney_name.isin(EXCLUDE) & ~t["round"].astype(str).str.startswith("Q")].copy()
+    t = t[~t.tourney_name.isin(EXCLUDE) & ~t["round"].astype(str).str.fullmatch(r"Q\d")].copy()
     t["tourney_level"] = t.tourney_level.astype(str).replace(LEVEL)
     t["date"] = t.tourney_date.map(ymd)
     per_match = t.groupby("tourney_id").date.transform("nunique") > 1
@@ -86,7 +90,7 @@ def main():
     store = pd.read_csv(repo / "data/v2/matches.csv", usecols=["winner", "loser", "event_start"], low_memory=False)
     known = set(store.winner) | set(store.loser)
     preds = {}
-    for f in sorted((repo / "reports").glob("*2026_*_predictions_complete.csv")):
+    for f in sorted((repo / "reports").glob(f"*{a.year}_*_predictions_complete.csv")):
         if "_cck" in f.name: continue
         slug = f.name.split("_")[0]
         preds.setdefault(slug, []).append(pd.read_csv(f))
@@ -102,21 +106,24 @@ def main():
             if key in table: return table[key], "normalised"
         return n, "new"
 
-    hard, tracker, notes, logged_ids = [], [], [], {}
+    hard, tracker, notes, logged_ids, pin, unmatched = [], [], [], {}, [], {}
     os_ = Path(a.out_dir); written = {}
     # ---- logged events
     for slug, p in sorted(preds.items()):
-        names = set(p.player_a) | set(p.player_b)
+        # Pin the event by pairings: big events share most players with the smaller event before them,
+        # but rarely the same matches. Score = share of prediction rows whose two players met in that TML event.
+        pk = lambda x, y: frozenset((norm(ALIAS(x)), norm(ALIAS(y))))
+        ppairs = [pk(x, y) for x, y in zip(p.player_a, p.player_b)]
         lo, hi = pd.to_datetime(p.date, format="mixed").min() - pd.Timedelta(days=12), pd.to_datetime(p.date, format="mixed").max() + pd.Timedelta(days=12)
         cand = []
         for tid, g in t[(t.date >= lo) & (t.date <= hi)].groupby("tourney_id"):
-            tn = set(g.winner_name) | set(g.loser_name)
-            hit = sum(any(same_player(x, y) for y in tn) for x in names)
-            cand.append((hit / len(names), tid, g.tourney_name.iloc[0]))
+            tp = {pk(w, l) for w, l in zip(g.winner_name, g.loser_name)}
+            cand.append((sum(q in tp for q in ppairs) / len(ppairs), tid, g.tourney_name.iloc[0]))
         cand.sort(reverse=True)
-        if not cand or cand[0][0] < 0.6 or (len(cand) > 1 and cand[1][0] > 0.6):
+        if not cand or cand[0][0] < 0.8 or (len(cand) > 1 and cand[1][0] > 0.3):
             if a.allow_missing: notes.append(f"{slug}: no TML event found (skipped)"); continue
-            hard.append(f"{slug}: can't pin a single TML event (best {cand[:2]})"); continue
+            hard.append(f"{slug}: can't pin a single TML event (best {[(round(c[0], 3), c[1], c[2]) for c in cand[:2]]})"); continue
+        pin.append((slug, round(cand[0][0], 3), round(cand[1][0], 3) if len(cand) > 1 else 0.0))
         tid = cand[0][1]; logged_ids[tid] = slug
         g = t[t.tourney_id == tid]
         used, rows = set(), []
@@ -126,7 +133,7 @@ def main():
                  ((same_player(x.player_a, y.winner_name) and same_player(x.player_b, y.loser_name)) or
                   (same_player(x.player_b, y.winner_name) and same_player(x.player_a, y.loser_name)))]
             if len(m) != 1:
-                (notes if a.allow_missing else hard).append(f"{slug} {x['round']} match_no {x.match_no}: {x.player_a} v {x.player_b} -> {len(m)} TML rows")
+                unmatched.setdefault(slug, []).append(f"{slug} {x['round']} match_no {x.match_no}: {x.player_a} v {x.player_b} -> {len(m)} TML rows")
                 continue
             used.add(m[0]); y = t.loc[m[0]]
             a_won = same_player(x.player_a, y.winner_name)
@@ -137,6 +144,9 @@ def main():
                                    f"TML has {y.winner_name} ({y.score})")
             rows.append({"tourney_slug": slug, "round": x["round"], "match_no": int(x.match_no),
                          "winner": x.player_a if a_won else x.player_b, "loser": x.player_b if a_won else x.player_a, "_y": y})
+        um = unmatched.get(slug, [])
+        if um and not a.allow_missing and (len(um) > 2 or len(um) > 0.03 * len(p)):
+            hard.extend(um)
         extra = g.drop(index=list(used))
         for k, (_, y) in enumerate(extra.iterrows()):
             w, l = canon(y.winner_name)[0], canon(y.loser_name)[0]
@@ -191,7 +201,11 @@ def main():
     print(f"unlogged events: {u.tourney_id.nunique()} ({len(u)} matches), levels {u.tourney_level.value_counts().to_dict()}")
     print(f"players new to the store (no 2021-25 match, no prediction-file spelling): {len(newp)}")
     if newp: print("  " + ", ".join(f"{k} ({v})" for k, v in sorted(newp.items(), key=lambda kv: -kv[1])[:40]))
+    print("event pinning (share of your pairings found in the chosen TML event / in the runner-up):")
+    print("  " + ", ".join(f"{s_} {b}/{r}" for s_, b, r in pin))
     for n in notes: print("note: " + n)
+    soft = [u for k, v in unmatched.items() for u in v if u not in hard]
+    if soft: print("\nprediction rows with no TML match (not fatal: 2 or fewer per event; the real match is kept as 900+):\n  " + "\n  ".join(soft))
     if tracker: print(f"\nTRACKER DISAGREES WITH TML on {len(tracker)} matches (V1 files not touched):\n  " + "\n  ".join(tracker))
     if hard:
         print("\nPROBLEMS - nothing written:\n  " + "\n  ".join(hard)); sys.exit(1)
