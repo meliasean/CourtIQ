@@ -47,7 +47,10 @@ def _set_warmup_constants(m: pd.DataFrame):
 
 
 def load_matches(path) -> pd.DataFrame:
-    m = pd.read_csv(path, parse_dates=["event_start", "event_end", "match_date_est"], low_memory=False)
+    m = pd.read_csv(path, low_memory=False)
+    # ISO 8601 accepts both "2026-03-07" and "2025-03-07 02:24:00"; pandas 2 leaves a mixed column as text otherwise
+    for c in ("event_start", "event_end", "match_date_est"):
+        m[c] = pd.to_datetime(m[c], format="ISO8601")
     for c in ("walkover", "retired"):
         m[c] = m[c].astype(str).str.lower().isin(["true", "1"])
     return m
